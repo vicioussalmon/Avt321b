@@ -1,17 +1,18 @@
-﻿// Lab1_1.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
+﻿// Lab1_2.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
 
-#include <iostream>
 
+#include <iostream>
 using namespace std;
+
 int main()
 {
-    int a = sizeof(int);
-    short b = sizeof(short);
-    long c = sizeof(long);
-    char d = sizeof(char);
-    float e = sizeof(float);
-    double f = sizeof(double);
+    int a = 8;
+    int b = 6;
+    int c = 10;
+    float p = (a + b + c) / 2;
+    float s = sqrt(p*(p - a)*(p - b)*(p - c));
+      
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"

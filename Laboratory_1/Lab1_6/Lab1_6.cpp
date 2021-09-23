@@ -1,17 +1,17 @@
-﻿// Lab1_1.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
+﻿// Lab1_6.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
 
 #include <iostream>
 
-using namespace std;
 int main()
 {
-    int a = sizeof(int);
-    short b = sizeof(short);
-    long c = sizeof(long);
-    char d = sizeof(char);
-    float e = sizeof(float);
-    double f = sizeof(double);
+    int numberOfYears = 10000;
+    int sec_in_day = 24 * 60 * 60;
+    long long sec_in_cur_year = sec_in_day * 365;
+    long long sec_in_number_years = sec_in_cur_year * numberOfYears + sec_in_day * (numberOfYears / 4);
+    long long sec_in_100_years = sec_in_cur_year * 100+ 25 * sec_in_day;
+    long long sec_in_1000_years = sec_in_100_years * 10 + 250 * sec_in_day;
+ 
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"

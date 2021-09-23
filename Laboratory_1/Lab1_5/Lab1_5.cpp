@@ -1,17 +1,12 @@
-﻿// Lab1_1.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
+﻿// Lab1_5.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
 
 #include <iostream>
 
-using namespace std;
 int main()
 {
-    int a = sizeof(int);
-    short b = sizeof(short);
-    long c = sizeof(long);
-    char d = sizeof(char);
-    float e = sizeof(float);
-    double f = sizeof(double);
+	int human = 64875452;
+	int computer = human + 1;
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
