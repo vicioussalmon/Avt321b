@@ -5,12 +5,11 @@
 
 int main()
 {
-    int a = pow(2, 2);
+    int a = pow(2, 4);
     int b = pow(2, 2);
     int c = pow(2, 2);
-    int d = pow(2, 2);
 
-    int s = a * b * c * d;
+    int s = a * b * c;
 
 }
 
