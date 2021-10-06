@@ -1,20 +1,21 @@
-﻿// Laboratory_2_2.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
+﻿// Lab_2.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
+
 #define  _CRT_SECURE_NO_WARNINGS
-#include <iostream>
+//#include <iostream>
 #/*include <windows.h>*/
 #include <stdio.h>
-//#include <stdlib.h>
-#pragma warning(disable : 4996)
-using namespace std;
+#include <stdlib.h>
+//#pragma warning(disable : 4996)
+//using namespace std;
 
 int main()
 {
-	//system("chcp 1251");
-	//system("cls");
+	system("chcp 1251");
+	system("cls");
 	/*SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);*/
-	setlocale(LC_ALL, "Russian");
+	/*setlocale(LC_ALL, "Russian");*/
 	char name1[8] = "Джейран", name2[8] = "Гну", name3[8] = "Бейза";
 	char sc1 = 'A', sc2 = 'B', sc3 = 'H';
 	char place1[8] = "Азия", place2[8] = "Африка", place3[8] = "Африка";
@@ -31,15 +32,16 @@ int main()
 	printf("| Название | Группа |   Место  | Численность  |\n");
 	printf("|          |        | обитания |  популяции   |\n");
 	printf("|----------|--------|----------|--------------|\n");
-	printf("|%-10s|%-8c|%-10s|%-14d|\n", name1, sc1, place1, sq1);
-	printf("|%-10s|%-8c|%-10s|%-14d|\n", name2, sc2, place2, sq2);
-	printf("|%-10s|%-8c|%-10s|%-14d|\n", name3, sc3, place3, sq3);
+	printf("| %8s | %6c | %8s | %-12d |\n", name1, sc1, place1, sq1);
+	printf("| %8s | %6c | %8s | %-12d |\n", name2, sc2, place2, sq2);
+	printf("| %8s | %6c | %8s | %-12d |\n", name3, sc3, place3, sq3);
 	printf("|---------------------------------------------|\n");
 	printf("|       Группы: А - настоящие антилопы,       |\n");
 	printf("| B - коровьи антилопы, H - лошадиные антилопы|\n");
 	printf("-----------------------------------------------\n");
 	return 0;
 }
+
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
 // Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
 
