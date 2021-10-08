@@ -2,7 +2,7 @@
 //
 #define  _CRT_SECURE_NO_WARNINGS
 #include <iostream>
-#/*include <windows.h>*/
+#include <windows.h>
 #include <stdio.h>
 //#include <stdlib.h>
 #pragma warning(disable : 4996)
@@ -14,17 +14,17 @@ int main()
 	//system("cls");
 	/*SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);*/
-	setlocale(LC_ALL, "Russian");
+	setlocale(LC_ALL, "Ukranian");
 	char name1[8] = "Джейран", name2[8] = "Гну", name3[8] = "Бейза";
 	char sc1 = 'A', sc2 = 'B', sc3 = 'H';
 	char place1[8] = "Азия", place2[8] = "Африка", place3[8] = "Африка";
 	int sq1 = 30000, sq2 = 560000, sq3 = 2500;
-	printf("1. Введите: название, группу, место обитания, численность >");
+	/*printf("1. Введите: название, группу, место обитания, численность >");
 	scanf("%s %c %s %i", name1, &sc1, place1, &sq1);
 	printf("2. Введите: название, группу, место обитания, численность >");
 	scanf("%s %c %s %i", name2, &sc2, place2, &sq2);
 	printf("3. Введите: название, группу, место обитания, численность >");
-	scanf("%s %c %s %i", name3, &sc3, place3, &sq3);
+	scanf("%s %c %s %i", name3, &sc3, place3, &sq3);*/
 	printf("-----------------------------------------------\n");
 	printf("|         Некоторые виды антилоп              |\n");
 	printf("|---------------------------------------------|\n");
