@@ -1,31 +1,29 @@
-﻿// Laboratory_4.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
+﻿// Laboratory_4_2.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
 
 #include <iostream>
 #include <stdio.h>
 #pragma warning(disable : 4996)
 int main(void) {
-    setlocale(LC_ALL, "Russian");
-    int n; /* номер головки */
-    int t; /* номер дорожки */
-    int s; /* номер сектора */
-    unsigned int UnitStateWord; /* слово состояния */
-     /* ввод составных частей */
-    printf("Введите номер головки (0 - 3) >");
-    scanf("%d", &n);
-    printf("Введите признак ошибки (0 - 511) >");
-    scanf("%d", &t);
-    printf("Введите признак занятости (0 - 31) >");
-    scanf("%d", &s);
-    /* формирование упакованного кода */
-    UnitStateWord = ((unsigned int)n&0x3) << 14;
-    UnitStateWord |= ((unsigned int)t&0x1FF) << 5;
-    UnitStateWord |= s&0x1F ;
-   
-    /* вывод результата */
-    printf("\nСлово состояния устройства = %03x\n",
-        UnitStateWord);
-    return 0;
+	setlocale(LC_ALL, "Russian");
+	int n; /* номер головки */
+	int t; /* номер дорожки */
+	int s; /* номер сектора */
+	unsigned int UnitStateWord; /* слово состояния */
+	/* ввод слова состояния устройства */
+	printf("Введите cлово состояния устройства \n");
+	printf("(16-ричное число от 0 до 0xFFFF) >");
+	scanf("%x", &UnitStateWord);
+	/* Выделение составных частей */
+	n = (UnitStateWord >> 14) & 0x3;
+	t = (UnitStateWord >> 5) & 0x1FF;
+	s = UnitStateWord & 0x1F;
+	/* вывод результатов */
+	putchar('\n');
+	printf("Hомер головки          = %d\n", n);
+	printf("Hомер дорожки          = %d\n", t);
+	printf("Hомер сектора          = %d\n", s);
+	return 0;
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"

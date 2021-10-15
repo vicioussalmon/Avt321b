@@ -1,8 +1,9 @@
 ﻿// Laboratory_5.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
 
-#include <stdio.h>
+
 #include <iostream>
+#include <stdio.h>
 #pragma warning(disable : 4996)
 int main(void) {
     setlocale(LC_ALL, "Russian");
