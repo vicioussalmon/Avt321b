@@ -20,9 +20,9 @@ int main(void) {
 	s = UnitStateWord & 0x1F;
 	/* вывод результатов */
 	putchar('\n');
-	printf("Hомер головки          = %d\n", n);
-	printf("Hомер дорожки          = %d\n", t);
-	printf("Hомер сектора          = %d\n", s);
+	printf("Hомер головки= %d\n", n);
+	printf("Hомер дорожки= %d\n", t);
+	printf("Hомер сектора= %d\n", s);
 	return 0;
 }
 

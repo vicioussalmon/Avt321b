@@ -20,7 +20,7 @@ int main(void) {
     /* формирование упакованного кода */
     UnitStateWord = ((unsigned int)n&0x3) << 14;
     UnitStateWord |= ((unsigned int)t&0x1FF) << 5;
-    UnitStateWord |= s&0x1F ;
+    UnitStateWord |= s&0x1F;
    
     /* вывод результата */
     printf("\nСлово состояния устройства = %03x\n",
