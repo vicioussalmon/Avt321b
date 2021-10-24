@@ -11,11 +11,11 @@ int main()
 
     long float a, b, c, x1, x2, x, D;
 
-    printf("Введите значеия a = ");
+    printf("Введите значения a = ");
     scanf("%lf", &a);
-    printf("Введите значеия b = ");
+    printf("Введите значения b = ");
     scanf("%lf", &b);
-    printf("Введите значеия c = ");
+    printf("Введите значения c = ");
     scanf("%lf", &c);
 
     D = (pow(b, 2) - (4 * a * c));
