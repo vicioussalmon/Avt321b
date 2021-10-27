@@ -11,24 +11,27 @@ int main()
     setlocale(LC_ALL, "Russian");
 
     int k;
+    while (1)
+    {
+        printf("Введите значения k = ");
+        scanf("%d", &k);
 
-    printf("Введите значения k = ");
-    scanf("%d", &k);
-    
-        if (k == 1)
-            printf("У меня"" %d ""гриб", k);
+        if (k % 10 == 1)
+            printf("У меня"" %d ""гриб\n", k);
+
         else
-            if ((k >= 5) && (20 >= k))
-                printf("У меня"" %d ""грибов", k);
+            if ((k % 10 >= 5) && (19 >= k % 10))
+                printf("У меня"" %d ""грибов\n", k);
             else
-                if ((k >= 2) && (4 >= k))
-                    printf("У меня"" %d ""грибa", k);
+                if ((k % 10 >= 2) && (4 >= k % 10))
+                    printf("У меня"" %d ""грибa\n", k);
                 else
-                    if (k == 0)
-                        printf("У меня нет грибов", k);
-                    else
-                        printf("У меня"" %d ""грибов", k);
-        
+                    if (k % 10 == 0)
+                        printf("У меня"" %d ""грибов\n", k);
+                    
+                        else
+                            printf("У меня"" %d ""грибов\n", k);
+    }
     
     return 0;
 }

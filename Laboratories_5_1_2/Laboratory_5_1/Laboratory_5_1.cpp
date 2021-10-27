@@ -10,27 +10,30 @@ int main()
     setlocale(LC_ALL, "Russian");
 
     long float a, b, c, x1, x2, x, D;
+    while (1)
+    {
 
-    printf("Введите значения a = ");
-    scanf("%lf", &a);
-    printf("Введите значения b = ");
-    scanf("%lf", &b);
-    printf("Введите значения c = ");
-    scanf("%lf", &c);
+        printf("Введите значения a = ");
+        scanf("%lf", &a);
+        printf("Введите значения b = ");
+        scanf("%lf", &b);
+        printf("Введите значения c = ");
+        scanf("%lf", &c);
 
-    D = (pow(b, 2) - (4 * a * c));
-    x1 = (-b - sqrt(D)) / 2 * a;
-    x2 = (-b + sqrt(D)) / 2 * a;
-    x = -b / 2 * a;
+        D = (pow(b, 2) - (4 * a * c));
+        x1 = (-b - sqrt(D)) / 2 * a;
+        x2 = (-b + sqrt(D)) / 2 * a;
+        x = -b / 2 * a;
 
-    if (D > 0)
-        printf("x1 = %lf \n", x1) && printf("x2 = %lf \n", x2);
-    else
-        if (D == 0)
-            printf("Один корень уравнения\n x = %lf", x);
+        if (D > 0)
+            printf("x1 = %lf \n", x1) && printf("x2 = %lf \n", x2);
         else
-            if (D < 0)
-                printf("Нет корней уравнения");
+            if (D == 0)
+                printf("Один корень уравнения\n x = %lf", x);
+            else
+                if (D < 0)
+                    printf("Нет корней уравнения\n");
+    }
     return 0;
 }
 
