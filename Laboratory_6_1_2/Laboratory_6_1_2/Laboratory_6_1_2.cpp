@@ -1,36 +1,13 @@
-﻿// Laboratory_6.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
+﻿// Laboratory_6_1_2.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
 
-#include <stdio.h>
-#include <math.h>
 #include <iostream>
-#pragma warning(disable : 4996)
-int main() {
-    setlocale(LC_ALL, "Russian");
-    long n;              /* параметр ряда */
-    double dbln;         /* параметр ряда в форме с плавающей точкой */
-    double sum = 0;        /* сумма членов ряда */
-    double term;         /* значение текущего члена */
-    const double eps = 0.000001;  /* предел точности */
-    short k1 = 1;          /* pow(-1,n)*/
- 
-    for (n = 0; ; n++, k1 = -k1) {
 
-        dbln = n;
-
-        term = k1 *( 1 / ((dbln + 1)* (dbln + 2)* (dbln + 3)));
-        if (fabs(term) >= eps) 
-            sum += term;
-        
-        else 
-            break; 
-        if (n == 9) 
-            printf("Сумма 10 членов ряда = %10.7lf\n", sum);
-          
-    }
-    printf("Полная сумма ряда = %10.7lf\n", sum);
-    return 0;
+int main()
+{
+    std::cout << "Hello World!\n";
 }
+
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
 // Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
 

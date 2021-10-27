@@ -1,36 +1,35 @@
-﻿// Laboratory_6.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
+﻿// Laboratory_6_1.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
 
 #include <stdio.h>
-#include <math.h>
+#include <time.h>
 #include <iostream>
 #pragma warning(disable : 4996)
-int main() {
-    setlocale(LC_ALL, "Russian");
-    long n;              /* параметр ряда */
-    double dbln;         /* параметр ряда в форме с плавающей точкой */
-    double sum = 0;        /* сумма членов ряда */
-    double term;         /* значение текущего члена */
-    const double eps = 0.000001;  /* предел точности */
-    short k1 = 1;          /* pow(-1,n)*/
- 
-    for (n = 0; ; n++, k1 = -k1) {
 
-        dbln = n;
+int main(void) {
+	setlocale(LC_ALL, "Russian");
 
-        term = k1 *( 1 / ((dbln + 1)* (dbln + 2)* (dbln + 3)));
-        if (fabs(term) >= eps) 
-            sum += term;
-        
-        else 
-            break; 
-        if (n == 9) 
-            printf("Сумма 10 членов ряда = %10.7lf\n", sum);
-          
-    }
-    printf("Полная сумма ряда = %10.7lf\n", sum);
-    return 0;
+	srand(time(0));
+	int num = rand() % 100;
+
+	int j = 0;
+	int num2 = 0;
+	printf("Отгадайте число от 0 до 100\n");
+	while (num2 != num)
+	{
+		++j;
+		printf("Введите ваше значениe ");
+		scanf("%d", &num2);
+		if(num > num2)
+			printf("Загаданное число больше вашего\n");
+		else if (num < num2)
+			printf("Загаданное число меньше вашего\n");
+	}
+	printf("Вы угадали за"" %d ""попыток\n", j);
+	printf("\n\n\n");
+	return 0;
 }
+
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
 // Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
 
