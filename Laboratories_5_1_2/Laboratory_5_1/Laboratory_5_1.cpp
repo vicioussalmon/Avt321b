@@ -21,8 +21,8 @@ int main()
         scanf("%lf", &c);
 
         D = (pow(b, 2) - (4 * a * c));
-        x1 = (-b - sqrt(D)) / 2 * a;
-        x2 = (-b + sqrt(D)) / 2 * a;
+        x1 = (-b - sqrt(D)) / (2 * a);
+        x2 = (-b + sqrt(D)) / (2 * a);
         x = -b / 2 * a;
 
         if (D > 0)
