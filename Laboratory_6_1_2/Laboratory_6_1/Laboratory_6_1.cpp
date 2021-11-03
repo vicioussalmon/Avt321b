@@ -12,12 +12,12 @@ int main(void) {
 	srand(time(0));
 	int num = rand() % 100;
 
-	int k = 0;
+	int l = 0;
 	int num2 = 0;
 	printf("Отгадайте число от 0 до 100\n");
 	while (num2 != num)
 	{
-		++k;
+		++l;
 		printf("Введите ваше значениe ");
 		scanf("%d", &num2);
 		if(num > num2)
@@ -25,7 +25,7 @@ int main(void) {
 		else if (num < num2)
 			printf("Загаданное число меньше вашего\n");
 	}
-	printf("Вы угадали за"" %d ""попыток\n", k);
+	printf("Вы угадали за"" %d ""попыток\n", l);
 	printf("\n\n\n");
 	return 0;
 }
