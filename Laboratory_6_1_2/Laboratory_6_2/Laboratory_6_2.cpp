@@ -12,30 +12,59 @@ int main() {
 	srand(time(0));//случайные значения
 	int answer;
 	int counttrue = 0;//кол-во правильных
-	for (int i = 0; i < 10; i++) //кол-во примеров
+	int i = 0;//кол-во примеров
+	
+	for (i; i < 10; i++) //кол-во примеров
 	{
 		int a = rand() % 10 + 1; // числа от 0 до 9 и добавляет 1, получаем числа от 1го до 10
 		int b = rand() % 10 + 1;
-		int c = a * b;
+		answer = a * b;
 		cout << a << "*" << b << "=" << endl;
 		cin >> answer;
-		if (answer == c)
+		if (answer == a * b)
 		{
-			counttrue++;
+			counttrue = counttrue + 1;
 		}
-		else if (answer != c)
+		else if (answer != a * b)
 		{
 			counttrue = counttrue + 0;
 		}
+		
 	}
+	cout << "Количество правильных ответов" << endl << counttrue << endl;
 
-	cout << "Количество правильных ответов" << endl << counttrue << endl << "Ваша оценка" << endl << counttrue << endl;
+	 if (counttrue == 0)
+
+	cout << "Ваша оценка" << endl << "0" << endl << "УЧИТЬ НАДО БЫЛО" << endl;
+
+	else if (counttrue == i)
+
+		cout << "Ваша оценка" << endl << "5" << endl;
+
+	else if (counttrue == (i * 80) / 100)
+
+		 cout << "Ваша оценка" << endl << "4" << endl;
+
+	else if (counttrue == (i * 60) / 100)
+	
+		cout << "Ваша оценка" << endl << "3" << endl;
+	
+	else if (counttrue == (i * 40)/100)
+	
+		cout << "Ваша оценка" << endl << "2" << endl;
+	
+	else if (counttrue == (i * 20)/100)
+	
+		cout << "Ваша оценка" << endl << "1" << endl; 
+	
+	else if (counttrue == (i * 10) / 100)
+
+		 cout << "Ваша оценка" << endl << "0,5" << endl;
+	
 	return 0;
 }
 
-// Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
-// Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
-
+// 
 // Советы по началу работы 
 //   1. В окне обозревателя решений можно добавлять файлы и управлять ими.
 //   2. В окне Team Explorer можно подключиться к системе управления версиями.
