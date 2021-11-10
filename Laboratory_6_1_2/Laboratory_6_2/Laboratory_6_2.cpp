@@ -14,12 +14,12 @@ int main() {
 	int counttrue = 0;//кол-во правильных
 	int i = 0;//кол-во примеров
 	
-	for (i; i < 10; i++) //кол-во примеров
+	for (i; i < 5; i++) //кол-во примеров
 	{
 		int a = rand() % 10 + 1; // числа от 0 до 9 и добавляет 1, получаем числа от 1го до 10
 		int b = rand() % 10 + 1;
 		answer = a * b;
-		cout << a << "*" << b << "=" << endl;
+		cout << a << "*" << b << "=" ;
 		cin >> answer;
 		if (answer == a * b)
 		{
@@ -41,25 +41,22 @@ int main() {
 
 		cout << "Ваша оценка" << endl << "5" << endl;
 
-	else if (counttrue == (i * 80) / 100)
+	else if ((i * 80) / 100 <= counttrue <= (i * 80) / 100)
 
 		 cout << "Ваша оценка" << endl << "4" << endl;
 
-	else if (counttrue == (i * 60) / 100)
+	else if ((i * 60) / 100 <= counttrue <= (i * 60) / 100)
 	
 		cout << "Ваша оценка" << endl << "3" << endl;
 	
-	else if (counttrue == (i * 40)/100)
+	else if ((i * 30) / 100 <= counttrue <= (i * 40)/100)
 	
 		cout << "Ваша оценка" << endl << "2" << endl;
 	
-	else if (counttrue == (i * 20)/100)
+	else if ((i * 20) / 100 <= counttrue <= (i * 20)/100)
 	
 		cout << "Ваша оценка" << endl << "1" << endl; 
 	
-	else if (counttrue == (i * 10) / 100)
-
-		 cout << "Ваша оценка" << endl << "0,5" << endl;
 	
 	return 0;
 }
