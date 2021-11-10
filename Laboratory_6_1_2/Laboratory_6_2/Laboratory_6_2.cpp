@@ -5,11 +5,32 @@
 #include <math.h>
 #include <iostream>
 #pragma warning(disable : 4996)
+using namespace std;
 
-int main(void) {
+int main() {
 	setlocale(LC_ALL, "Russian");
+	srand(time(0));//случайные значения
+	int answer;
+	int counttrue = 0;//кол-во правильных
+	for (int i = 0; i < 10; i++) //кол-во примеров
+	{
+		int a = rand() % 10 + 1; // числа от 0 до 9 и добавляет 1, получаем числа от 1го до 10
+		int b = rand() % 10 + 1;
+		int c = a * b;
+		cout << a << "*" << b << "=" << endl;
+		cin >> answer;
+		if (answer == c)
+		{
+			counttrue++;
+		}
+		else if (answer != c)
+		{
+			counttrue = counttrue + 0;
+		}
+	}
 
-	
+	cout << "Количество правильных ответов" << endl << counttrue << endl << "Ваша оценка" << endl << counttrue << endl;
+	return 0;
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
