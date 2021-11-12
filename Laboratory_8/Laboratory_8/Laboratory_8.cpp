@@ -7,12 +7,10 @@
 #pragma warning(disable : 4996)
 int Ar[50];   /* массив, который обрабатывается */
 
-int main(void) {
+int main() {
     setlocale(LC_ALL, "Russian");
-    int i, j;    /* индексы в массиве */
-    int nn;
-    int min, i_min;
-    int ib;      /* индекс начала последовательности */
+    int i = 0;    /* индексы в массиве */
+    int min = 0;
 
     rand();  /* инициализация rand */
     srand(time(NULL));
@@ -24,26 +22,14 @@ int main(void) {
     putchar('\n');
     putchar('\n');
     
-    
-
-    for (nn = i = 0; i < 50; i++) { 
-        if (Ar[i] < 0)
-            if (!nn) {
-                // минимальное значение массива
-                for (i = 0; i < 50; i++) Ar[i] = rand();
-                min = Ar[0];
-                for (i = 1; i < 50; i++) {
-                    if (i % 2 != 0 && Ar[i] < min) {
-                        min = Ar[i];
-                        i_min = i;
-                    }
-                }
-                {
-                 Ar[i_min] = Ar[i] < 0;}
-            }
-         
-    }
-   
+    while (Ar[i++] <= 0) // находим первый неотрицательный элемент
+        min = Ar[i];
+        for (i; i < 50; i++) Ar[i] = rand();
+        if (min > Ar[i] && Ar[i] > 0 ) // находим минимальный среди положительных
+            min = Ar[i]; 
+        for (i = 0; i < 50; ++i) // заменяем отрицательные минимальным положительным
+            if (Ar[i] < 0)
+                Ar[i] = min;
     printf("Массив-результат:\n");
     for (i = 0; i < 50; printf("%3d  ", Ar[i++]));
     putchar('\n');
