@@ -17,20 +17,20 @@ int main()
 	short i, j; /* индексы */
 /* заполнение матрицы случайными числами */
 	rand(); /* инициализация rand */
-	for (i = 0; i < 9; i++)
-		for (j = 0; j < 9; Ar[i][j++] = rand()%100-50);
+	for (i = 0; i < S; i++)
+		for (j = 0; j < S; Ar[i][j++] = rand()%100-50);
 	/* распечатка исходной матрицы */
 	printf("Исходная матрица:\n");
-	for (i = 0; i < 9; i++, printf("\n"))
-		for (j = 0; j < 9; printf("%3d  ", Ar[i][j++]));
+	for (i = 0; i < S; i++, printf("\n"))
+		for (j = 0; j < S; printf("%3d  ", Ar[i][j++]));
 	//поворот
 	for (int i = 0; i < S; i++)
 		for (int j = 0; j < S; j++)
 			Br[j][S - i - 1] = Ar[i][j];
 	/* распечатка полученной матрицы */
 	printf("Полученная матрица:\n");
-	for (i = 0; i < 9; i++, printf("\n"))
-		for (j = 0; j < 9; printf("%3d  ", Br[i][j++]));
+	for (i = 0; i < S; i++, printf("\n"))
+		for (j = 0; j < S; printf("%3d  ", Br[i][j++]));
 	return 0;
 }
 
