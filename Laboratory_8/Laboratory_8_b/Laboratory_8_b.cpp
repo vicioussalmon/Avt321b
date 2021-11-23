@@ -28,21 +28,21 @@ int main()
 
         arr[i] = rand() % 10 + 1;
 
-        cout << arr[i] << setw(4);
+        cout << arr[i] << " ";
 
     }
     cout << endl;
     // условьице
 
-    string answer;
+    char answer; //создаем семейники ибо стринги низзя
 
-    string del_new("del");
+    char del_new='-';
 
-    string add_new("add");
+    char add_new='+';
 
     while (true) {
 
-        cout << "Вы хотите удалить или добавить элементы? <del/add> ";
+        cout << "Вы хотите удалить или добавить элементы? <-/+> ";
 
         cin >> answer;
         // добавляем
@@ -70,20 +70,22 @@ int main()
             int* add_elements = new int[k];
 
             cout << "Новые элементы: ";
-
+            //создание левых  эл-тов
             for (j = 0; j < k; j++) {
 
                 add_elements[j] = rand() % 10 + 1;
 
-                cout << add_elements[j] << setw(4);
+                cout << add_elements[j] <<" ";
 
             }
             cout << endl;
+            //перенос левого в новое 
             for (j = 0, i = pos; i < arr_size + k; i++, j++) {
 
                 add_new_arr[i] = add_elements[j];
 
             }
+            //перенос старого в новое
             for (j = pos + k, i = pos; j < arr_size + k; j++, i++) {
 
                 add_new_arr[i + k] = arr[i];
@@ -95,7 +97,7 @@ int main()
 
             for (i = 0; i < arr_size + k; i++) {
 
-                cout << add_new_arr[i] << setw(4);
+                cout << add_new_arr[i] << " ";
 
             }
 
@@ -113,6 +115,7 @@ int main()
             cout << "Выберите позицию, с которой вы хотите удалить данное количество элементов: " << k << endl;
 
             cin >> i;
+            //если все
             if (arr_size == k and i == 0) {
 
                 cout << "Массив удалён!" << endl;
@@ -121,7 +124,7 @@ int main()
             else {
                 for (; i < arr_size - k; i++) {
 
-                    arr[i] = arr[i + k];
+                    arr[i] = arr[i + k];//переносим не удаленные
 
                 }
               // массив 2.0
@@ -130,7 +133,7 @@ int main()
 
                 for (i = 0; i < arr_size - k; i++) {
 
-                    cout << arr[i] << setw(4);
+                    cout << arr[i] << " ";
 
                 }
 
