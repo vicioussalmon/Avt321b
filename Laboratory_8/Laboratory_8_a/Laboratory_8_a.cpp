@@ -5,7 +5,7 @@
 #include <iomanip>
 
 #include <ctime>
-
+#pragma warning(disable : 4996)
 #include <string>
 
 using namespace std;

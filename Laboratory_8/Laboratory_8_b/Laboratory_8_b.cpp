@@ -5,9 +5,9 @@
 #include <iomanip>
 
 #include <string>
-
+#pragma warning(disable : 4996)
 using namespace std;
-
+#define M 50
 
 
 
@@ -18,14 +18,14 @@ int main()
     int arr_size;
     cout << "Введите количество элементов массива: ";
     cin >> arr_size;
-    int* arr = new int[arr_size];
+    int arr[M];
     int k; // левые эл-ты
-    int i; // индекс 1го мн-ва
+    int i = 0; // индекс 1го мн-ва
     int j; // индекс 2го мн-ва
     // магичим рандомность
     cout << "Ваш массив:" << endl;
     for (i = 0; i < arr_size; i++) {
-
+        
         arr[i] = rand() % 10 + 1;
 
         cout << arr[i] << " ";
@@ -60,15 +60,15 @@ int main()
             cout << "Выберите позицию, с которой вы хотите добавть данное количество элементов: " << k << endl;
 
             cin >> pos;
-            // add loopы
-            int* add_new_arr = new int[arr_size + k];
+
+            int add_new_arr[M];
             for (i = 0; i < pos; i++) {
 
                 add_new_arr[i] = arr[i];
 
             }
-            int* add_elements = new int[k];
-
+         
+            int add_elements[M];
             cout << "Новые элементы: ";
             //создание левых  эл-тов
             for (j = 0; j < k; j++) {
