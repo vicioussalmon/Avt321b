@@ -17,7 +17,7 @@ int main()
         hash /= 10;
         array_size++;
     } while (hash > 0);
-    int* array = new int[array_size];
+    /*int* array = new int[array_size];*/
     int i = 0;
     for (i = 0; i < array_size; i++) {
         array[i] = (num % 10);
