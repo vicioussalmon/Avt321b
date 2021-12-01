@@ -38,7 +38,7 @@ void Fun(int mas1[])
         }
         cout << endl;
     }
-    return ;
+    
  }
 
 int main()
