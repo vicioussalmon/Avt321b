@@ -75,7 +75,7 @@ void shakerSort(int length, int type)
 
 void mergeSort(int length, int type)
 {
-    int temp[45], i, j, k, n, size, l1, h1, l2, h2;
+    int temp[45], i, j, k, size, l1, h1, l2, h2;
     populateArray(length, type);
     pintArray(length);
 
@@ -120,7 +120,7 @@ void mergeSort(int length, int type)
 }
 void calculate(int length, int methodName, int type)
 { 
-    //время старта
+  
 
     //запуск метода в зависимости от параметра
     if (methodName == SHAKER)
@@ -131,7 +131,7 @@ void calculate(int length, int methodName, int type)
     {
         mergeSort(length, type);
     }
-    // время остановки
+   
 }
 int main()
 {
@@ -156,13 +156,13 @@ int main()
                 std::cout << "******random********\n";
             }
             auto start = chrono::high_resolution_clock::now();
-            calculate(i * 5, SHAKER, j);
+            calculate(i * 5, SHAKER, 1/*, j*/);
             auto end = chrono::high_resolution_clock::now();
             chrono::duration<double> duration = end - start;
-            cout << "Array count = " << i*5 << " duration " << duration.count() << "s\n";
+            cout << "Array count = " << i * 5 << " duration " << duration.count() << "s\n";
         }
     }
-  
+    
     cout << "Method Merge sort s\n";
     for (int i = 1; i < 10; i++)
     {
