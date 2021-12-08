@@ -4,8 +4,7 @@
 using namespace std;
 #define M 100 // Количество циклов
 #define N 45  // Количество элементов массива
-int SHAKER = 1;
-int MERGE = 2;
+
 int mainArray[45];
 //тип 1-возростание 2-спадание 3-рандом
 void populateArray(int length, int type)
@@ -26,58 +25,17 @@ void populateArray(int length, int type)
         }
     }
 }
-void pintArray(int length)
-{
-    for (int i = 0; i < length; i++)
-    {
-        cout << mainArray[i] << ", ";
-    };
-    cout << "\n";
-}
 
-//метод шейкерной сортировки для массива длиной length
-void shakerSort(int length, int type)
-{
-    //наполняем массив случайными элементами
-    populateArray(length, type);
-    //печатаем исходный массив
-    pintArray(length);
-    int control = length - 1;
-    int left = 0;
-    int right = length - 1;
-    do
-    {
-
-        for (int i = left; i < right; i++)
-        {
-
-            if (mainArray[i] > mainArray[i + 1])
-            {
-                swap(mainArray[i], mainArray[i + 1]);
-                control = i;
-            }
-        }
-
-        right = control;
-        for (int i = right; i > left; i--)
-        {
-
-            if (mainArray[i] < mainArray[i - 1])
-            {
-                swap(mainArray[i], mainArray[i - 1]);
-                control = i;
-            }
-        }
-        left = control;
-    } while (left < right);
-    pintArray(length);
-};
 
 void mergeSort(int length, int type)
 {
     int temp[45], i, j, k, size, l1, h1, l2, h2;
-    populateArray(length, type);
-    pintArray(length);
+    /*populateArray(length, type);
+    for (int i = 0; i < length; i++)
+    {
+        cout << mainArray[i] << ", ";
+    }
+    cout << "\n";*/
 
     /* l1 граница 1 пары */
     for (size = 1; size < length; size = size * 2)
@@ -116,52 +74,25 @@ void mergeSort(int length, int type)
         for (i = 0; i < length; i++)
             mainArray[i] = temp[i];
     }
-    pintArray(length);
-}
-void calculate(int length, int methodName, int type)
-{
-
-
-    //запуск метода в зависимости от параметра
-    if (methodName == SHAKER)
+   /* for (int i = 0; i < length; i++)
     {
-        shakerSort(length, type);
+        cout << mainArray[i] << ", ";
     }
-    else
-    {
-        mergeSort(length, type);
-    }
-
+    cout << "\n";*/
 }
+//void calculate(int length, int methodName, int type)
+//{
+//
+//
+//    //запуск метода в зависимости от параметра
+//    if (methodName == MERGE)
+//    
+//        mergeSort(length, type);
+//    
+//
+//}
 int main()
 {
-    //метод шейкерной сортировки
-    cout << "Method Shaker sort s\n";
-    for (int i = 1; i < 10; i++)
-    {
-        for (int j = 1; j <= 3; j++)
-        {
-            //вычисляем работу метода для массива с i*5 элементов
-            cout << "************shaker for " << i * 5 << " elements**********\n";
-            if (j == 1)
-            {
-                cout << "******increase********\n";
-            }
-            else if (j == 2)
-            {
-              cout << "******waning********\n";
-            }
-            else
-            {
-              cout << "******random********\n";
-            }
-            auto start = chrono::high_resolution_clock::now();
-            calculate(i * 5, SHAKER, j);
-            auto end = chrono::high_resolution_clock::now();
-            chrono::duration<double> duration = end - start;
-            cout << "Array count = " << i * 5 << " duration " << duration.count() << "s\n";
-        }
-    }
 
     cout << "Method Merge sort s\n";
     for (int i = 1; i < 10; i++)
@@ -182,10 +113,11 @@ int main()
                 std::cout << "******random********\n";
             }
             auto start = chrono::high_resolution_clock::now();
-            calculate(i * 5, MERGE, j);
+            mergeSort(i*5, j);
+
             auto end = chrono::high_resolution_clock::now();
             chrono::duration<double> duration = end - start;
-            cout << "Array count = " << i * 5 << " duration " << duration.count() << "s\n";
+             printf (" duration %.8lf", duration.count());
         }
     };
 }
