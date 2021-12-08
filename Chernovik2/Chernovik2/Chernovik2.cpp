@@ -77,7 +77,7 @@ void mergeSort(int length, int type)
 {
     int temp[45], i, j, k, size, l1, h1, l2, h2;
     populateArray(length, type);
-    /*pintArray(length);*/
+    pintArray(length);
 
     /* l1 граница 1 пары */
     for (size = 1; size < length; size = size * 2)
@@ -116,7 +116,7 @@ void mergeSort(int length, int type)
         for (i = 0; i < length; i++)
             mainArray[i] = temp[i];
     }
-    /*pintArray(length);*/
+    pintArray(length);
 }
 void calculate(int length, int methodName, int type)
 {
@@ -135,6 +135,9 @@ void calculate(int length, int methodName, int type)
 }
 int main()
 {
+    double dur_arr[M];
+    long F = 0;
+    double aver_dur = 0;
     //метод шейкерной сортировки
     cout << "Method Shaker sort s\n";
     for (int i = 1; i < 10; i++)
@@ -142,21 +145,21 @@ int main()
         for (int j = 1; j <= 3; j++)
         {
             //вычисляем работу метода для массива с i*5 элементов
-            cout << "************shaker for " << i * 5 << " elements**********\n";
+            std::cout << "************shaker for " << i * 5 << " elements**********\n";
             if (j == 1)
             {
-                cout << "******increase********\n";
+                std::cout << "******increase********\n";
             }
             else if (j == 2)
             {
-              cout << "******waning********\n";
+                std::cout << "******waning********\n";
             }
             else
             {
-              cout << "******random********\n";
+                std::cout << "******random********\n";
             }
             auto start = chrono::high_resolution_clock::now();
-            calculate(i * 5, SHAKER, j);
+            calculate(i * 5, SHAKER, 1/*, j*/);
             auto end = chrono::high_resolution_clock::now();
             chrono::duration<double> duration = end - start;
             cout << "Array count = " << i * 5 << " duration " << duration.count() << "s\n";
@@ -188,4 +191,20 @@ int main()
             cout << "Array count = " << i * 5 << " duration " << duration.count() << "s\n";
         }
     };
+    for (int i = 1; i < M; i++)
+    {
+        auto start = chrono::high_resolution_clock::now();
+        shakerSort(45, 3);
+        auto end = chrono::high_resolution_clock::now();
+        chrono::duration<double> duration = end - start;
+        dur_arr[i] = duration.count();
+    }
+    // Вывод результата
+    for (int i = 0; i < M; i++)
+    {
+        std::cout << "Duration " << i << " = " << dur_arr[i] << "s\n";
+        if (i > 0) aver_dur += dur_arr[i];
+    }
+    std::cout << "Duration a" << " = " << aver_dur / (M - 1) << "s\n";
+    std::cout << "f(" << 5 << ") = " << shakerSort << '\n';
 }
