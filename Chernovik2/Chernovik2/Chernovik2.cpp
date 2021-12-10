@@ -1,191 +1,92 @@
-﻿#include <iostream>
+﻿#include<cmath>
+#include<iomanip>
 #include <chrono>
-#include <windows.h>
+#define M 100	
 using namespace std;
-#define M 100 // Количество циклов
-#define N 45  // Количество элементов массива
-int SHAKER = 1;
-int MERGE = 2;
-int mainArray[45];
-//тип 1-возростание 2-спадание 3-рандом
-void populateArray(int length, int type)
-{
-    for (int i = 0; i < length; i++)
-    {
-        if (type == 1)
-        {
-            mainArray[i] = i;
-        }
-        else if (type == 2)
-        {
-            mainArray[i] = length - i;
-        }
-        else
-        {
-            mainArray[i] = rand() % 100;
-        }
-    }
-}
-void pintArray(int length)
-{
-    for (int i = 0; i < length; i++)
-    {
-        cout << mainArray[i] << ", ";
-    };
-    cout << "\n";
-}
 
-//метод шейкерной сортировки для массива длиной length
-void shakerSort(int length, int type)
-{
-    //наполняем массив случайными элементами
-    populateArray(length, type);
-    //печатаем исходный массив
-    pintArray(length);
-    int control = length - 1;
-    int left = 0;
-    int right = length - 1;
-    do
+int a[50];
+void shaker(int, int, int);
+//void shaker_sort(int low, int high)
+//{
+//    int mid;
+//    if (low < high)
+//    {
+//        mid = low + (high - low) / 2; //This avoids overflow when low, high are too large
+//        shaker_sort(low, mid);
+//        shaker_sort(mid + 1, high);
+//        shaker(low, mid, high);
+//    }
+//}
+ void shaker(int array[], int size)
     {
-
-        for (int i = left; i < right; i++)
+     int low; int high;
+        for (int left_idx = 0, right_idx = size - 1;
+            left_idx < right_idx;)
         {
-
-            if (mainArray[i] > mainArray[i + 1])
+            for (int idx = left_idx; idx < right_idx; idx++)
             {
-                swap(mainArray[i], mainArray[i + 1]);
-                control = i;
+                if (array[idx + 1] < array[idx])
+                {
+                    swap(array[idx], array[idx + 1]);
+                }
             }
-        }
+            right_idx--;
 
-        right = control;
-        for (int i = right; i > left; i--)
-        {
-
-            if (mainArray[i] < mainArray[i - 1])
+            for (int idx = right_idx; idx > left_idx; idx--)
             {
-                swap(mainArray[i], mainArray[i - 1]);
-                control = i;
+                if (array[idx - 1] > array[idx])
+                {
+                    swap(array[idx - 1], array[idx]);
+                }
             }
+            left_idx++;
         }
-        left = control;
-    } while (left < right);
-    pintArray(length);
-};
-
-void mergeSort(int length, int type)
-{
-    int temp[45], i, j, k, size, l1, h1, l2, h2;
-    populateArray(length, type);
-    /*pintArray(length);*/
-
-    /* l1 граница 1 пары */
-    for (size = 1; size < length; size = size * 2)
-    {
-        l1 = 0;
-        k = 0; /* Индекс для temp array */
-        while (l1 + size < length)
+        int mid;
+        if (low < high)
         {
-            h1 = l1 + size - 1;
-            l2 = h1 + 1;
-            h2 = l2 + size - 1;
-            /* h2 превышает предел массива */
-            if (h2 >= length)
-                h2 = length - 1;
-            /* Слияние 2 пар */
-            i = l1;
-            j = l2;
-            while (i <= h1 && j <= h2)
-            {
-                if (mainArray[i] <= mainArray[j])
-                    temp[k++] = mainArray[i++];
-                else
-                    temp[k++] = mainArray[j++];
-            }
-            while (i <= h1)
-                temp[k++] = mainArray[i++];
-            while (j <= h2)
-                temp[k++] = mainArray[j++];
-            /** Слияние выполнено **/
-            /*Следущие 2 пары для слияния */
-            l1 = h2 + 1;
-        } /*конэц while*/
-        /*остатки роскоши */
-        for (i = l1; k < length; i++)
-            temp[k++] = mainArray[i];
-        for (i = 0; i < length; i++)
-            mainArray[i] = temp[i];
-    }
-    /*pintArray(length);*/
-}
-void calculate(int length, int methodName, int type)
-{
-
-
-    //запуск метода в зависимости от параметра
-    if (methodName == SHAKER)
-    {
-        shakerSort(length, type);
-    }
-    else
-    {
-        mergeSort(length, type);
+            mid = low + (high - low) / 2; //This avoids overflow when low, high are too large
+            /*shaker(low, mid);
+            shaker(mid + 1, high);
+            shaker(low, mid, high);*/
+        }
     }
 
-}
 int main()
 {
-    //метод шейкерной сортировки
-    cout << "Method Shaker sort s\n";
-    for (int i = 1; i < 10; i++)
-    {
-        for (int j = 1; j <= 3; j++)
-        {
-            //вычисляем работу метода для массива с i*5 элементов
-            cout << "************shaker for " << i * 5 << " elements**********\n";
-            if (j == 1)
-            {
-                cout << "******increase********\n";
-            }
-            else if (j == 2)
-            {
-                cout << "******waning********\n";
-            }
-            else
-            {
-                cout << "******random********\n";
-            }
-            auto start = chrono::high_resolution_clock::now();
-            calculate(i * 5, SHAKER, j);
-            auto end = chrono::high_resolution_clock::now();
-            chrono::duration<double> duration = end - start;
-            cout << "Array count = " << i * 5 << " duration " << duration.count() << "s\n";
-        }
-    }
+	setlocale(LC_ALL, "Russian");
+	int num, i;
+	double aver_dur = 0;
+	/*cout << "                             MERGE SORT PROGRAM                    		" << endl;*/
 
-    cout << "Method Merge sort s\n";
-    for (int i = 1; i < 10; i++)
-    {
-        for (int j = 1; j <= 3; j++)
-        {
-            std::cout << "***********Merge for " << i * 5 << " elements**********\n";
-            if (j == 1)
-            {
-                std::cout << "***increase***\n";
-            }
-            else if (j == 2)
-            {
-                std::cout << "******waning********\n";
-            }
-            else
-            {
-                std::cout << "******random********\n";
-            }
-            auto start = chrono::high_resolution_clock::now();
-            calculate(i * 5, MERGE, j);
-            auto end = chrono::high_resolution_clock::now();
-            chrono::duration<double> duration = end - start;
-            cout << "Array count = " << i * 5 << " duration " << duration.count() << "s\n";
-        }
-    };
+	/*cout << endl;*/
+	cout << "Please Enter THE NUMBER OF ELEMENTS you want to sort [THEN PRESS ENTER]:" << endl;
+	cin >> num;
+	cout << endl;
+	double dur_arr[5];
+	for (i = 1; i <= num; i++)
+	{
+		a[i] = rand() % 100 + 1;
+		cout << a[i] << " ";
+	}
+	cout << endl;
+
+	//time
+
+	/*auto start = std::chrono::high_resolution_clock::now();*/
+    shaker/*_sort*/(1, num);
+	/*auto end = std::chrono::high_resolution_clock::now();
+	chrono::duration<double>duration = end - start;
+	printf("Duration: %.10lf\n", duration.count());
+	dur_arr[i] = duration.count();*/
+
+	cout << endl;
+	cout << "So, the sorted list (using MERGE SORT) will be :" << endl;
+	cout << endl << endl;
+
+	for (i = 1; i <= num; i++)
+		cout << a[i] << "  ";
+
+	cout << endl << endl << endl << endl;
+	return 1;
+
 }
