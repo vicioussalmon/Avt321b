@@ -83,7 +83,7 @@ void ShakerSort(int a[], int n) {
 		}
 		right--;
 	}
-	/*return a[n];*/
+	
 }
 int main()
 {
