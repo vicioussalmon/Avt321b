@@ -136,18 +136,18 @@ int main()
 			cin >> type;
 			for (i = 0; i < N; i++)
 					{
-						if (type == 1)
-						{
-							arr[i] = i + 1; //increase
-						}
-						else if (type == 2)
-						{
-							arr[i] = N - (i + 1); //waning
-						}
-						else
-						{
-							arr[i] = rand() % 100 + 1; //random
-						}
+				if (type == 1)
+				{
+					arr[i] = i + 1; //increase
+				}
+				else if (type == 2)
+				{
+					arr[i] = N - (i + 1); //waning
+				}
+				else 
+				{
+					arr[i] = rand() % 100 + 1; //random
+				}
 				cout << arr[i] << " ";
 			}
 			cout << endl;
