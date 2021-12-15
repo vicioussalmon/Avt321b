@@ -115,7 +115,7 @@ int main()
 					arra[i] = arr[i];
 				}
 				auto start = std::chrono::high_resolution_clock::now();
-			ShakerSort(arr, N);
+			ShakerSort(arra, N);
 			auto end = std::chrono::high_resolution_clock::now();
 			chrono::duration<double>duration = end - start;
 			printf("Duration: %.10lf\n", duration.count());
@@ -166,7 +166,7 @@ int main()
 					arra[i] = arr[i];
 				}
 				auto start = std::chrono::high_resolution_clock::now();
-				mergesort(arr, N);
+				mergesort(arra, N);
 				auto end = std::chrono::high_resolution_clock::now();
 				chrono::duration<double>duration = end - start;
 				printf("Duration: %.10lf\n", duration.count());
