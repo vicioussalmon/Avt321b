@@ -4,7 +4,7 @@
 #include<iomanip>
 #include <chrono>
 #define M 100
-#define K 50 //менять!!!
+#define K 50 
 using namespace std;
 
 
