@@ -75,6 +75,8 @@ int main()
 		int N;
 		int type;
 		int sort;
+		int ar[50];
+		int arra[50];
 		int arr[50];
 		double dur_arr[M];
 		cout << "Choose type of sort (SHAKER SORT - 1/MERGE SORT - 2): ";
@@ -94,11 +96,13 @@ int main()
 				}
 				else if (type == 2)
 				{
-					arr[i] = N - (i + 1); //waning
+					arr[i] = N - (i + 1);//waning
+					ar[i] = arr[i];
 				}
 				else
 				{
 					arr[i] = rand() % 100 + 1; //random
+					arra[i] = arr[i];
 				}
 				cout << arr[i] << " ";
 			}
@@ -107,6 +111,9 @@ int main()
 			double aver_dur = 0;
 			for (int i = 0; i < M; i++)
 			{
+				for (int i = 0; i < N; i++) {
+					arra[i] = arr[i];
+				}
 				auto start = std::chrono::high_resolution_clock::now();
 			ShakerSort(arr, N);
 			auto end = std::chrono::high_resolution_clock::now();
@@ -155,6 +162,9 @@ int main()
 			double ave_dur = 0;
 			for (int i = 0; i < M; i++)
 			{
+				for (int i = 0; i < N; i++) {
+					arra[i] = arr[i];
+				}
 				auto start = std::chrono::high_resolution_clock::now();
 				mergesort(arr, N);
 				auto end = std::chrono::high_resolution_clock::now();
