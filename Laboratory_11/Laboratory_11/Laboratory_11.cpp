@@ -1,25 +1,34 @@
 ﻿#include <iostream>
+#include <windows.h>
+#include <iomanip>
 using namespace std;
-# define n 100;
-void sort(int arr[], int size)
-{ for (int i = size - 1; i >= 0; i--)
+void show(int mas[], int kol)
 {
-    cout << arr[i] << " ";
-};
-}
-int main()
-{
-    int i = 0, arr[100];
-    setlocale(LC_ALL, "rus");
-    cout << "Введите последовательность чисел:";
-    do
+    if (kol == 0)
+        cout << mas[kol] << " ";
+    else
     {
-        cin >> arr[i++];
-
+        cout << mas[kol] << " ";
+        show(mas, --kol);
     }
-    while (arr[i - 1] != 0);
-    int size = i;
-    cout << "В обратном порядке:";
-    sort(arr, size);
-    return 0;
+}
+
+void main(void)
+{
+    setlocale(LC_ALL, "rus");
+    const int n = 5;
+    int mas[n];
+    while (true) {
+        cout << "Введите массив\n";
+        cout << "Массив рассчитан на " << n << " эл-тов" << endl;
+        for (int i = 0; i < n; i++)
+        {
+            cout << "Введите эл-т №[" << i + 1 << "]: ";
+            cin >> mas[i];
+        }
+
+        cout << "\nВывод заданного массива в обратном порядке: ";
+        show(mas, n - 1);
+        cout << endl;
+    }
 }
