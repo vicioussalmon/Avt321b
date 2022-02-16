@@ -12,23 +12,19 @@ struct mon {
     float sq;
     int mas[10];
 };
-void input( mon mm[]) {
-    int n = M;
-    int i, j;
-    int m;
-
-    for (n = 0; n < M; n++)
+void input(mon mm[]) {
+    for (int n = 0; n < M; n++)
     {
         printf("%d. Введите: название, группу, место обитания, численность >",
             n + 1);
-        scanf_s("%s", mm[n].name, sizeof(mm[n].name));
+        scanf("%s", mm[n].name, sizeof(mm[n].name));
         if (!strcmp(mm[n].name, "***")) break;
-        scanf_s("%c", &mm[n].sc, sizeof(mm[n].name));
-        scanf_s("%s", &mm[n].cnt, sizeof(mm[n].name));
-        scanf_s("%f", &mm[n].sq);
+        scanf("%c", &mm[n].sc, sizeof(mm[n].name));
+        scanf("%s", &mm[n].cnt);
+        scanf("%f", &mm[n].sq);
     }
 }
-void print( mon mm[]) {
+void print(mon mm[]) {
 
     int n = M;
     int i, j;
@@ -42,7 +38,7 @@ void print( mon mm[]) {
     printf("|----------|--------|----------|--------------|\n");
     for (i = 0; i < n; i++)
     {
-        printf("|%-10s|%-8c|%-10s|%-14f|\n",
+        printf("|%-10s|%-8s|%-10c|%-14f|\n",
             mm[i].name, mm[i].sc, mm[i].cnt, mm[i].sq);
     }
     printf("|---------------------------------------------|\n");
@@ -66,7 +62,7 @@ void sort(mon mm[]) {
         }
     }
 }
-void random( mon mm[]) {
+void random(mon mm[]) {
     for (int n = 0; n < M; n++) {
         printf("%d. Введите название>", n + 1);
         scanf_s("%s", mm[n].name, sizeof(mm[n].name));
@@ -88,7 +84,6 @@ void random( mon mm[]) {
 }
 int main(void)
 {
-    srand(time(0));
     setlocale(LC_ALL, "Russian");
     int choice = 0;
     int n = 3;
@@ -105,7 +100,7 @@ int main(void)
             random(mm);//как швейцарские часы
         }
         else if (choice == 2) {
-            input(mm);//???
+            input(mm);
         }
         else if (choice == 3) {
             sort(mm);//correct
@@ -113,7 +108,12 @@ int main(void)
         else if (choice == 4) {
             print(mm);//исправно
         }
+        else if (choice > 4) {
+            cout << "Такого действия нет, попробуйте еще" << endl;
+            cin >> choice;
+        }
 
     }
     
 }
+
