@@ -2,15 +2,15 @@
 #include <string.h> 
 #include <stdio.h> 
 #define _CRT_SECURE_NO_WARNINGS 
-#define M 3 
+#define M 5
 #pragma warning(disable : 4996) 
 using namespace std;
 struct mon {
-    char name[8];
+    char name[10];
     char sc;
     char cnt[8];
     float sq;
-    int mas[10];
+    int mm[8];
 };
 void input(mon mm[]) {
     for (int n = 0; n < M; n++)
@@ -19,8 +19,8 @@ void input(mon mm[]) {
             n + 1);
         scanf("%s", mm[n].name, sizeof(mm[n].name));
         if (!strcmp(mm[n].name, "***")) break;
-        scanf("%c", &mm[n].sc, sizeof(mm[n].name));
-        scanf("%s", &mm[n].cnt);
+        scanf("%s", &mm[n].sc, sizeof(mm[n].sc));
+        scanf("%s", mm[n].cnt);
         scanf("%f", &mm[n].sq);
     }
 }
@@ -36,9 +36,9 @@ void print(mon mm[]) {
     printf("| Название | Группа |   Место  | Численность  |\n");
     printf("|          |        | обитания |  популяции   |\n");
     printf("|----------|--------|----------|--------------|\n");
-    for (i = 0; i < n; i++)
+    for ( i = 0; i < n; i++)
     {
-        printf("|%-10s|%-8s|%-10c|%-14f|\n",
+        printf("|%-10s|%-8c|%-10s|%-14.0lf|\n",
             mm[i].name, mm[i].sc, mm[i].cnt, mm[i].sq);
     }
     printf("|---------------------------------------------|\n");
@@ -106,6 +106,7 @@ int main(void)
             sort(mm);//correct
         }
         else if (choice == 4) {
+ 
             print(mm);//исправно
         }
         else if (choice > 4) {
