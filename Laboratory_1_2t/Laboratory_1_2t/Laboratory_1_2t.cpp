@@ -20,7 +20,7 @@ void input(mon mm[]) {
         scanf("%s", mm[n].name, sizeof(mm[n].name));
         if (!strcmp(mm[n].name, "***")) break;
         scanf("%s", &mm[n].sc, sizeof(mm[n].sc));
-        scanf("%s", mm[n].cnt);
+        scanf("%s", &mm[n].cnt);
         scanf("%f", &mm[n].sq);
     }
 }
@@ -71,7 +71,7 @@ void random(mon mm[]) {
         printf("%d. Введите ариал>", n + 1);
         scanf_s("%s", mm[n].cnt, sizeof(mm[n].cnt));
     }
-    char letters[3] = { 'A', 'B' ,'H' };
+    char letters[3] = { 'A', 'B' ,'H' }; 
     for (int i = 0; i < 3; i++)
     {
         mm[i].sc = letters[i % 3];
