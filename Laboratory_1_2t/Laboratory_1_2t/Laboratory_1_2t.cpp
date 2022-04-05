@@ -63,17 +63,13 @@ void sort(mon mm[]) {
     }
 }
 void random(mon mm[]) {
-    for (int n = 0; n < M; n++) {
-        printf("%d. Введите название>", n + 1);
-        scanf_s("%s", mm[n].name, sizeof(mm[n].name));
-    }
-    for (int n = 0; n < M; n++) {
-        printf("%d. Введите арeал>", n + 1);
-        scanf_s("%s", mm[n].cnt, sizeof(mm[n].cnt));
-    }
-    char letters[3] = { 'A', 'B' ,'H' }; 
-    for (int i = 0; i < 3; i++)
+    char m_name[3][10] = { "Gnu", "Baza", "Jaran" };
+    char m_arial[3][10] = { "Asia", "Asia", "Africa" };
+    char letters[3] = { 'A', 'B' ,'H' };
+    for (int i = 0; i < M; i++)
     {
+        strcpy_s(mm[i].name, m_name[i % 3]);
+        strcpy_s(mm[i].cnt, m_arial[i % 3]);
         mm[i].sc = letters[i % 3];
         mm[i].sq = rand() % 557501;
     }
