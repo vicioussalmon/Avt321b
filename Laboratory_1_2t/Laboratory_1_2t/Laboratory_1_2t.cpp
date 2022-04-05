@@ -2,7 +2,7 @@
 #include <string.h> 
 #include <stdio.h> 
 #define _CRT_SECURE_NO_WARNINGS 
-#define M 5
+#define M 3
 #pragma warning(disable : 4996) 
 using namespace std;
 struct mon {
@@ -68,7 +68,7 @@ void random(mon mm[]) {
         scanf_s("%s", mm[n].name, sizeof(mm[n].name));
     }
     for (int n = 0; n < M; n++) {
-        printf("%d. Введите ариал>", n + 1);
+        printf("%d. Введите арeал>", n + 1);
         scanf_s("%s", mm[n].cnt, sizeof(mm[n].cnt));
     }
     char letters[3] = { 'A', 'B' ,'H' }; 

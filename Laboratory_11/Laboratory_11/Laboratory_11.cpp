@@ -36,7 +36,7 @@ void pin()
     show(mas, n - 1);
     cout << endl;
     j = n;
-    pin();
+
 }
 void main(void)
 {
