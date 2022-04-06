@@ -4,7 +4,7 @@
 #include "Konst.h"
 #define _CRT_SECURE_NO_WARNINGS 
 #define M 5
-//#define DEBUG
+#define DEBUG
 #pragma warning(disable : 4996) 
 using namespace std;
 struct mon {
@@ -140,7 +140,7 @@ void random_input()
     struct mon mm[10];
     while (true) {
         cout << "Выберите операцию (Таблица рассчитана на 3 вида):" << endl;
-        cout << "(1)Заполнить массив рандомно" << endl;
+        cout << "(1)Заполнить массив" << endl;
         cout << "(2)Сортировка по алфавиту" << endl;
         cout << "(3)Печать" << endl;
         cin >> choice;
@@ -183,7 +183,7 @@ void user_input()
     struct mon mm[10];
     while (true) {
         cout << "Выберите операцию (Таблица рассчитана на 3 вида):" << endl;
-        cout << "(1)Заполнить массив вручную" << endl;
+        cout << "(1)Заполнить массив" << endl;
         cout << "(2)Сортировка по алфавиту" << endl;
         cout << "(3)Печать" << endl;
         cin >> choice;
