@@ -6,12 +6,8 @@
 #pragma warning(disable : 4996) 
 using namespace std;
 #define M 100
-//#define WRITE_ARRAY
-//struct m {
-//  /*  const int par = 10000;*/
-//    int* arr[300];
-//
-//} 
+//#define WRITE_ARRAY //поэтапна€ демонстраци€ отсеивани€ относительно ключевого числа
+//#define CHANGED //изменение массива относительно ключевого числа
 void zap(int* arr, int* size) {
     setlocale(LC_ALL, "Russian");
     cout << "¬ведите размер массива : \n";
@@ -40,10 +36,7 @@ void WriteMixedArray(int* size, int* arr)
     cout << "\n";
 }
 void kluch(int* arr, int* size) {
-   /* setlocale(LC_ALL, "Russian");*/
-   /* struct m mm[10];*/
     int n;
-    int i;
     cout << "¬ведите ключевое число : \n";
     cin >> n;
 
@@ -51,7 +44,9 @@ void kluch(int* arr, int* size) {
     for (int i = 0; i < *size; i++) {
         if (*(arr + i) > n) 
         {
-            //zam((arr + i));
+#ifdef CHANGED
+            zam((arr + i));
+#endif // CHANGED
             cout << *(arr + i) << "\t";
         }
         else
@@ -79,6 +74,8 @@ void zam(int* num) {
 void osn() {
     int arr[M];
     int size;
-    zap(arr,&size);
-    kluch(arr, &size);
+    while (true) {
+        zap(arr, &size);
+        kluch(arr, &size);
+    }
 }
