@@ -7,7 +7,7 @@
 using namespace std;
 #define M 100
 //#define WRITE_ARRAY //поэтапна€ демонстраци€ отсеивани€ относительно ключевого числа
-//#define CHANGED //изменение массива относительно ключевого числа
+#define CHANGED //изменение массива относительно ключевого числа
 void zap(int* arr, int* size) {
     setlocale(LC_ALL, "Russian");
     cout << "¬ведите размер массива : \n";
