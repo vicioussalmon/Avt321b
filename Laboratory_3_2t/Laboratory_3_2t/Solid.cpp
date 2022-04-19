@@ -63,7 +63,6 @@ void kluch(int* arr, int* size) {
     }
     cout << endl;
 }
-
 void zam(int* num) {
         if (*num > 0)
             *num = 200;
