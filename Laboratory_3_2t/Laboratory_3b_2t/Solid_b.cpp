@@ -6,7 +6,7 @@
 #include <cstdlib>
 #define M 100
 #define _CRT_SECURE_NO_WARNINGS 
-#define ARR
+//#define ARR
 using namespace std;
 void zap(int* A, int* size) {
     setlocale(LC_ALL, "Russian");
@@ -48,6 +48,9 @@ int d_type(int* A, int* size) {
 	return dtype;
 }
 void b_arr(int* A, int* B, int* size, int btype) {
+#ifdef ARR
+	cout << "Отрицательный массив" << endl;
+#endif // ARR
 	int nul = 0;
 	btype = 0;
 	for (int i = 0; i < *size; i++) {
@@ -57,9 +60,11 @@ void b_arr(int* A, int* B, int* size, int btype) {
 #ifdef ARR
 				cout << *(B + btype) << setw(4);
 #endif // ARR
-			btype++;
+				btype++;
+				
 		}
 	}
+	cout << endl;
 #ifdef ARR
 	if (nul == 0) {
 
@@ -69,6 +74,9 @@ void b_arr(int* A, int* B, int* size, int btype) {
 #endif // ARR
 }
 void c_arr(int* A, int* C, int* size, int ctype) {
+#ifdef ARR		
+	cout << "Положительный массив" << endl;
+#endif // ARR
 	int nul = 0;
 	ctype = 0;
 	for (int i = 0; i < *size; i++) {
@@ -82,6 +90,7 @@ void c_arr(int* A, int* C, int* size, int ctype) {
 			ctype++;
 		}
 	}
+	cout << endl;
 #ifdef ARR
 	if (nul == 0) {
 
@@ -91,6 +100,9 @@ void c_arr(int* A, int* C, int* size, int ctype) {
 #endif // ARR
 }
 void d_arr(int* A, int* D, int* size, int dtype) {
+#ifdef ARR
+	cout << "Нулевой массив" << endl;
+#endif // ARR
 	dtype = 0;
 	int nul = 0;
 	for (int i = 0; i < *size; i++) {
@@ -102,8 +114,8 @@ void d_arr(int* A, int* D, int* size, int dtype) {
 #endif // ARR
 			dtype++;
 		}
-
 	}
+	cout << endl;
 #ifdef ARR
 	if (nul == 0) {
 
@@ -117,6 +129,9 @@ void osn() {
 		int A[M];
 		int size;
 		zap(A, &size);
+#ifdef ARR
+		cout << "Вывод всех массивов" << endl;
+#endif // ARR
 		int btype = b_type(A, &size);
 		int ctype = c_type(A, &size);
 		int dtype = d_type(A, &size);
@@ -148,17 +163,6 @@ void osn() {
 			cout << *(A + i) << " ";
 		}
 		cout << endl;
-#ifdef ARR
-		cout << "Вывод всех массивов" << endl;
-		cout << "Отрицательный массив" << endl;
-		b_arr(A, B, &size, btype);
-		cout << endl;
-		cout << "Положительный массив" << endl;
-		c_arr(A, C, &size, ctype);
-		cout << endl;
-		cout << "Нулевой массив" << endl;
-		d_arr(A, D, &size, dtype);
-		cout << endl;
-#endif // ARR
+
 	}
 }
