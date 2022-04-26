@@ -6,7 +6,7 @@
 #include <cstdlib>
 #define M 100
 #define _CRT_SECURE_NO_WARNINGS 
-//#define ARR
+#define ARR
 using namespace std;
 void zap(int* A, int* size) {
     setlocale(LC_ALL, "Russian");
@@ -20,7 +20,7 @@ void zap(int* A, int* size) {
     }
     cout << endl;
 }
-int b_type(int* A, int* size) {
+int b_type(int* A, int* size)S {
 	int btype = 0;
 	for (int i = 0; i < *size; i++) {
 		if (*(A + i) < 0) {

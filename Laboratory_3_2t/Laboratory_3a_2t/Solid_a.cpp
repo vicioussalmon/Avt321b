@@ -4,7 +4,7 @@
 #include <stdio.h> 
 #define M 100
 #define _CRT_SECURE_NO_WARNINGS 
-//#define SUM
+#define SUM
 using namespace std;
 void otn(int* arr, int* size) {
 	cout << "¬ведите размер массива : \n";
