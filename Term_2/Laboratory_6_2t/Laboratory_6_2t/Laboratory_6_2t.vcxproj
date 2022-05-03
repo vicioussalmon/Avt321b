@@ -140,6 +140,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Laboratory_6_2t.cpp" />
+    <ClCompile Include="Solid.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Contents.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
