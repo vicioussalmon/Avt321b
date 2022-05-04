@@ -3,7 +3,7 @@
 #include <stdio.h> 
 #include "Contents.h"
 #define _CRT_SECURE_NO_WARNINGS 
-#define CH
+//#define CH
 using namespace std;
 void odn(int* A, int R, int C){
     cout << "¬ывод измененного массива:" << endl;
@@ -61,7 +61,7 @@ void osn(){
             cout << endl;
         }
         dvu(A, R, C);
-        for (int i = 0; i < N; i++) {
+        for (int i = 0; i < R; i++) {
             delete[] * (A + i);//колонки
     }
         delete[] A;//строки
