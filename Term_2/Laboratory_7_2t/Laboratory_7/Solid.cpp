@@ -2,43 +2,30 @@
 #include <windows.h>
 #include <iomanip>
 #include <fstream>
-#include "Contents.h"
-#include "Struct.h"
+#include "Contents.h" 
+#include "Struct.h" 
 #define _CRT_SECURE_NO_WARNINGS 
 #define M 3
 //#define DEBUG
 #pragma warning(disable : 4996) 
 using namespace std;
-void screen() 
+void screen()
 {
-#ifdef DEBUG
+#ifdef DEBUG 
     cout << __DATE__"\n";
     cout << __TIME__"\n";
     cout << __FILE__"\n";
     cout << __FUNCTION__"\n";
-#endif
+#endif 
     Data in;
-    //проверка
-    for (size_t i = 0; i < 20; i++)
-    {
-        in.firstValue[i] = NULL;
-    }
-    for (size_t i = 0; i < 2; i++)
-    {
-        in.secondValue[i] = NULL;
-    }
-    for (size_t i = 0; i < 20; i++)
-    {
-        in.thirdValue[i] = NULL;
-    }
-    for (size_t i = 0; i < 5; i++)
-    {
-        in.fourthValue[i] = NULL;
-    }
 
-    FILE* f1; 
+    FILE* f1;
     f1 = fopen("t.txt", "w");
-    if (f1 != NULL) {
+    if (f1 == NULL) {
+        puts("Ошибка открытия файла");
+        exit(0);
+    }
+    else {
         for (int i = 0; i < M; i++)
         {
             printf("Введите: название, группу, место обитания, численность > ");
@@ -51,7 +38,7 @@ void screen()
             int secondLength = 0;
             int thirdLength = 0;
             int fourthLength = 0;
-            //длинна
+            //длинна 
 
             for (size_t i = 0; i < 20; i++)
             {
@@ -97,21 +84,21 @@ void screen()
         }
     }
     fclose(f1);
-    
-#ifdef DEBUG
+
+#ifdef DEBUG 
     cout << __DATE__"\n";
     cout << __TIME__"\n";
     cout << __FILE__"\n";
     cout << __FUNCTION__"\n";
-#endif
+#endif 
 }
 void random() {
-#ifdef DEBUG
+#ifdef DEBUG 
     cout << __DATE__"\n";
     cout << __TIME__"\n";
     cout << __FILE__"\n";
     cout << __FUNCTION__"\n";
-#endif
+#endif 
 
     Data in;
     FILE* f1;
@@ -120,7 +107,7 @@ void random() {
         char m_name[3][10] = { "Gnu", "Baza", "Jaran" };
         char m_arial[3][10] = { "Asia", "Asia", "Africa" };
         char letters[3][2] = { "A", "B" ,"H" };
-        
+
         char population[3][10] = { "4213","5018","9032" };
         for (int i = 0; i < M; i++)
         {
@@ -182,12 +169,12 @@ void random() {
         }
     }
     fclose(f1);
-#ifdef DEBUG
+#ifdef DEBUG 
     cout << __DATE__"\n";
     cout << __TIME__"\n";
     cout << __FILE__"\n";
     cout << __FUNCTION__"\n";
-#endif
+#endif 
 }
 void print() {
     Data in;
@@ -195,28 +182,28 @@ void print() {
     f1 = fopen("t.txt", "r");
     if (f1 != NULL) {
         for (int i = 0; i < M; i++) {
-                fscanf(f1, "%s", in.firstValue);
-                printf("%s ", in.firstValue);
-                fscanf(f1, "%s", in.secondValue);
-                printf("%s ", in.secondValue);
-                fscanf(f1, "%s", in.thirdValue);
-                printf("%s ", in.thirdValue);
-                fscanf(f1, "%s", in.fourthValue);
-                printf("%s ", in.fourthValue);
+            fscanf(f1, "%s", in.firstValue);
+            printf("%s ", in.firstValue);
+            fscanf(f1, "%s", in.secondValue);
+            printf("%s ", in.secondValue);
+            fscanf(f1, "%s", in.thirdValue);
+            printf("%s ", in.thirdValue);
+            fscanf(f1, "%s", in.fourthValue);
+            printf("%s ", in.fourthValue);
 
-                printf("\n");
-            
+            printf("\n");
+
         }
     }
     fclose(f1);
 }
 void start() {
-#ifdef DEBUG
+#ifdef DEBUG 
     cout << __DATE__"\n";
     cout << __TIME__"\n";
     cout << __FILE__"\n";
     cout << __FUNCTION__"\n";
-#endif
+#endif 
 
     Data in;
     FILE* f1;
@@ -286,20 +273,20 @@ void start() {
         }
     }
     fclose(f1);
-#ifdef DEBUG
+#ifdef DEBUG 
     cout << __DATE__"\n";
     cout << __TIME__"\n";
     cout << __FILE__"\n";
     cout << __FUNCTION__"\n";
-#endif
+#endif 
 }
 void end() {
-#ifdef DEBUG
+#ifdef DEBUG 
     cout << __DATE__"\n";
     cout << __TIME__"\n";
     cout << __FILE__"\n";
     cout << __FUNCTION__"\n";
-#endif
+#endif 
     Data in;
     FILE* f1;
     f1 = fopen("t.txt", "a+");
@@ -368,17 +355,17 @@ void end() {
         }
     }
     fclose(f1);
-#ifdef DEBUG
+#ifdef DEBUG 
     cout << __DATE__"\n";
     cout << __TIME__"\n";
     cout << __FILE__"\n";
     cout << __FUNCTION__"\n";
-#endif
+#endif 
 }
 void num() {
     Data in;
     FILE* f1;
-    
+
     cout << "Введите, какую запись распечатаем:" << endl;
     cout << "(1)Названия" << endl;
     cout << "(2)Группу" << endl;
@@ -389,16 +376,15 @@ void num() {
     if (otvet == 1) {
         f1 = fopen("t.txt", "r+");
         if (f1 != NULL) {
-            
-            while (fscanf(f1, "%s", &in.firstValue) != EOF) {
-                fscanf(f1, "%s", in.firstValue);
+
+            while (fscanf(f1, "%s", in.firstValue) != EOF) {
+
                 printf("%s ", in.firstValue);
                 fscanf(f1, "%s", in.secondValue);
-                
                 fscanf(f1, "%s", in.thirdValue);
-                
+
                 fscanf(f1, "%s", in.fourthValue);
-               
+
 
                 printf("\n");
 
@@ -409,11 +395,11 @@ void num() {
     else if (otvet == 2) {
         f1 = fopen("t.txt", "r+");
         if (f1 != NULL) {
-            
-            while (fscanf(f1, "%s", &in.firstValue) != EOF) {
-                fscanf(f1, "%s", in.firstValue);
-                
+
+            while (fscanf(f1, "%s", in.firstValue) != EOF) {
+
                 fscanf(f1, "%s", in.secondValue);
+
                 printf("%s ", in.secondValue);
                 fscanf(f1, "%s", in.thirdValue);
 
@@ -429,11 +415,11 @@ void num() {
     else if (otvet == 3) {
         f1 = fopen("t.txt", "r+");
         if (f1 != NULL) {
-            
-            while (fscanf(f1, "%s", &in.firstValue) != EOF) {
-                fscanf(f1, "%s", in.firstValue);
+
+            while (fscanf(f1, "%s", in.firstValue) != EOF) {
 
                 fscanf(f1, "%s", in.secondValue);
+
 
                 fscanf(f1, "%s", in.thirdValue);
                 printf("%s ", in.thirdValue);
@@ -449,17 +435,17 @@ void num() {
     else if (otvet == 4) {
         f1 = fopen("t.txt", "r+");
         if (f1 != NULL) {
-            
-            while (fscanf(f1, "%s", &in.firstValue) != EOF) {
-                fscanf(f1, "%s", in.firstValue);
+
+            while (fscanf(f1, "%s", in.firstValue) != EOF) {
 
                 fscanf(f1, "%s", in.secondValue);
+
 
                 fscanf(f1, "%s", in.thirdValue);
 
                 fscanf(f1, "%s", in.fourthValue);
-                printf("%s ", in.fourthValue);
 
+                printf("%s ", in.fourthValue);
                 printf("\n");
 
             }
@@ -475,41 +461,41 @@ void print2() {
     FILE* f1;
     f1 = fopen("t.txt", "r");
     if (f1 != NULL) {
-        while (fscanf(f1, "%s", &in.firstValue) != EOF) {
-                    fscanf(f1, "%s", in.firstValue);
-                    printf("%s ", in.firstValue);
-                    fscanf(f1, "%s", in.secondValue);
-                    printf("%s ", in.secondValue);
-                    fscanf(f1, "%s", in.thirdValue);
-                    printf("%s ", in.thirdValue);
-                    fscanf(f1, "%s", in.fourthValue);
-                    printf("%s ", in.fourthValue);
+        while (fscanf(f1, "%s", in.firstValue) != EOF) {
+            printf("%s ", in.firstValue);
+            fscanf(f1, "%s", in.secondValue);
 
-                    printf("\n");
+            printf("%s ", in.secondValue);
+            fscanf(f1, "%s", in.thirdValue);
+            printf("%s ", in.thirdValue);
+            fscanf(f1, "%s", in.fourthValue);
+            printf("%s ", in.fourthValue);
 
-                }
-            }
-            fclose(f1);
+            printf("\n");
+
+        }
+    }
+    fclose(f1);
 }
 void osn()
 {
-#ifdef DEBUG
+#ifdef DEBUG 
     cout << __DATE__"\n";
     cout << __TIME__"\n";
     cout << __FILE__"\n";
     cout << __FUNCTION__"\n";
-#endif
+#endif 
     setlocale(LC_ALL, "Russian");
     srand(time(NULL));
     int choice = 0;
     int n = 3;
     while (true) {
         cout << "Выберите действие:" << endl;
-        cout << "(1)Ввод с экрана и запись в файл" << endl;//d
-        cout << "(2)Ввод случайно и запись в файл" << endl;//d
-        cout << "(3)Добавить запись в начало файла" << endl;//d
-        cout << "(4)Добавить запись в конец файла" << endl;//d
-        cout << "(5)Печать одной из записи файла по номеру" << endl;//d
+        cout << "(1)Ввод с экрана и запись в файл" << endl;//d 
+        cout << "(2)Ввод случайно и запись в файл" << endl;//d 
+        cout << "(3)Добавить запись в начало файла" << endl;//d 
+        cout << "(4)Добавить запись в конец файла" << endl;//d 
+        cout << "(5)Печать одной из записи файла по номеру" << endl;//d 
         cout << "(6)Чтение всех структур последовательно из файла и печать" << endl;
         cout << "(7)Выход" << endl;
         cin >> choice;
@@ -520,7 +506,7 @@ void osn()
         else if (choice == 2) {
             random();
             print();
-        } 
+        }
         else if (choice == 3) {
             start();
             print();
@@ -528,7 +514,7 @@ void osn()
         else if (choice == 4) {
             end();
             print();
-         
+
         }
         else if (choice == 5) {
             num();
@@ -547,10 +533,10 @@ void osn()
         }
 
     }
-#ifdef DEBUG
+#ifdef DEBUG 
     cout << __DATE__"\n";
     cout << __TIME__"\n";
     cout << __FILE__"\n";
     cout << __FUNCTION__"\n";
-#endif
+#endif 
 }
