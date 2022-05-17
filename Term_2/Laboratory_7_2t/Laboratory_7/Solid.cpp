@@ -508,10 +508,12 @@ void osn()
             print();
         }
         else if (choice == 3) {
+            cout << "Файл заполняется случайным способом" << endl;
             start();
             print();
         }
         else if (choice == 4) {
+            cout << "Файл заполняется случайным способом" << endl;
             end();
             print();
 
