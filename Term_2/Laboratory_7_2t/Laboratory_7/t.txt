@@ -1,4 +1,6 @@
-Baza H Asia 9032
-Gnu A Africa 5018
-Gnu H Asia 9032
-
+Jaran H Asia 4213
+Gnu H Asia 5018
+Jaran A Asia 9032
+Jaran B Asia 4213
+Gnu H Asia 4213
+Jaran B Africa 111
