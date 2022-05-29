@@ -5,7 +5,7 @@ struct Data {
     char firstValue;
     char secondValue;
     char thirdValue;
-    char fourthValue;
+    float fourthValue;
 };
 struct List {
 

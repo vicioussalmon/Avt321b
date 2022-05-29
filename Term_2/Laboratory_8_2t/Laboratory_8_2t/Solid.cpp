@@ -21,14 +21,7 @@ struct List* newsp()
         temp->in.thirdValue = m_arial[rand() % 3];
 
         temp->in.fourthValue = rand() % 20 + 1;
-    
-//if (temp == NULL) { //список пустой
-//    head = tail = temp;// указатели начала 
-//}                     // и конца
-//if(temp != NULL){//список не пустой
-//    tail->next = temp;//адрес последнего
-//    tail = temp;//указатель конца
-//}
+
 return temp;
 #ifdef DEBUG 
     cout << __DATE__"\n";
@@ -49,7 +42,7 @@ void print(List* head) {
         printf("%c ", print->in.firstValue);
         printf("%c ", print->in.secondValue);
         printf("%c ", print->in.thirdValue);
-        printf("%d\n", print->in.fourthValue);
+        printf("%f \n", print->in.fourthValue);
         print = print->next;
 
     }
@@ -69,7 +62,7 @@ void search(List* head) {
     printf("%c ", print->in.firstValue);
     printf("%c ", print->in.secondValue);
     printf("%c ", print->in.thirdValue);
-    printf("%d \n", print->in.fourthValue);
+    printf("%f \n", print->in.fourthValue);
     print = print->next;
 }
 void ad(List*head, int el) {
@@ -133,21 +126,27 @@ else {
     char m_name[3] = { 'G', 'B', 'J' };
     char m_arial[3] = { 'A', 'A', 'F' };
     char letters[3] = { 'C', 'D' ,'H' };
-    char pro[] = { ' '};
+    char pro[] = {' '};
     create->in.firstValue = m_name[rand() % 3];
     fprintf(f, "%c", create->in.firstValue);
     create->in.pro = pro[rand() % 1];
     fprintf(f, "%c", create->in.pro);
+
     create->in.secondValue = letters[rand() % 3];
     fprintf(f, "%c", create->in.secondValue);
     create->in.pro = pro[rand() % 1];
     fprintf(f, "%c", create->in.pro);
+
     create->in.thirdValue = m_arial[rand() % 3];
     fprintf(f, "%c", create->in.thirdValue);
     create->in.pro = pro[rand() % 1];
     fprintf(f, "%c", create->in.pro);
+
     create->in.fourthValue = rand() % 20 + 1;
-    fprintf(f, "%d\n", create->in.fourthValue);
+    fprintf(f, "%f", create->in.fourthValue);
+    create->in.pro = pro[rand() % 1];
+    fprintf(f, "%c\n", create->in.pro);
+    //fprintf(f, "\n");
     fclose(f);
 }
 
@@ -157,33 +156,46 @@ create->next = NULL;
 void newfile(List* head) {
 List* sozdanie = new List;
 FILE* f;
+Data in;
 fopen_s(&f, "fil.txt", "r");
 if (f == NULL) {
     cout << "Ошибка откытия файла" << endl;
     exit(0);
 }
-fscanf_s(f, "%c", &sozdanie->in.firstValue);
-fscanf_s(f, "%c", &sozdanie->in.pro);
-printf("%c", sozdanie->in.firstValue);
-printf("%c", sozdanie->in.pro);
-
-fscanf_s(f, "%c", &sozdanie->in.secondValue);
-fscanf_s(f, "%c", &sozdanie->in.pro);
-printf("%c", sozdanie->in.secondValue);
-printf("%c", sozdanie->in.pro);
-
-fscanf_s(f, "%c", &sozdanie->in.thirdValue);
-fscanf_s(f, "%c", &sozdanie->in.pro);
-printf("%c", sozdanie->in.thirdValue);
-printf("%c", sozdanie->in.pro);
-
-fscanf_s(f, "%d", &sozdanie->in.fourthValue);
-printf("%d", sozdanie->in.fourthValue);
-
-printf("\n");
 
 fclose(f);
-sozdanie->next = NULL;
+
+fopen_s(&f, "fil.txt", "r");
+while (fscanf(f, "%c", &sozdanie->in.firstValue) != EOF) {
+
+    printf("%c", sozdanie->in.firstValue);
+
+    fscanf_s(f, "%c", &sozdanie->in.pro);
+    printf("%c", sozdanie->in.pro);
+
+    fscanf_s(f, "%c", &sozdanie->in.secondValue);
+    printf("%c", sozdanie->in.secondValue);
+
+    fscanf_s(f, "%c", &sozdanie->in.pro);
+    printf("%c", sozdanie->in.pro);
+
+    fscanf_s(f, "%c", &sozdanie->in.thirdValue);
+    printf("%c", sozdanie->in.thirdValue);
+
+    fscanf_s(f, "%c", &sozdanie->in.pro);
+    printf("%c", sozdanie->in.pro);
+
+    fscanf_s(f, "%f", &sozdanie->in.fourthValue);
+    printf("%f", sozdanie->in.fourthValue);
+
+    fscanf_s(f, "%c", &sozdanie->in.pro);
+    printf("%c", sozdanie->in.pro);
+    printf("\n");
+
+     }
+    fclose(f);
+    sozdanie->next = NULL;
+
 }
 void osn()
 {
