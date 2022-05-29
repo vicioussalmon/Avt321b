@@ -167,29 +167,22 @@ fclose(f);
 
 fopen_s(&f, "fil.txt", "r");
 while (fscanf(f, "%c", &sozdanie->in.firstValue) != EOF) {
-
     printf("%c", sozdanie->in.firstValue);
-
     fscanf_s(f, "%c", &sozdanie->in.pro);
     printf("%c", sozdanie->in.pro);
-
     fscanf_s(f, "%c", &sozdanie->in.secondValue);
     printf("%c", sozdanie->in.secondValue);
-
     fscanf_s(f, "%c", &sozdanie->in.pro);
     printf("%c", sozdanie->in.pro);
-
     fscanf_s(f, "%c", &sozdanie->in.thirdValue);
     printf("%c", sozdanie->in.thirdValue);
-
     fscanf_s(f, "%c", &sozdanie->in.pro);
     printf("%c", sozdanie->in.pro);
-
     fscanf_s(f, "%f", &sozdanie->in.fourthValue);
     printf("%f", sozdanie->in.fourthValue);
-
     fscanf_s(f, "%c", &sozdanie->in.pro);
     printf("%c", sozdanie->in.pro);
+    fscanf_s(f, "\n");
     printf("\n");
 
      }
