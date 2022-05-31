@@ -101,7 +101,18 @@ void search_end(List* head,List* tail) {
     printf("%c ", print->in.thirdValue);
     printf("%f \n", print->in.fourthValue);
 }
-void ad(int el) {
+List* ad(int el) {
+    List* ins = head;
+    int schetchik = 0;
+    if (head == NULL) {
+        cout << "Список пуст" << endl;
+        return head;
+    }
+    while (ins) {
+        schetchik++;
+        ins = ins->next;
+
+    }
     List* temp = new List;
     char m_name[3] = { 'G', 'B', 'J' };
     char m_arial[3] = { 'A', 'A', 'F' };
@@ -114,7 +125,12 @@ void ad(int el) {
 
     temp->in.fourthValue = rand() % 20 + 1;
     List* current = head;
-    
+    el--;
+    if (el < 0 || el > schetchik) {
+        //cout << "Âû âûøëè çà ïðåäåëû ñïèñêà" << endl;
+        return head;
+    }
+    else {
         for (int i = 0; i < el - 1; i++) {
             current = current->next;
         }
@@ -123,7 +139,9 @@ void ad(int el) {
         current->next = temp;
         if (temp->next != nullptr)	temp->next->prew = temp;
         temp->prew = current;
-        
+    }
+    return head;
+
 }
 void del(List* head, int el) {
     List* temp_pos = head;
@@ -252,15 +270,15 @@ void osn()
         cout << "---------------------------------------------" << endl;
         cout << "Выберите действие:" << endl;
         cout << "(1)Создание списка" << endl;//d
-        cout << "(2)Печать списка с начала" << endl;//?
-        cout << "(3)Печать списка с конца" << endl;//?
+        cout << "(2)Печать списка с начала" << endl;//d
+        cout << "(3)Печать списка с конца" << endl;//d
         cout << "(4)Поиск по критерию(с начала списка)" << endl;//d
         cout << "(5)Поиск по критерию(с конца списка)" << endl;//d
         cout << "(6)Добавление элемента(в любое заданное место)" << endl;//якась чухня
-        cout << "(7)Удаление любого элемента" << endl;//подозрительно, выглядит как и в 8й
-        cout << "(8)Сортировка" << endl;//подозрительно, выглядит как и в 8й
-        cout << "(9)Запись нового списка в файл" << endl;//подозрительно, выглядит как и в 8й
-        cout << "(10)Создание нового списка из файла" << endl;//подозрительно, выглядит как и в 8й
+        cout << "(7)Удаление любого элемента" << endl;//d
+        cout << "(8)Сортировка" << endl;//d
+        cout << "(9)Запись нового списка в файл" << endl;//d
+        cout << "(10)Создание нового списка из файла" << endl;//d
         cout << "(11)Выход из программы" << endl;//d
         cout << "---------------------------------------------" << endl;
         cin >> choice;
@@ -284,27 +302,7 @@ void osn()
             int el;
             cout << "Выберете позицию:" << endl;
             cin >> el;
-            if (el == 1) {
-                List* temp = new List;
-                char m_name[3] = { 'G', 'B', 'J' };
-                char m_arial[3] = { 'A', 'A', 'F' };
-                char letters[3] = { 'C', 'D' ,'H' };
-                temp->in.firstValue = m_name[rand() % 3];
-
-                temp->in.secondValue = letters[rand() % 3];
-
-                temp->in.thirdValue = m_arial[rand() % 3];
-
-                temp->in.fourthValue = rand() % 20 + 1;
-                temp->next = head;
-                temp->prew = temp;
-                temp->prew = NULL;
-                head = temp;
-                temp->prew = nullptr;
-            }
-            else {
                 ad(el);
-            }
         }
         else if (choice == 7) {
             int el;
