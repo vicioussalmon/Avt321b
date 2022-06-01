@@ -85,21 +85,24 @@ void search_nach(List* head) {
     printf("%c ", print->in.thirdValue);
     printf("%f \n", print->in.fourthValue);
 }
-void search_end(List* head,List* tail) {
-    List* poisk = tail;
+List* search_end(List* head,List* tail) {
+    List* current = head;
      cout << "Выберите позицию" << endl;
      int position;
      cin >> position;
-     poisk = head;
-     for (int i = 0; i < position - 1; i++)
-     {
-         poisk = poisk->next;
- }
-    List* print = poisk;
-    printf("%c ", print->in.firstValue);
-    printf("%c ", print->in.secondValue);
-    printf("%c ", print->in.thirdValue);
-    printf("%f \n", print->in.fourthValue);
+     while (current->next != NULL) {
+         current = current->next;
+     }
+     while (current != NULL) {
+         
+             printf("%c ", current->in.firstValue);
+             printf("%c ", current->in.secondValue);
+             printf("%c ", current->in.thirdValue);
+             printf("%f \n", current->in.fourthValue);
+             return current;
+         
+         current = current->prew;
+     }
 }
 List* ad(int el) {
     List* ins = head;
@@ -144,17 +147,31 @@ List* ad(int el) {
 
 }
 void del(List* head, int el) {
-    List* temp_pos = head;
-    temp_pos = head;
+    List* del = head;
+    if (head == NULL) {
+        cout << " Ошибка" << endl;
+        return;
+    }
+    int schetchik = 0;
+    while (del) {
+        schetchik++;
+        del = del->next;
+    }
+    el--;
+    if (el <0 || el > schetchik || head->next == NULL) {
+        return;
+    }
+    del = head;
+
     for (int i = 0; i < el - 1; i++)
     {
-        temp_pos = temp_pos->next;
+        del = del->next;
     }
-    List* temp = temp_pos->next;
-    if (temp->next == NULL)
-        temp_pos->next = NULL;
-    else
-        temp_pos->next = temp->next;
+    List* temp = del->next;
+    if (del->next == NULL) {
+        return;
+    }
+    del->next = temp->next;
     delete temp;
 
 }
@@ -274,7 +291,7 @@ void osn()
         cout << "(3)Печать списка с конца" << endl;//d
         cout << "(4)Поиск по критерию(с начала списка)" << endl;//d
         cout << "(5)Поиск по критерию(с конца списка)" << endl;//d
-        cout << "(6)Добавление элемента(в любое заданное место)" << endl;//якась чухня
+        cout << "(6)Добавление элемента(в любое заданное место)" << endl;//d
         cout << "(7)Удаление любого элемента" << endl;//d
         cout << "(8)Сортировка" << endl;//d
         cout << "(9)Запись нового списка в файл" << endl;//d
@@ -308,14 +325,7 @@ void osn()
             int el;
             cout << "Выберете позицию:" << endl;
             cin >> el;
-            if (el == 1) {
-                List* temp = head;
-                head = head->next;
-                delete temp;
-            }
-            else {
-                del(head, el);
-            }
+                del(head, el); 
         }
         else if (choice == 8) {
             sort(head);

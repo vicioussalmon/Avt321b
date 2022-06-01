@@ -7,6 +7,7 @@
 #include<stdlib.h>
 #include <fstream>
 struct Data {
+	int position;
 	char pro;
 	char firstValue;
 	char secondValue;

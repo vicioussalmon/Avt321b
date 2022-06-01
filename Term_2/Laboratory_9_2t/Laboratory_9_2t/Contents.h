@@ -14,7 +14,7 @@ List* newsp();
 void print_nach();
 void print_end();
 void search_nach(List* head);
-void search_end(List* head, List* tail);
+List* search_end(List* head, List* tail);
 List* ad(int el);
 void del(List* head, int el); 
 void sort(List* head);
