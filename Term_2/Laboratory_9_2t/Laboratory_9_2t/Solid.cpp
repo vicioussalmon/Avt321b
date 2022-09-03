@@ -101,8 +101,9 @@ List* search_end(List* head,List* tail) {
              printf("%f \n", current->in.fourthValue);
              return current;
          
-         current = current->prew;
+        
      }
+     current = current->prew;
 }
 List* ad(int el) {
     List* ins = head;
@@ -325,7 +326,7 @@ void osn()
             int el;
             cout << "Выберете позицию:" << endl;
             cin >> el;
-                del(head, el); 
+                del(head, el);
         }
         else if (choice == 8) {
             sort(head);
