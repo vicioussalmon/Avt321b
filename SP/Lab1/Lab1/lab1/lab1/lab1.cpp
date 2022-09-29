@@ -29,43 +29,42 @@ int main()
 {
     setlocale(LC_ALL, "RU");
 
-    int num_of_cod; //Номер исходной кодировки
-    int num_of_cod2;//Номер итоговой кодировки
+    int num_of_cod; //Номер исх.к
+    int num_of_cod2;//Номер ит.к
 
-    char* pointer_cod_1 = NULL; //Указатель на исходную кодировку (поменяется в зависимости от выбранной кодировки)
-    char* pointer_cod_2 = NULL; //Указатель на итоговую кодировку (поменяется в зависимости от выбранной кодировки)
+    char* pointer_cod_1 = NULL; //Указатель на исх.к 
+    char* pointer_cod_2 = NULL; //Указатель на ит.к
 
-    //Массивы с символами разных кодировок
+    //символы кодировок
     char win1251[] = "абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
     char koi8r[] = "ЮАБЦДЕёФГХИЙКЛМНОПЯРСТУЖВЬЫЗШЭЩЧЪюабцдеЁфгхийклмнопярстужвьызшэщчъ";
-    char CP866[] = "└┴┬├─┼╞╟╚╔╩╦╠═╬╧╨╤╥╙╘╒╓╫╪┘┌█▄▌▐▀рстуфхцчшщъыьэюяЁёЄєЇїЎў°∙·√№¤■";
+    char Mac[] = "абвгдеЮжзийклмнопрстуфхцчшщъыьэюЯЂЃ‚ѓ„…Э†‡€‰Љ‹ЊЌЋЏђ‘’“”•–—™љ›њќћџ";
 
 
-    while (true) { //Если данные будут введены не правильно, цикл будет повторять вопросы
+    while (true) { //ошибка - вопросы
         cout << "Выберите исходную кодировку вашего текста:" << endl;
         cout << "1. win1251" << endl;
         cout << "2. koi8r" << endl;
-        cout << "3. macintosh" << endl;
-        cout << "Введите номер опции (1,2,3): ";
+        cout << "3. Mac" << endl;
 
-        cin >> num_of_cod; //Номер исходной кодировки
+        cin >> num_of_cod; //исх.к
 
         if (num_of_cod != 1 && num_of_cod != 2 && num_of_cod != 3) {
-            error(); //Если ввод данных неправильный - выдается ошибка и повторяется вопрос
+            error(); //некорректный ввод - ошибка
         }
         else break;
     }
 
-    while (true) { //Если данные будут введены не правильно, цикл будет повторять вопросы
+    while (true) { //ошибка - вопросы
         cout << "Выберите кодировку итогового текста: ";
 
-        cin >> num_of_cod2; //Номер итоговой кодировки
+        cin >> num_of_cod2; //ит.к
 
-        if (num_of_cod2 != 1 && num_of_cod2 != 2 && num_of_cod2 != 3) { //Проверка на правильность выбора кодировки из меню
+        if (num_of_cod2 != 1 && num_of_cod2 != 2 && num_of_cod2 != 3) { //корректность ввода
             error();
         }
         else break;
-        if (num_of_cod == num_of_cod2) //Проверка на совпадение исходной и итоговой кодировок
+        if (num_of_cod == num_of_cod2) //совпадения
         {
             cout << "Кодировки исходного и итогового текста совпадают. Пожалуйста, выберите другую.";
             error();
@@ -73,32 +72,32 @@ int main()
         else break;
     }
 
-    switch (num_of_cod) { //Меняется значение указателя на выбранную исходную кодировку
+    switch (num_of_cod) { //указатель - исх.к
     case 1:
         pointer_cod_1 = win1251; break;
     case 2:
         pointer_cod_1 = koi8r; break;
     case 3:
-        pointer_cod_1 = CP866; break;
+        pointer_cod_1 = Mac; break;
     }
 
-    switch (num_of_cod2) { //Меняется значение указателя на выбранную итоговую кодировку
+    switch (num_of_cod2) { //указатель - ит.к
     case 1:
         pointer_cod_2 = win1251; break;
     case 2:
         pointer_cod_2 = koi8r; break;
     case 3:
-        pointer_cod_2 = CP866; break;
+        pointer_cod_2 = Mac; break;
     }
 
     string result, buffer;
-    ifstream orig_file("Original.txt"); //Входной файловый поток (открытие файла на чтение)
-    ofstream res_file("Result.txt"); //Выходной файловый поток (открытие файла на запись)
+    ifstream orig_file("orig.txt"); //открытие файла на чтение
+    ofstream res_file("res.txt"); //открытие файла на запись
 
-    //Цикл while будет длиться пока не пройдется по всем строчкам
-    while (getline(orig_file, buffer)) {  //Считывает одну строку
-        result = recoding(pointer_cod_1, pointer_cod_2, buffer); //Перекодирует одну строку
-        res_file << result + "\n"; //Записывает в файл одну строку
+    //while чимчикует по всем строчкам
+    while (getline(orig_file, buffer)) {  //считывает 1ст
+        result = recoding(pointer_cod_1, pointer_cod_2, buffer); //перекодирует 1ст
+        res_file << result + "\n"; //записывает в файл 1ст
     }
 
     orig_file.close();
