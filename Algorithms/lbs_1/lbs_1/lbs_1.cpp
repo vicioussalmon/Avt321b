@@ -1,11 +1,12 @@
-﻿#include "Header.h"
+﻿// task1.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
+//
 
+#include "Header.h"
 
 int main()
 {
 	setlocale(LC_ALL, "RU");
 	srand(time(NULL));
-
 	DList* Dhead = NULL;
 	DList* Dtail = NULL;
 	Node* head = NULL;
@@ -15,26 +16,38 @@ int main()
 	short int count, nodeSelect, index1, index2, pos;
 
 	while (true) {
-		cout << "Выберите тип тип списка: \nОднонаправленный - 1 \nДвунаправленный - 2 \nЗагрузить однонаправленный список - 3 \nЗагрузить двунаправленный список - 4 \nВыход - 0 \n---> "; 
+		cout << "Выберите тип тип списка: \n";
+		cout << "Однонаправленный - 1 \n";
+		cout << "Двунаправленный - 2 \n";
+		cout << "Загрузить однонаправленный список - 3 \n";
+		cout << "Загрузить двунаправленный список - 4 \n";
+		cout << "Выход - 0 \n--";
 		cin >> nodeSelect;
 		inputCheker();
 		switch (nodeSelect)
 		{
-			
 			///////////////////// Односвязный  ///////////////////////////////////
-			
 		case 1:
 			while (nodeSelect != 0) {
 				system("cls");
 				if (head == NULL) {
-					cout << "Какой длинны список вам надобен? \n"; cin >> count;
+					cout << "Какой длинны список вам надобен? \n";
+					cin >> count;
 					//inputCheker();
 					CreateNodeConsole(count, &head);
 					system("pause");
 					system("cls");
 				}
 				PrintNode(head);
-				cout << "Выберите операцию: \nДобавить новый эл-т - 1 \nПодсчитать количество эл-тов - 2 \nПоменять местами два эл-та - 3 \nУдалить один эл-т - 4 \nСоеденить два списка в один - 5 \nОчистить список - 6 \nНапечатать список - 7 \nНазад - 0 \n "; 
+				cout << "Выберите операцию: \n";
+				cout << "Добавить новый эл - т - 1 \n";
+				cout << "Подсчитать количество эл - тов - 2 \n";
+				cout << "Поменять местами два эл - та - 3 \n";
+				cout << "Удалить один эл - т - 4 \n";
+				cout << "Соеденить два списка в один - 5 \n";
+				cout << "Очистить список - 6 \n";
+				cout << "Напечатать список - 7 \n";
+				cout << "Назад - 0 \n ";
 				cin >> nodeSelect;
 				//inputCheker();
 				switch (nodeSelect)
@@ -42,10 +55,10 @@ int main()
 				case 1:
 					system("cls");
 					PrintNode(head);
-					cout << "Выберите позицию выбранного эл-та: \n "; 
+					cout << "Выберите позицию выбранного эл-та: \n ";
 					cin >> pos;
 					if (pos > CountOfNode(head) + 1) {
-						cout << "Вы зашли далеко" << endl;
+						cout << "Вы вышли за пределы" << endl;
 						system("pause");
 						system("cls");
 						break;
@@ -77,7 +90,8 @@ int main()
 				case 4:
 					system("cls");
 					PrintNode(head);
-					cout << "Выберите позицию выбранного эл-та \n "; cin >> pos;
+					cout << "Выберите позицию выбранного эл - та \n ";
+					cin >> pos;
 					Delete(&head, pos);
 					PrintNode(head);
 					system("pause");
@@ -85,7 +99,8 @@ int main()
 					break;
 				case 5:
 					system("cls");
-					cout << "Какой длинны новый список вам надобен? \n "; cin >> count;
+					cout << "Какой длинны новый список вам надобен? \n ";
+					cin >> count;
 					CreateNodeConsole(count, &begin);
 					cout << "Ваш новый список: ";
 					Split(&head, &begin);
@@ -97,7 +112,7 @@ int main()
 				case 6:
 					system("cls");
 					FreeNode(&head);
-					FreeNode(&begin);
+					/*FreeNode(&begin);*/
 					cout << "Список очищен\n";
 					system("pause");
 					system("cls");
@@ -114,20 +129,20 @@ int main()
 
 				default:
 					system("cls");
-					cout << " \t\t\tНекорректный ввод" << endl;
+					cout << " \t\t\tНекорректный ввод " << endl;
 					break;
 				}
 			}
 			break;
 
-			///////////////////// Двусвязный  ///////////////////////////////////
 
+			///////////////////// Двусвязный  ///////////////////////////////////
 		case 2:
 			system("cls");
 			while (nodeSelect != 0) {
 				system("cls");
 				if (Dhead == NULL) {
-					cout << "Какой длинны список вам надобен? \n "; 
+					cout << "Какой длинны список вам надобен? \n ";
 					cin >> count;
 					//inputCheker();
 					CreateDListConsole(count, &Dhead, Dtail);
@@ -135,17 +150,25 @@ int main()
 					system("cls");
 				}
 				PrintDlist(Dhead);
-				cout << "Выберите операцию: \nДобавить новый эл-т - 1 \nПодсчитать ко-во эл-ов - 2 \nПоменять два эл-та - 3 \nУдалить один эл-т - 4 \nОчистить список - 5 \nНапечатать список - 6 \nШаг назад - 0 \n---> "; cin >> nodeSelect;
+				cout << "Выберите операцию: \n";
+				cout << "Добавить новый эл-т - 1 \n";
+				cout << "Подсчитать ко - во эл - ов - 2 \n";
+				cout << "Поменять два эл - та - 3 \n";
+				cout << "Удалить один эл - т - 4 \n";
+				cout << "Очистить список - 5 \n";
+				cout << "Напечатать список - 6 \n";
+				cout << "Шаг назад - 0 \n-- ";
+				cin >> nodeSelect;
 				//inputCheker();
 				switch (nodeSelect)
 				{
 				case 1:
 					system("cls");
 					PrintDlist(Dhead);
-					cout << "Выберите позицию выбраного эл-та \n "; 
+					cout << "Выберите позицию выбраного эл-та \n ";
 					cin >> pos;
 					if (pos > CountOfDlist(Dhead) + 1) {
-						cout << "Вы зашли далеко" << endl;
+						cout << "Вы вышли за пределы!" << endl;
 						system("pause");
 						system("cls");
 						break;
@@ -177,7 +200,8 @@ int main()
 				case 4:
 					system("cls");
 					PrintDlist(Dhead);
-					cout << "Выберите позицию выбраного эл-та \n---> "; cin >> pos;
+					cout << "Выберите позицию выбраного эл-та \n-- ";
+					cin >> pos;
 					DeleteDlist(&Dhead, &Dtail, pos - 1);
 					PrintDlist(Dhead);
 					system("pause");
@@ -202,7 +226,7 @@ int main()
 
 				default:
 					system("cls");
-					cout << " \t\t\tНекорректный ввод " << endl;
+					cout << " \t\t\tОшибка! " << endl;
 					break;
 				}
 			}
@@ -231,7 +255,7 @@ int main()
 
 		default:
 			system("cls");
-			cout << " \t\t\t Некорректный ввод " << endl;
+			cout << " \t\t\tНекорректный ввод! " << endl;
 			break;
 		}
 

@@ -1,9 +1,10 @@
+#pragma once
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include<fstream>
 #include <string>  
 #include <ctime>
-
+#include <Windows.h>
 using namespace std;
 
 
@@ -11,7 +12,7 @@ using namespace std;
 
 
 struct Node {
-	int number;
+	long int number;
 	Node* next;
 };
 
@@ -24,7 +25,7 @@ struct DList {
 
 void inputCheker();
 
-// двусвязный
+// doubly node 
 
 
 void CreateDListConsole(int count, DList** Dhead, DList* Dtail);
@@ -40,13 +41,13 @@ void LoadFromFileDlist(DList** Dhead, DList** Dtail);
 
 
 
-// односвязный 
+// singly node 
 void CreateNodeConsole(int count, Node** head);
 void PrintNode(Node* head);
 void Insert(Node* head, int check);
 void Delete(Node** head, int check);
 void FreeNode(Node** head);
-bool checkNULL(Node* head); // проверка на заполненность
+bool checkNULL(Node* head);
 short int CountOfNode(Node* head);
 void Split(Node** head, Node** begin);
 void SwapNode(const int value1, const int value2, Node* head);

@@ -1,25 +1,22 @@
 #include "Header.h"
 
-
-
 void inputCheker() {
 	if (cin.fail()) {
 		system("cls");
 		cin.clear();
 		cin.ignore(32767, '\n');
-		cout << " \t\t\tIncorrect input! ERROR! " << endl;
+		cout << " \t\t\tНекорректный ввод! " << endl;
 	}
 }
 
 
+///////////////////// Двусвязный ////////////////////////////////////
 
-///////////////////// Двусвязный ///////////////////////////////////
-
-void CreateDListConsole(int count, DList** Dhead, DList* Dtail) { // пользовательский ввод 
+void CreateDListConsole(int count, DList** Dhead, DList* Dtail) {
 
 	if (count > 0) {
 		(*Dhead) = new DList;
-		cout << "Введите переменную: \n"; 
+		cout << "Введите переменную: \n";
 		cin >> (*Dhead)->number;
 		(*Dhead)->prev = Dtail;
 		(*Dhead)->next = NULL;
@@ -126,7 +123,7 @@ short int CountOfDlist(DList* Dhead) {
 
 }
 
-bool DcheckNULL(DList* Dhead) { // проверка на заполненность
+bool DcheckNULL(DList* Dhead) {
 	if (Dhead == NULL) {
 		cout << "Список пуст" << endl;
 		return 0;
@@ -134,7 +131,7 @@ bool DcheckNULL(DList* Dhead) { // проверка на заполненность
 	return 1;
 }
 
-void FreeDlist(DList** Dhead) { // чистый список
+void FreeDlist(DList** Dhead) {
 	DList* current = *Dhead;
 	while (current) {
 		*Dhead = (*Dhead)->next;
@@ -145,29 +142,29 @@ void FreeDlist(DList** Dhead) { // чистый список
 
 
 
-void SaveInFileDlist(DList* Dhead) { // запись в data.txt
+void SaveInFileDlist(DList* Dhead) {
 	DList* current = Dhead;
 	FILE* data;
-	fopen_s(&data, "dataDlist.txt", "w");
+	fopen_s(&data, "Dfile.txt", "w");
 	if (!data) {
-		cout << "ERROR. Missing data.txt" << endl;
+		cout << "ОШИБКА" << endl;
 	}
 	while (current) {
-		fprintf(data, "\t%d", current->number);
+		fprintf(data, "\t%ld", current->number);
 		current = current->next;
 	}
 	fclose(data);
 }
 
 
-void LoadFromFileDlist(DList** Dhead, DList** Dtail) { // чтение из data.txt
+void LoadFromFileDlist(DList** Dhead, DList** Dtail) {
 	DList* current, * prev;
 	prev = current = (*Dhead) = new DList;
 	(*Dhead)->prev = NULL;
 	FILE* data;
-	fopen_s(&data, "dataDlist.txt", "r");
+	fopen_s(&data, "Dfile.txt", "r");
 	if (!data) {
-		cout << "ERROR. Missing data.txt";
+		cout << "ОШИБКА" << endl;
 		delete current;
 		(*Dhead) = NULL;
 		return;
@@ -178,28 +175,27 @@ void LoadFromFileDlist(DList** Dhead, DList** Dtail) { // чтение из data.txt
 		(*Dhead) = nullptr;
 		return;
 	}
-	fscanf(data, "%d", &current->number);
+	fscanf(data, "%ld", &current->number);
 	while (!feof(data)) {
 		current = new DList;
-		fscanf(data, "%d", &current->number);
+		fscanf(data, "%ld", &current->number);
 		prev->next = current;
 		current->prev = prev;
 		prev = current;
 	}
 	current->next = NULL;
 	*Dtail = current;
-	cout << "Файл успешно сохранен" << endl;
+	cout << "Файл сохранен" << endl;
 	fclose(data);
 }
 
-
 ///////////////////// Односвязный  ///////////////////////////////////
 
-void CreateNodeConsole(int count, Node** head) { //ввод
+void CreateNodeConsole(int count, Node** head) {
 
 	if (count > 0) {
 		(*head) = new Node;
-		cout << "Введите переменную: \n"; 
+		cout << "Введите переменную: \n";
 		cin >> (*head)->number;
 		(*head)->next = NULL;
 		CreateNodeConsole(count - 1, &((*head)->next));
@@ -246,13 +242,14 @@ void Delete(Node** head, int check) {
 
 void Split(Node** head, Node** begin) {
 	if (head == NULL or begin == NULL)
-		cout << "Some of this list dose not exist!" << endl;
+		cout << "Список не существует" << endl;
 	else {
 		Node* tail = (*head);
 		for (; tail->next != NULL; tail = tail->next);
 		tail->next = *begin;
 
 	}
+
 }
 
 
@@ -278,7 +275,7 @@ void SwapNode(const int value1, const int value2, Node* head) {
 void PrintNode(Node* head) {
 
 	if (head != NULL) {
-		cout << head->number << " -- ";
+		cout << head->number << " --> ";
 		PrintNode(head->next);
 	}
 	else cout << endl << endl;
@@ -297,18 +294,18 @@ short int CountOfNode(Node* head) {
 
 }
 
-void FreeNode(Node** head) { // чистый список
+void FreeNode(Node** head) {
 	Node* current = *head;
 	while (current) {
 		*head = (*head)->next;
-		free(current);
+		delete current;
 		current = *head;
 	}
 }
 
 
 
-bool checkNULL(Node* head) { // проверка на заполненность
+bool checkNULL(Node* head) {
 	if (head == NULL) {
 		cout << "Список пуст" << endl;
 		return 0;
@@ -317,41 +314,41 @@ bool checkNULL(Node* head) { // проверка на заполненность
 }
 
 
-void SaveInFileNode(Node* head) { // запись в data.txt
+void SaveInFileNode(Node* head) {
 	Node* current = head;
 	FILE* data;
-	fopen_s(&data, "dataNode.txt", "w");
+	fopen_s(&data, "Ofile.txt", "w");
 	if (!data) {
-		cout << "ERROR. Missing data.txt" << endl;
+		cout << "ОШИБКА" << endl;
 	}
 	while (current) {
-		fprintf(data, "\t%d", current->number);
+		fprintf(data, "\t%ld", current->number);
 		current = current->next;
 	}
 	fclose(data);
 }
 
 
-void LoadFromFile(Node** head) { // чтение из dataNode.txt
+void LoadFromFile(Node** head) {
 
 	Node* current, * previous;
 	previous = current = (*head) = new Node;
 	FILE* data;
-	fopen_s(&data, "dataNode.txt", "r");
+	fopen_s(&data, "Ofile.txt", "r");
 	if (!data) {
-		cout << "ERROR. Missing data.txt";
+		cout << "ОШИБКА" << endl;
 	}
 	if (fgetc(data) == EOF) {
 		cout << "Файл пуст";
 	}
 	current = new Node;
-	fscanf(data, "%d", &current->number);
+	fscanf(data, "%ld", &current->number);
 	previous->next = current;
 	previous = current;
 
 	while (!feof(data)) {
 		current = new Node;
-		fscanf(data, "%d", &current->number);
+		fscanf(data, "%ld", &current->number);
 		previous->next = current;
 		previous = current;
 	}
@@ -359,6 +356,6 @@ void LoadFromFile(Node** head) { // чтение из dataNode.txt
 
 	Delete(head, 1);
 
-	cout << "Файл успешно сохранен" << endl;
+	cout << "Файл сохранен" << endl;
 	fclose(data);
 }
