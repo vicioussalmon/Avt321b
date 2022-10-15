@@ -135,7 +135,7 @@ void FreeDlist(DList** Dhead) {
 	DList* current = *Dhead;
 	while (current) {
 		*Dhead = (*Dhead)->next;
-		free(current);
+		delete current;
 		current = *Dhead;
 	}
 }
@@ -275,7 +275,7 @@ void SwapNode(const int value1, const int value2, Node* head) {
 void PrintNode(Node* head) {
 
 	if (head != NULL) {
-		cout << head->number << " --> ";
+		cout << head->number << " -- ";
 		PrintNode(head->next);
 	}
 	else cout << endl << endl;

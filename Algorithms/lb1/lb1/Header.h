@@ -17,7 +17,7 @@ struct Node {
 };
 
 struct DList {
-	int number;
+	long int number;
 	DList* next;
 	DList* prev;
 };

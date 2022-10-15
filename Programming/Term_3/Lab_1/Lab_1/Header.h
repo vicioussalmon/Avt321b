@@ -1,20 +1,27 @@
 #pragma once
 #include <iostream>
+#include <iomanip>
 #include <windows.h>
 #include <stdlib.h>
 #include <conio.h>
 #include <string.h>
 #include <stdio.h>
-#define N 3
+#include <fstream>
+#define  M 5
 #define _CRT_SECURE_NO_WARNINGS
 using namespace std;
-class church {
-	char* name;
-	char school;
-	unsigned int count;
-	float square;
+
+class Student {
+private:
+	string FullName;
+	int birthdate;
+	string address;
+	short int course;
+	string fakultat;
+	long tel_num;
 public:
-	void set(char* a, char b, unsigned int c, float d);
-	void get(char* a, char& b, unsigned int& c, float& d);
-	void show(void);
+	Student();
+	friend void random(Student students[]);
+	void print_tabl();
+	friend void print_obj(Student students[]);
 };
