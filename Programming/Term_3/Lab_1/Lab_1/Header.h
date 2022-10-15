@@ -22,6 +22,5 @@ private:
 public:
 	Student();
 	friend void random(Student students[]);
-	void print_tabl();
 	friend void print_obj(Student students[]);
 };

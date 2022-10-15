@@ -6,7 +6,6 @@ int main()
 
 	Student students[M];
 
-	students->print_tabl();
 	random(students);
 	print_obj(students);
 

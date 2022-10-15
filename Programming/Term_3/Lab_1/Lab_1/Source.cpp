@@ -21,13 +21,7 @@ void random(Student students[]) {
         students[i].tel_num = rand() % 1000 + 1000000;
     }
 }
-void Student::print_tabl()const {
-    cout << setw(4) << "-----------------------------------------------\n";
-    cout << setw(4) << "|             Некоторые виды антилоп          |\n";
-    cout << setw(4) << "|---------------------------------------------|\n";
-    cout << setw(4) << "|  Название  | Группа |   Ареал   |Численность|\n";
-    cout << setw(4) << "|---------------------------------------------|\n";
-}
+
 void print_obj(Student students[]) {
 
     for (int i = 0; i < M; i++) {
