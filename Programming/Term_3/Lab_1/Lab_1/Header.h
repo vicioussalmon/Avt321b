@@ -14,13 +14,22 @@ using namespace std;
 class Student {
 private:
 	string FullName;
+	string Name;
+	string initial;
+	string initial2;
 	int birthdate;
+	int birthmonth;
+	int birthyear;
 	string address;
-	short int course;
+	int course;
 	string fakultat;
-	long tel_num;
+	int tel_num;
+	string get;
 public:
 	Student();
 	friend void random(Student students[]);
+	//friend void by_fakultat(Student students[]);
+	//friend void sort(Student students[]);
+	friend void individum(Student students[]);
 	friend void print_obj(Student students[]);
 };
