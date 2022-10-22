@@ -31,5 +31,6 @@ public:
 	//friend void by_fakultat(Student students[]);
 	//friend void sort(Student students[]);
 	friend void individum(Student students[]);
+	friend void PrintFakultet(Student students[]);
 	friend void print_obj(Student students[]);
 };

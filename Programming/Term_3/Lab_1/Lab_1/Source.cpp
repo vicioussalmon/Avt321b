@@ -39,19 +39,37 @@ void random(Student students[]) {
     
     
 }
-//void PrintFakultet(Student students[]) {
-//    cout << "Студенти с средним балом меньше 70: " << endl;
-//    int count = 0;
-//    for (int i = 0; i < M; ++i) {
-//        strcpy(get, students[i].fakultat);
-//    }
-//    if (count == 0)
-//        cout << "Студентов со средним балом меньше 70 нету." << endl;
-//}
+void PrintFakultet(Student students[]) {
+    char get[3];
+    cout << "Choose the faculty: " << endl;
+    cin >> get;
+    int count = 0;
+
+    for (int i = 0; i < M; ++i) {
+        char* c = const_cast<char*>(students[i].fakultat.c_str());
+        
+        if (strstr(get, c)) {
+            cout << students[i].FullName << setw(6);
+
+            cout << students[i].birthdate << "." << students[i].birthmonth << "." << students[i].birthyear << "  ";
+
+            cout << students[i].address << "@gmail.com" << " ";
+            cout << students[i].fakultat << " ";
+            cout << students[i].course << " ";
+            cout << "+380" << students[i].tel_num << " ";
+            cout << endl;
+            count++;
+        }
+        
+    }
+    if (count == 0) {
+        cout << endl << "There are no students from choosen faculty..." << endl;
+    }
+   
+}
 void individum(Student students[])
 {
     int  z = 0;
-    //int n;
     for (int i = 0; i < M; i++)
     {
         if (students[i].birthyear > 2004) {
@@ -64,14 +82,12 @@ void individum(Student students[])
             cout << students[i].course << " ";
             cout << "+380" << students[i].tel_num << " ";
             cout << endl;
-            /*for (int j = 0; j < 5; j++)
-                cout << setw(4) << " " << gr[i].ses[j];*/
             z++;
         }
     }
     if (z == 0)
     {
-        cout << endl << "По данному предмету нет студентов с баллом выше 4.5" << endl;
+        cout << endl << "There are no students, that was born after 2004" << endl;
     }
     //return 0;
 }
