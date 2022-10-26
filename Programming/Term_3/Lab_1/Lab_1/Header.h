@@ -24,13 +24,12 @@ private:
 	int course;
 	string fakultat;
 	int tel_num;
-	string get;
 public:
 	Student();
-	friend void random(Student students[]);
-	//friend void by_fakultat(Student students[]);
-	//friend void sort(Student students[]);
-	friend void individum(Student students[]);
-	friend void PrintFakultet(Student students[]);
-	friend void print_obj(Student students[]);
+	friend void random(Student*& students, int n);
+	friend void del(Student*& students, int& n);
+	friend void add(Student*& students, int& n);
+	friend void individum(Student* &students, int n);
+	friend void PrintFakultet(Student* &students, int n);
+	friend void print_obj(Student* &students, int &n);
 };
