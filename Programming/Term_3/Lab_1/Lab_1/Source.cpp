@@ -35,6 +35,7 @@ void random(Student* &students, int n) {
         students[i].FullName.insert(students[i].FullName.size(), ".");
         students[i].FullName.insert(students[i].FullName.size(), students[i].initial2);
         students[i].FullName.insert(students[i].FullName.size(), ".");
+        //students[i].SetAll(FullName, birthdate, birthmonth, birthyear, address, course, fakultat, tel_num);
     }
     
     
@@ -49,22 +50,14 @@ void PrintFakultet(Student* &students, int n) {
     cin >> get;
     int count = 0;
 
-    for (int i = 1; i < n; ++i) {
+    for (int i = 0; i < n; ++i) {
         char* c = const_cast<char*>(students[i].fakultat.c_str());
-        
+
         if (strstr(get, c)) {
-            cout << students[i].FullName << setw(6);
-
-            cout << students[i].birthdate << "." << students[i].birthmonth << "." << students[i].birthyear << "  ";
-
-            cout << students[i].address << "@gmail.com" << " ";
-            cout << students[i].fakultat << " ";
-            cout << students[i].course << " ";
-            cout << "+380" << students[i].tel_num << " ";
-            cout << endl;
+            students[i].ShowAll();
             count++;
         }
-        
+
     }
     if (count == 0) {
         cout << endl << "There are no students from choosen faculty..." << endl;
@@ -76,9 +69,9 @@ void individum(Student* &students, int n){
     cout << "-----------------------------------------------------------------------------" << endl;
     cout << "List of students, that was born after 2004" << endl;
     int  z = 0;
-    for (int i = 1; i < n; i++)
+    for (int i = 0; i < n; i++)
     {
-        if (students[i].birthyear > 2004) {
+        if (students[i].GetBirthyear() > 2004) {
             cout << students[i].FullName << setw(6);
 
             cout << students[i].birthdate << "." << students[i].birthmonth << "." << students[i].birthyear << "  ";
@@ -98,16 +91,8 @@ void individum(Student* &students, int n){
 }
 void print_obj(Student* &students, int &n) {
     for (int i = 0; i < n; i++) {
-        cout << i+1<<". ";
-        cout << students[i].FullName << setw(6);
-
-        cout  << students[i].birthdate << "." << students[i].birthmonth << "." << students[i].birthyear << "  ";
-
-        cout << students[i].address << "@gmail.com" << " ";
-        cout << students[i].fakultat << " ";
-        cout << students[i].course << " ";
-        cout << "+380" << students[i].tel_num << " ";
-        cout << endl;
+        cout << i + 1 << ". ";
+        students[i].ShowAll();
     }
 }
 
@@ -133,13 +118,7 @@ for (int i = criteriaIndex; i <= n - 2; i++) {
 
 for (int i = 0; i < n-1; i++) {
     cout << i+1 << ". ";
-    cout << result[i].FullName << setw(6);
-    cout << result[i].birthdate << "." << result[i].birthmonth << "." << result[i].birthyear << "  ";
-    cout << result[i].address << "@gmail.com" << " ";
-    cout << result[i].fakultat << " ";
-    cout << result[i].course << " ";
-    cout << "+380" << result[i].tel_num << " ";
-    cout << endl;
+    result[i].ShowAll();
     
 }
 delete[]students;
@@ -171,13 +150,7 @@ void add(Student*& students, int& n) {
     }
     for (int i = 0; i < n + 1; i++) {
         cout << i+1 << ". ";
-        cout << result[i].FullName << setw(6);
-        cout << result[i].birthdate << "." << result[i].birthmonth << "." << result[i].birthyear << "  ";
-        cout << result[i].address << "@gmail.com" << " ";
-        cout << result[i].fakultat << " ";
-        cout << result[i].course << " ";
-        cout << "+380" << result[i].tel_num << " ";
-        cout << endl;
+        result[i].ShowAll();
     }
     delete[]students;
     students = result;

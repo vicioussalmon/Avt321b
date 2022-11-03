@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="lb2.cpp">
+    <ClCompile Include="Lab_2.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Source.cpp">
@@ -26,10 +26,5 @@
     <ClInclude Include="Header.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="dataS.txt" />
-    <Text Include="dataQ.txt" />
-    <Text Include="dataD.txt" />
   </ItemGroup>
 </Project>
