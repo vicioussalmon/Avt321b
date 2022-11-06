@@ -306,7 +306,7 @@ int main()
 		short int button;
 		int sizeofQueue;
 
-			cout << "\nСоздать дек - 1 \nДек файлов данных - 2 \nСброс - 3 \nВыход - 0 \n-->"; cin >> button;
+			cout << "\nСоздать дек - 1 \nДек файлов данных - 2 \nСброс - 3 \nВыход - 0 \n"; cin >> button;
 			switch (button)
 			{
 			case 1: {

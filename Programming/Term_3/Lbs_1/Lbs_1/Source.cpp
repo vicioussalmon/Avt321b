@@ -13,7 +13,7 @@ void random(Antilops antilop[]) {
 		antilop[i].name = names[rand() % 3];
 		antilop[i].group = groups[rand() % 3];
 		antilop[i].areal = areals[rand() % 2];
-		antilop[i].population = rand() % 1000 + 1000000;;
+		antilop[i].population = rand() % 1000 + 1000000;
 	}
 }
 void Antilops::print_tabl() {
@@ -26,10 +26,7 @@ void Antilops::print_tabl() {
 void print_obj(Antilops antilop[]) {
 
 	for (int i = 0; i < M; i++) {
-		cout << "|" << setw(10) << antilop[i].name << setw(4);
-		cout << "|" << setw(4) << antilop[i].group << setw(4);
-		cout << "|" << setw(6) << antilop[i].areal << setw(6);
-		cout << "|" << setw(3) << antilop[i].population << setw(6);
+		antilop[i].ShowAll();
 		cout << "|\n";
 		cout << "|---------------------------------------------|" << "\n";
 	}

@@ -2,7 +2,7 @@
 
 int main()
 {
-	Setlocale(LC_ALL, "Russian");
+	setlocale(LC_ALL, "Russian");
 
 	Antilops antilop[M];
 

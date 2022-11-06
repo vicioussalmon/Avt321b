@@ -14,8 +14,8 @@ void get_data(BinaryTree* Root, BinaryTree* mass, int count) {
 	if (Root != NULL) {
 		static int i = 0;
 		mass[i].FullName = Root->FullName;
-		mass[i].IDpass = Root->IDpass;
-		mass[i].age = Root->age;
+		mass[i].birthdate = Root->birthdate;
+		mass[i].mark = Root->mark;
 		i++;
 		get_data(Root->LeftBranch, mass, count);
 		get_data(Root->RightBranch, mass, count);
@@ -29,51 +29,51 @@ bool Empty(BinaryTree* Root) {
 	return (Root == NULL ? true : false);
 }
 
-void CreateTree(BinaryTree*& Root, string FullName, int IDpass, short int age) {
+void CreateTree(BinaryTree*& Root, string FullName, int birthdate, short int mark) {
 
 	if (!Root) {
 		Root = new BinaryTree;
 		Root->FullName = FullName;
-		Root->IDpass = IDpass;
-		Root->age = age;
+		Root->birthdate = birthdate;
+		Root->mark = mark;
 		Root->LeftBranch = NULL;
 		Root->RightBranch = NULL;
 		return;
 	}
-	if (Root->age > age)
-		CreateTree(Root->LeftBranch, FullName, IDpass, age);
+	if (Root->mark > mark)
+		CreateTree(Root->LeftBranch, FullName, birthdate, mark);
 	else
-		CreateTree(Root->RightBranch, FullName, IDpass, age);
+		CreateTree(Root->RightBranch, FullName, birthdate, mark);
 
 }
 
-void CreateNewTree(BinaryTree*& Root, string FullName, int IDpass, short int age) {
+void CreateNewTree(BinaryTree*& Root, string FullName, int birthdate, short int mark) {
 
 	if (!Root) {
 		Root = new BinaryTree;
 		Root->FullName = FullName;
-		Root->IDpass = IDpass;
-		Root->age = age;
+		Root->birthdate = birthdate;
+		Root->mark = mark;
 		Root->LeftBranch = NULL;
 		Root->RightBranch = NULL;
 		return;
 	}
-	if (Root->IDpass > IDpass)
-		CreateTree(Root->LeftBranch, FullName, IDpass, age);
+	if (Root->birthdate > birthdate)
+		CreateTree(Root->LeftBranch, FullName, birthdate, mark);
 	else
-		CreateTree(Root->RightBranch, FullName, IDpass, age);
+		CreateTree(Root->RightBranch, FullName, birthdate, mark);
 
 }
 
 
-float avarageAge(BinaryTree*& Root) {
-	static int avarage = 0, flag = 0;
+float avarmarkmark(BinaryTree*& Root) {
+	static int avarmark = 0, flag = 0;
 	if (Root != NULL) {
-		avarageAge(Root->LeftBranch);
-		avarage += Root->age; flag++;
-		avarageAge(Root->RightBranch);
+		avarmarkmark(Root->LeftBranch);
+		avarmark += Root->mark; flag++;
+		avarmarkmark(Root->RightBranch);
 	}
-	return ((float)avarage / (float)flag);
+	return ((float)avarmark / (float)flag);
 }
 
 
@@ -88,7 +88,7 @@ void del(BinaryTree*& Root) {
 
 void pr_obh(BinaryTree*& Root) {
 	if (!Root)return;
-	cout << " " << Root->FullName << " " << Root->IDpass << " " << Root->age << "\t\n";
+	cout << " " << Root->FullName << " " << Root->birthdate << " " << Root->mark << "\t\n";
 	pr_obh(Root->LeftBranch);
 	pr_obh(Root->RightBranch);
 }
@@ -96,12 +96,12 @@ void zb_obh(BinaryTree*& Root) {
 	if (!Root)return;
 	zb_obh(Root->LeftBranch);
 	zb_obh(Root->RightBranch);
-	cout << " " << Root->FullName << " " << Root->IDpass << " " << Root->age << "\t\n";
+	cout << " " << Root->FullName << " " << Root->birthdate << " " << Root->mark << "\t\n";
 }
 void sm_obh(BinaryTree*& Root) {
 	if (!Root)return;
 	sm_obh(Root->LeftBranch);
-	cout << " " << Root->FullName << " " << Root->IDpass << " " << Root->age << "\t\n";
+	cout << " " << Root->FullName << " " << Root->birthdate << " " << Root->mark << "\t\n";
 	sm_obh(Root->RightBranch);
 }
 
@@ -118,9 +118,9 @@ void del_right_tree(BinaryTree*& Root) {
 	delete(Root->RightBranch);
 	Root->RightBranch = NULL;
 }
-void del_branch(BinaryTree*& Root, int age) {
+void del_branch(BinaryTree*& Root, int mark) {
 	if (Root != NULL) {
-		if (Root->age == age) {
+		if (Root->mark == mark) {
 			BinaryTree* ptr = Root;
 			if (Root->LeftBranch == NULL && Root->RightBranch == NULL)
 				Root = NULL;
@@ -137,12 +137,12 @@ void del_branch(BinaryTree*& Root, int age) {
 					ptr1 = ptr->LeftBranch;
 				}
 				delete(ptr);
-				del_branch(Root, age);
+				del_branch(Root, mark);
 			}
 		}
 		else {
-			del_branch(Root->LeftBranch, age);
-			del_branch(Root->RightBranch, age);
+			del_branch(Root->LeftBranch, mark);
+			del_branch(Root->RightBranch, mark);
 		}
 
 
@@ -156,7 +156,7 @@ void Print(BinaryTree** Root, int l) { // test print
 		Print(&((**Root).RightBranch), l + 1);
 
 		for (i = 1; i <= l; i++) cout << "   "; {
-			cout << (**Root).FullName << " " << (**Root).IDpass << " " << (**Root).age << endl;
+			cout << (**Root).FullName << " " << (**Root).birthdate << " " << (**Root).mark << endl;
 		}
 		Print(&((**Root).LeftBranch), l + 1);
 	}
@@ -173,9 +173,9 @@ void write_trea_in_file(BinaryTree* Root) {
 	for (int i = 0; i < tabs; i++) fout << " ";
 	fout << Root->FullName << endl;
 	for (int i = 0; i < tabs; i++) fout << " ";
-	fout << Root->IDpass << endl;
+	fout << Root->birthdate << endl;
 	for (int i = 0; i < tabs; i++) fout << " ";
-	fout << Root->age << endl;
+	fout << Root->mark << endl;
 	write_trea_in_file(Root->LeftBranch);
 	tabs -= 5;
 	return;
@@ -201,7 +201,7 @@ void PrintTest(BinaryTree const* node) {
 		std::vector<std::string> lines;
 		if (!node)
 			return std::make_tuple(lines, size_t(0), size_t(0));
-		auto sval = " | " + node->FullName + " | " + std::to_string(node->IDpass) + " | " + std::to_string(node->age) + " | ";
+		auto sval = " | " + node->FullName + " | " + std::to_string(node->birthdate) + " | " + std::to_string(node->mark) + " | ";
 		//if (sval.size() % 2 != 1) sval += " ";
 		auto resl = Rec(node->LeftBranch, true), resr = Rec(node->RightBranch, false);
 		auto const& vl = std::get<0>(resl);

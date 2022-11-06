@@ -10,7 +10,7 @@ int main()
 	srand(time(NULL));
 	BinaryTree* Root = NULL;
 
-	string FullName = "Person"; int IDpass; short int age;
+	string FullName = "Person"; int birthdate; short int mark;
 	int button; string fileRead;
 
 	ifstream dataFile;
@@ -42,9 +42,9 @@ int main()
 			cin >> button;
 			for (size_t i = 0; i < button; i++) {
 				FullName += to_string(rand() % 10);
-				IDpass = rand();
-				age = rand() % 60 + 20;
-				CreateTree(Root, FullName, IDpass, age);
+				birthdate = rand();
+				mark = rand() % 60 + 20;
+				CreateTree(Root, FullName, birthdate, mark);
 				FullName = "Person";
 			}
 			if (!Empty)
@@ -67,9 +67,9 @@ int main()
 			dataFile.open("data.txt");
 			for (int i = 0; i < count; i++) {
 				dataFile >> FullName;
-				dataFile >> IDpass;
-				dataFile >> age;
-				CreateTree(Root, FullName, IDpass, age);
+				dataFile >> birthdate;
+				dataFile >> mark;
+				CreateTree(Root, FullName, birthdate, mark);
 				FullName = "Person";
 			}
 			dataFile.close();
@@ -144,7 +144,7 @@ int main()
 			if (!Empty)
 				cout << "Дерево не знайдено!\n";
 			else
-				cout << "Середній арефметичний рік громадян складає " << avarageAge(Root) << endl;
+				cout << "Середній арефметичний рік громадян складає " << avarmarkmark(Root) << endl;
 			break;
 
 		case 8:
@@ -178,11 +178,11 @@ int main()
 
 		case 10:
 			cout << "Введіть елемент, який хочете видалить: ";
-			cin >> age;
+			cin >> mark;
 			if (!Empty)
 				cout << "Дерево не знайдено!\n";
 			else
-				del_branch(Root, age);
+				del_branch(Root, mark);
 			if (!Empty)
 				cout << "Дерево не знайдено!\n";
 			else
@@ -219,7 +219,7 @@ int main()
 				BinaryTree* NewTree = NULL;
 				get_data(Root, NewTreeArray, TreeSize);
 				for (size_t i = 0; i < TreeSize; i++) {
-					CreateNewTree(NewTree, NewTreeArray[i].FullName, NewTreeArray[i].IDpass, NewTreeArray[i].age);
+					CreateNewTree(NewTree, NewTreeArray[i].FullName, NewTreeArray[i].birthdate, NewTreeArray[i].mark);
 				}
 				PrintTest(NewTree);
 			}
