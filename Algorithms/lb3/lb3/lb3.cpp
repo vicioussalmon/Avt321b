@@ -1,8 +1,4 @@
-﻿
-#include "Header.h"
-
-
-
+﻿#include "Header.h"
 
 int main()
 {
@@ -10,7 +6,7 @@ int main()
 	srand(time(NULL));
 	BinaryTree* Root = NULL;
 
-	string FullName = "Person"; int birthdate; short int mark;
+	string FullName = "Student"; int birthdate; short int mark;
 	int button; string fileRead;
 
 	ifstream dataFile;
@@ -19,36 +15,39 @@ int main()
 
 	while (true) {
 
-		cout << "1 - Створити бінарне дерево вводом через консоль\n"
-			<< "2 - Загрузити бінарне дерево з файлу\n"
-			<< "3 - Роздрукувати бінарне дерево в консоль\n"
-			<< "4 - Прямий обхід дерева\n"
-			<< "5 - Симетричний обхід дерева\n"
-			<< "6 - Зворотній обхід дерева\n"
-			<< "7 - Середнє арифметичне бінарного дерева (середній вік громадян)\n"
-			<< "8 - Видалення лівого піддерева й занулення гілки\n"
-			<< "9 - Видалення правого піддерева й занулення гілки\n"
-			<< "10 - Видалити вузол й занулити його вказівник\n"
-			<< "11 - Видалити все дерево\n"
-			<< "12 - Записати бінарне дерево в файл\n"
-			<< "13 - Пересипати у нове бінарне дерево (за ID паспорта)\n"
-			<< "0 - Завершити роботу програми\n"
-			<< "---> ";
+		cout << "------------------------------------------------------------------------\n"
+			<< "--------------------------БИНАРНОЕ---ДЕРЕВО-----------------------------\n"
+			<< "------------------------------------------------------------------------\n"
+			<< "1 - Создать бинарное дерево вводом через консоль\n"
+			<< "2 - Загрузить бинарное дерево из файла\n"
+			<< "3 - Печать бинарного дерева в консоль\n"
+			<< "4 - Прямой обход дерева\n"
+			<< "5 - Симметричный обход дерева\n"
+			<< "6 - Обратный обход дерева\n"
+			<< "7 - Среднее арифметическое бинарного дерева (середняя оценка студентов)\n"
+			<< "8 - Удаление левого поддерева и зануление ветки\n"
+			<< "9 - Удаление правого поддерева и зануление ветки\n"
+			<< "10 - Удалить узел и занулить его указатель\n"
+			<< "11 - Удалить все дерево\n"
+			<< "12 - Запись бинарного дерева в файл\n"
+			<< "13 - Переписать в новое бинарное дерево (по оценкам)\n"
+			<< "0 - Выход\n"
+			<< "------------------------------------------------------------------------\n";
 		cin >> button;
 		switch (button) {
 		case 1:
 
-			cout << "Введіть кількість елементів дерева: ";
+			cout << "Введите количество элементов дерева: ";
 			cin >> button;
 			for (size_t i = 0; i < button; i++) {
 				FullName += to_string(rand() % 10);
-				birthdate = rand();
-				mark = rand() % 60 + 20;
+				birthdate = rand () % (2005 - 1998 + 1) + 1998;
+				mark = rand() % (5 - 1 + 1) + 1;
 				CreateTree(Root, FullName, birthdate, mark);
-				FullName = "Person";
+				FullName = "Student";
 			}
 			if (!Empty)
-				cout << "Дерево не знайдено!\n";
+				cout << "Дерево не найдено!\n";
 			else
 				PrintTest(Root);
 			break;
@@ -70,12 +69,12 @@ int main()
 				dataFile >> birthdate;
 				dataFile >> mark;
 				CreateTree(Root, FullName, birthdate, mark);
-				FullName = "Person";
+				FullName = "Student";
 			}
 			dataFile.close();
 
 			if (!Empty)
-				cout << "Дерево не знайдено!\n";
+				cout << "Дерево не найдено!\n";
 			else
 				PrintTest(Root);
 
@@ -85,7 +84,7 @@ int main()
 
 		case 3:
 			if (!Empty)
-				cout << "Дерево не знайдено!\n";
+				cout << "Дерево не найдено!\n";
 			else
 				PrintTest(Root);
 			break;
@@ -93,13 +92,13 @@ int main()
 		case 4:
 
 			if (!Empty)
-				cout << "Дерево не знайдено!\n";
+				cout << "Дерево не найдено!\n";
 			else
 				PrintTest(Root);
 
-			cout << "Прямий обхід дерева: " << endl;
+			cout << "Прямий обход дерева: " << endl;
 			if (!Empty)
-				cout << "Дерево не знайдено!\n";
+				cout << "Дерево не найдено!\n";
 			else
 				pr_obh(Root);
 			cout << endl;
@@ -108,13 +107,13 @@ int main()
 		case 5:
 
 			if (!Empty)
-				cout << "Дерево не знайдено!\n";
+				cout << "Дерево не найдено!\n";
 			else
 				PrintTest(Root);
 
-			cout << "Симетричний обхід дерева: " << endl;
+			cout << "Симметричний обход дерева: " << endl;
 			if (!Empty)
-				cout << "Дерево не знайдено!\n";
+				cout << "Дерево не найдено!\n";
 			else
 				sm_obh(Root);
 			cout << endl;
@@ -122,13 +121,13 @@ int main()
 
 		case 6:
 			if (!Empty)
-				cout << "Дерево не знайдено!\n";
+				cout << "Дерево не найдено!\n";
 			else
 				PrintTest(Root);
 
-			cout << "Зворотній обхід дерева: " << endl;
+			cout << "Обратный обход дерева: " << endl;
 			if (!Empty)
-				cout << "Дерево не знайдено!\n";
+				cout << "Дерево не найдено!\n";
 			else
 				zb_obh(Root);
 			cout << endl;
@@ -137,74 +136,74 @@ int main()
 		case 7:
 
 			if (!Empty)
-				cout << "Дерево не знайдено!\n";
+				cout << "Дерево не найдено!\n";
 			else
 				PrintTest(Root);
 
 			if (!Empty)
-				cout << "Дерево не знайдено!\n";
+				cout << "Дерево не найдено!\n";
 			else
-				cout << "Середній арефметичний рік громадян складає " << avarmarkmark(Root) << endl;
+				cout << "Средняя оценка студентов составляет " << avarmarkmark(Root) << endl;
 			break;
 
 		case 8:
 
-			cout << "Видалення лівого піддерева й занулення гілки" << endl;
+			cout << "Удаление левого поддерева и зануление ветки" << endl;
 			if (!Empty)
-				cout << "Дерево не знайдено!\n";
+				cout << "Дерево не найдено!\n";
 			else
 				del_left_tree(Root);
 
 			cout << endl;
 			if (!Empty)
-				cout << "Дерево не знайдено!\n";
+				cout << "Дерево не найдено!\n";
 			else
 				PrintTest(Root);
 
 			break;
 
 		case 9:
-			cout << "Видалення правого піддерева й занулення гілки" << endl;
+			cout << "Удаление правого поддерева и зануление ветки" << endl;
 			if (!Empty)
-				cout << "Дерево не знайдено!\n";
+				cout << "Дерево не найдено!\n";
 			else
 				del_right_tree(Root);
 			cout << endl;
 			if (!Empty)
-				cout << "Дерево не знайдено!\n";
+				cout << "Дерево не найдено!\n";
 			else
 				PrintTest(Root);
 			break;
 
 		case 10:
-			cout << "Введіть елемент, який хочете видалить: ";
+			cout << "Введите элемент, который хотите удалить: ";
 			cin >> mark;
 			if (!Empty)
-				cout << "Дерево не знайдено!\n";
+				cout << "Дерево не найдено!\n";
 			else
 				del_branch(Root, mark);
 			if (!Empty)
-				cout << "Дерево не знайдено!\n";
+				cout << "Дерево не найдено!\n";
 			else
 				PrintTest(Root);
 			break;
 
 		case 11:
-			cout << "Дерево було очищенно з пам'яті. Подальша робота з ним неможлива!" << endl;
+			cout << "Дерево было очищено из памяти. Последующая работа с ним невозможна!" << endl;
 			if (!Empty)
-				cout << "Дерево не знайдено!\n";
+				cout << "Дерево не найдено!\n";
 			else
 				del(Root);
 			if (!Empty)
-				cout << "Дерево не знайдено!\n";
+				cout << "Дерево не найдено!\n";
 			else
 				PrintTest(Root);
 			break;
 
 		case 12:
-			cout << "Запис дерева у файл: " << endl;
+			cout << "Запись дерева в файл: " << endl;
 			if (!Empty)
-				cout << "Дерево не знайдено!\n";
+				cout << "Дерево не найдено!\n";
 			else
 				write_trea_in_file(Root);
 			break;
@@ -212,7 +211,7 @@ int main()
 		case 13:
 
 			if (!Empty)
-				cout << "Дерево не знайдено!\n";
+				cout << "Дерево не найдено!\n";
 			else {
 				int TreeSize = size(Root);
 				BinaryTree* NewTreeArray = new BinaryTree[TreeSize];
