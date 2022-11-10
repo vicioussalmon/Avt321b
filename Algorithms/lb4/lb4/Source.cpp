@@ -54,7 +54,7 @@ void ChooseSort(int* array, int size, int& operationCounter)
 // Процедура для преобразования в двоичную кучу поддерева с корневым узлом i, что является
 // индексом в arr[]. n - размер кучи
 
-void heapify(int* array, int size, int i)
+void heapify(int* array, int size, int i, int& operationCounter)
 {
 	int largest = i;
 	// Инициализируем наибольший элемент как корень
@@ -64,10 +64,12 @@ void heapify(int* array, int size, int i)
 	// Если левый дочерний элемент больше корня
 	if (l < size && array[l] > array[largest]) {
 		largest = l;
+		operationCounter++;
 	}
 	// Если правый дочерний элемент больше, чем самый большой элемент на данный момент
 	if (r < size && array[r] > array[largest]) {
 		largest = r;
+		operationCounter++;
 	}
 	// Если самый большой элемент не корень
 	if (largest != i)
@@ -75,18 +77,18 @@ void heapify(int* array, int size, int i)
 		swap(array[i], array[largest]);
 
 		// Рекурсивно преобразуем в двоичную кучу затронутое поддерево
-		heapify(array, size, largest);
+		heapify(array, size, largest, operationCounter);
 
 	}
 }
-
-
 void PiramidSort(int* array, int size, int& operationCounter)
 {
 	operationCounter = 0;
 	// Построение кучи (перегруппируем массив)
-	for (int i = size / 2 - 1; i >= 0; i--)
-		heapify(array, size, i);
+	for (int i = size / 2 - 1; i >= 0; i--) {
+		heapify(array, size, i, operationCounter);
+		
+	}
 
 	// Один за другим извлекаем элементы из кучи
 	for (int i = size - 1; i >= 0; i--)
@@ -95,16 +97,17 @@ void PiramidSort(int* array, int size, int& operationCounter)
 		swap(array[0], array[i]);
 
 		// вызываем процедуру heapify на уменьшенной куче
-		heapify(array, i, 0);
+		heapify(array, i, 0, operationCounter);
+		
 	}
 }
 
-void BucketSort(int* array, int size, int& operationCounter)
+void ShellSort(int* array, int size, int& operationCounter)
 {
-
-		for (int step = size / 2; step > 0; step /= 2)
+	operationCounter = 0;
+		for (int step = size / 2; step > 0; step /= 2, operationCounter++)
 		{
-			for (int i = step; i < size; i += 1)
+			for (int i = step; i < size; i += 1, operationCounter++)
 			{
 				int j = i;
 
@@ -112,10 +115,11 @@ void BucketSort(int* array, int size, int& operationCounter)
 				{
 					swap(array[j], array[j - step]);
 					j -= step;
-
+					operationCounter++;
 				}
+				operationCounter++;
 			}
-
+			operationCounter++;
 		}
 	
 

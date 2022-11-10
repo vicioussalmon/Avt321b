@@ -48,7 +48,7 @@ int main()
 					{
 					case 1:
 						cout << endl << "/////////////////////////////////////////////////" << endl;
-						//readChaotically(array10, size10);
+						readChaotically(array10, size10);
 						printArray(array10, size10);
 						ChooseSort(array10, size10, operationCounter);
 						printArray(array10, size10);
@@ -246,7 +246,7 @@ int main()
 						cout << endl << "/////////////////////////////////////////////////" << endl;
 						readChaotically(array10, size10);
 						printArray(array10, size10);
-						PiramidSort(array10, size10, operationCounter);
+						ShellSort(array10, size10, operationCounter);
 						printArray(array10, size10);
 						cout << "\nОпераций сортировки Шелла 10 случайный -- " << operationCounter << endl;
 						cout << "/////////////////////////////////////////////////" << endl << endl;
@@ -255,7 +255,7 @@ int main()
 						cout << endl << "/////////////////////////////////////////////////" << endl;
 						createAscending(array10, size10);
 						printArray(array10, size10);
-						PiramidSort(array10, size10, operationCounter);
+						ShellSort(array10, size10, operationCounter);
 						printArray(array10, size10);
 						cout << "\nОпераций сортировки Шелла 10 по возрастанию -- " << operationCounter << endl;
 						cout << "/////////////////////////////////////////////////" << endl << endl;
@@ -264,7 +264,7 @@ int main()
 						cout << endl << "/////////////////////////////////////////////////" << endl;
 						createDescending(array10, size10);
 						printArray(array10, size10);
-						PiramidSort(array10, size10, operationCounter);
+						ShellSort(array10, size10, operationCounter);
 						printArray(array10, size10);
 						cout << "\nОпераций сортировки Шелла 10 по убыванию -- " << operationCounter << endl;
 						cout << "/////////////////////////////////////////////////" << endl << endl;
@@ -290,7 +290,7 @@ int main()
 						cout << endl << "/////////////////////////////////////////////////" << endl;
 						readChaotically(array100, size100);
 						printArray(array100, size100);
-						PiramidSort(array100, size100, operationCounter);
+						ShellSort(array100, size100, operationCounter);
 						printArray(array100, size100);
 						cout << "\nОпераций сортировки Шелла 100 случайный -- " << operationCounter << endl;
 						cout << "/////////////////////////////////////////////////" << endl << endl;
@@ -299,7 +299,7 @@ int main()
 						cout << endl << "/////////////////////////////////////////////////" << endl;
 						createAscending(array100, size100);
 						printArray(array100, size100);
-						PiramidSort(array100, size100, operationCounter);
+						ShellSort(array100, size100, operationCounter);
 						printArray(array100, size100);
 						cout << "\nОпераций сортировки Шелла 100 по возрастанию -- " << operationCounter << endl;
 						cout << "/////////////////////////////////////////////////" << endl << endl;
@@ -308,7 +308,7 @@ int main()
 						cout << endl << "/////////////////////////////////////////////////" << endl;
 						createDescending(array100, size100);
 						printArray(array100, size100);
-						PiramidSort(array100, size100, operationCounter);
+						ShellSort(array100, size100, operationCounter);
 						printArray(array100, size100);
 						cout << "\nОпераций сортировки Шелла 100 по убыванию -- " << operationCounter << endl;
 						cout << "/////////////////////////////////////////////////" << endl << endl;
@@ -334,7 +334,7 @@ int main()
 						cout << endl << "/////////////////////////////////////////////////" << endl;
 						readChaotically(array1000, size1000);
 						printArray(array1000, size1000);
-						PiramidSort(array1000, size1000, operationCounter);
+						ShellSort(array1000, size1000, operationCounter);
 						printArray(array1000, size1000);
 						cout << "\nОпераций сортировки Шелла 1000 случайный -- " << operationCounter << endl;
 						cout << "/////////////////////////////////////////////////" << endl << endl;
@@ -343,7 +343,7 @@ int main()
 						cout << endl << "/////////////////////////////////////////////////" << endl;
 						createAscending(array1000, size1000);
 						printArray(array1000, size1000);
-						PiramidSort(array1000, size1000, operationCounter);
+						ShellSort(array1000, size1000, operationCounter);
 						printArray(array1000, size1000);
 						cout << "\nОпераций сортировки Шелла 1000 по возрастанию -- " << operationCounter << endl;
 						cout << "/////////////////////////////////////////////////" << endl << endl;
@@ -352,7 +352,7 @@ int main()
 						cout << endl << "/////////////////////////////////////////////////" << endl;
 						createDescending(array1000, size1000);
 						printArray(array1000, size1000);
-						PiramidSort(array1000, size1000, operationCounter);
+						ShellSort(array1000, size1000, operationCounter);
 						printArray(array1000, size1000);
 						cout << "\nОпераций сортировки Шелла 1000 по убыванию -- " << operationCounter << endl;
 						cout << "/////////////////////////////////////////////////" << endl << endl;
@@ -379,7 +379,7 @@ int main()
 						cout << endl << "/////////////////////////////////////////////////" << endl;
 						readChaotically(array10000, size10000);
 						printArray(array10000, size10000);
-						PiramidSort(array10000, size10000, operationCounter);
+						ShellSort(array10000, size10000, operationCounter);
 						printArray(array10000, size10000);
 						cout << "\nОпераций сортировки Шелла 10000 случайный -- " << operationCounter << endl;
 						cout << "/////////////////////////////////////////////////" << endl << endl;
@@ -388,7 +388,7 @@ int main()
 						cout << endl << "/////////////////////////////////////////////////" << endl;
 						createAscending(array10000, size10000);
 						printArray(array10000, size10000);
-						PiramidSort(array10000, size10000, operationCounter);
+						ShellSort(array10000, size10000, operationCounter);
 						printArray(array10000, size10000);
 						cout << "\nОпераций сортировки Шелла 10000 по возрастанию -- " << operationCounter << endl;
 						cout << "/////////////////////////////////////////////////" << endl << endl;
@@ -397,7 +397,7 @@ int main()
 						cout << endl << "/////////////////////////////////////////////////" << endl;
 						createDescending(array10000, size10000);
 						printArray(array10000, size10000);
-						PiramidSort(array10000, size10000, operationCounter);
+						ShellSort(array10000, size10000, operationCounter);
 						printArray(array10000, size10000);
 						cout << "\nОпераций сортировки Шелла 10000 по убыванию -- " << operationCounter << endl;
 						cout << "/////////////////////////////////////////////////" << endl << endl;
@@ -441,7 +441,7 @@ int main()
 						cout << endl << "/////////////////////////////////////////////////" << endl;
 					    readChaotically(array10, size10);
 						printArray(array10, size10);
-						BucketSort(array10, size10, operationCounter);
+						PiramidSort(array10, size10, operationCounter);
 						printArray(array10, size10);
 						cout << "\nОпераций пирамидальной сортировки 10 случайный -- " << operationCounter << endl;
 						cout << "/////////////////////////////////////////////////" << endl << endl;
@@ -450,7 +450,7 @@ int main()
 						cout << endl << "/////////////////////////////////////////////////" << endl;
 						createAscending(array10, size10);
 						printArray(array10, size10);
-						BucketSort(array10, size10, operationCounter);
+						PiramidSort(array10, size10, operationCounter);
 						printArray(array10, size10);
 						cout << "\nОпераций пирамидальной сортировки 10 по возрастанию -- " << operationCounter << endl;
 						cout << "/////////////////////////////////////////////////" << endl << endl;
@@ -459,7 +459,7 @@ int main()
 						cout << endl << "/////////////////////////////////////////////////" << endl;
 						createDescending(array10, size10);
 						printArray(array10, size10);
-						BucketSort(array10, size10, operationCounter);
+						PiramidSort(array10, size10, operationCounter);
 						printArray(array10, size10);
 						cout << "\nОпераций пирамидальной сортировки 10 по убыванию -- " << operationCounter << endl;
 						cout << "/////////////////////////////////////////////////" << endl << endl;
@@ -485,7 +485,7 @@ int main()
 						cout << endl << "/////////////////////////////////////////////////" << endl;
 						readChaotically(array100, size100);
 						printArray(array100, size100);
-						BucketSort(array100, size100, operationCounter);
+						PiramidSort(array100, size100, operationCounter);
 						printArray(array100, size100);
 						cout << "\nОпераций пирамидальной сортировки 100 случайный -- " << operationCounter << endl;
 						cout << "/////////////////////////////////////////////////" << endl << endl;
@@ -494,7 +494,7 @@ int main()
 						cout << endl << "/////////////////////////////////////////////////" << endl;
 						createAscending(array100, size100);
 						printArray(array100, size100);
-						BucketSort(array100, size100, operationCounter);
+						PiramidSort(array100, size100, operationCounter);
 						printArray(array100, size100);
 						cout << "\nОпераций пирамидальной сортировки 100 по возрастанию -- " << operationCounter << endl;
 						cout << "/////////////////////////////////////////////////" << endl << endl;
@@ -503,7 +503,7 @@ int main()
 						cout << endl << "/////////////////////////////////////////////////" << endl;
 						createDescending(array100, size100);
 						printArray(array100, size100);
-						BucketSort(array100, size100, operationCounter);
+						PiramidSort(array100, size100, operationCounter);
 						printArray(array100, size100);
 						cout << "\nОпераций пирамидальной сортировки 100 по убыванию -- " << operationCounter << endl;
 						cout << "/////////////////////////////////////////////////" << endl << endl;
@@ -529,7 +529,7 @@ int main()
 						cout << endl << "/////////////////////////////////////////////////" << endl;
 						readChaotically(array1000, size1000);
 						printArray(array1000, size1000);
-						BucketSort(array1000, size1000, operationCounter);
+						PiramidSort(array1000, size1000, operationCounter);
 						printArray(array1000, size1000);
 						cout << "\nОпераций пирамидальной сортировки 1000 случайный -- " << operationCounter << endl;
 						cout << "/////////////////////////////////////////////////" << endl << endl;
@@ -538,7 +538,7 @@ int main()
 						cout << endl << "/////////////////////////////////////////////////" << endl;
 						createAscending(array1000, size1000);
 						printArray(array1000, size1000);
-						BucketSort(array1000, size1000, operationCounter);
+						PiramidSort(array1000, size1000, operationCounter);
 						printArray(array1000, size1000);
 						cout << "\nОпераций пирамидальной сортировки 1000 по возрастанию -- " << operationCounter << endl;
 						cout << "/////////////////////////////////////////////////" << endl << endl;
@@ -547,7 +547,7 @@ int main()
 						cout << endl << "/////////////////////////////////////////////////" << endl;
 						createDescending(array1000, size1000);
 						printArray(array1000, size1000);
-						BucketSort(array1000, size1000, operationCounter);
+						PiramidSort(array1000, size1000, operationCounter);
 						printArray(array1000, size1000);
 						cout << "\nОпераций пирамидальной сортировки 1000 по убыванию -- " << operationCounter << endl;
 						cout << "/////////////////////////////////////////////////" << endl << endl;
@@ -574,7 +574,7 @@ int main()
 						cout << endl << "/////////////////////////////////////////////////" << endl;
 						readChaotically(array10000, size10000);
 						printArray(array10000, size10000);
-						BucketSort(array10000, size10000, operationCounter);
+						PiramidSort(array10000, size10000, operationCounter);
 						printArray(array10000, size10000);
 						cout << "\nОпераций пирамидальной сортировки 10000 случайный -- " << operationCounter << endl;
 						cout << "/////////////////////////////////////////////////" << endl << endl;
@@ -583,7 +583,7 @@ int main()
 						cout << endl << "/////////////////////////////////////////////////" << endl;
 						createAscending(array10000, size10000);
 						printArray(array10000, size10000);
-						BucketSort(array10000, size10000, operationCounter);
+						PiramidSort(array10000, size10000, operationCounter);
 						printArray(array10000, size10000);
 						cout << "\nОпераций пирамидальной сортировки 10000 по возрастанию -- " << operationCounter << endl;
 						cout << "/////////////////////////////////////////////////" << endl << endl;
@@ -592,7 +592,7 @@ int main()
 						cout << endl << "/////////////////////////////////////////////////" << endl;
 						createDescending(array10000, size10000);
 						printArray(array10000, size10000);
-						BucketSort(array10000, size10000, operationCounter);
+						PiramidSort(array10000, size10000, operationCounter);
 						printArray(array10000, size10000);
 						cout << "\nОпераций пирамидальной сортировки 10000 по убыванию -- " << operationCounter << endl;
 						cout << "/////////////////////////////////////////////////" << endl << endl;
@@ -649,7 +649,7 @@ int main()
 	cout << " \n//////////////////////////////////////////////////////////////////////////////////////// \n";
 	readChaotically(array, size);
 	printArray(array, size);
-	BucketSort(array, size, operationCounter);
+	PiramidSort(array, size, operationCounter);
 	printArray(array, size);
 
 	cout << "\nOperations --> " << operationCounter << endl;*/

@@ -18,6 +18,6 @@ void createDescending(int* array, int size);
 
 //sorting
 void ChooseSort(int* array, int size, int& operationCounter);
-void heapify(int* array, int size, int i);
+void heapify(int* array, int size, int i, int& operationCounter);
 void PiramidSort(int* array, int size, int& operationCounter);
-void BucketSort(int* array, int size, int& operationCounter);
+void ShellSort(int* array, int size, int& operationCounter);
