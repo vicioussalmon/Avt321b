@@ -85,42 +85,41 @@ void PiramidSort(int* array, int size, int& operationCounter)
 {
 	operationCounter = 0;
 	// Построение кучи (перегруппируем массив)
-	for (int i = size / 2 - 1; i >= 0; i--) {
+	for (int i = size / 2 - 1; i >= 0; i--, operationCounter++)
 		heapify(array, size, i, operationCounter);
-		
-	}
 
 	// Один за другим извлекаем элементы из кучи
-	for (int i = size - 1; i >= 0; i--)
+	for (int i = size - 1; i >= 0; i--, operationCounter++)
 	{
 		// Перемещаем текущий корень в конец
 		swap(array[0], array[i]);
 
 		// вызываем процедуру heapify на уменьшенной куче
 		heapify(array, i, 0, operationCounter);
-		
 	}
+
 }
 
 void ShellSort(int* array, int size, int& operationCounter)
 {
+	bool checker{ true };
 	operationCounter = 0;
-		for (int step = size / 2; step > 0; step /= 2, operationCounter++)
+	int backCounter = 1;
+	do
+	{
+		int errorCouter = 0;
+		for (int startIndex = 0; startIndex < size - backCounter; ++startIndex, operationCounter++)
 		{
-			for (int i = step; i < size; i += 1, operationCounter++)
+			if (array[startIndex] > array[startIndex + 1])
 			{
-				int j = i;
-
-				while (j >= step && array[j - step] > array[i])
-				{
-					swap(array[j], array[j - step]);
-					j -= step;
-					operationCounter++;
-				}
+				std::swap(array[startIndex], array[startIndex + 1]);
+				++errorCouter;
 				operationCounter++;
 			}
-			operationCounter++;
 		}
-	
+		++backCounter;
+		if (errorCouter == 0)
+			checker = false;
+	} while (checker);
 
 }

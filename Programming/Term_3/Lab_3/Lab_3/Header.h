@@ -13,23 +13,29 @@
 using namespace std;
 class Uchen {
 protected:
-	string dataNames[32] = { "Ethan", "Josh", "Sam", "Tom", "Bruse", "Michael", "Diego", "Adrian", "Brian", "Carl", "Caleb", "Charles", "Daniel", "Derek", "Elliot", "Kuel",
-						   "Sophia", "Amelia", "Ella", "Chloe", "Penelope", "Emma", "Ava", "Isabella", "Elizabath", "Ginna", "Layla", "Zoey", "Olivia", "Sarah", "Rachel", "Emily" };
-	string dataSecondNames[50] = { "Smith", "Johnson", "Williams", "Jones", "Brown","Davis","Miller", "Wilson","Moore","Taylor", "Anderson","Thomas","Jackson", "White","Harris","Martin", "Thompson","Garcia","Martinez", "Robinson","Clark","Rodriguez", "Lewis","Lee","Walker", "Hall","Allen","Young", "Hernandez","King","Wright", "Lopez","Hill","Scott", "Green","Adams","Baker",
-		"Gonzalez", "Nelson","Carter","Mitchell", "Perez","Roberts","Turner", "Phillips","Campbell","Parker", "Evans","Edwards","Collins" };
+	string dataNames[27] = { "Ethan", "Josh", "Sam", "Tom", "Bruse",  "Diego", "Adrian", "Brian", "Carl", "Caleb", "Daniel", "Derek", "Elliot", "Kuel",
+						   "Sophia", "Amelia", "Ella", "Chloe",  "Emma", "Ava",  "Ginna", "Layla", "Zoey", "Olivia", "Sarah", "Rachel", "Emily" };
+	string dataSecondNames[39] = { "Smith", "Johnson", "Williams", "Jones", "Brown","Davis","Miller", "Wilson","Moore","Taylor", "Thomas","Jackson", "White","Harris","Martin", "Garcia","Clark", "Lewis","Lee","Walker", "Hall","Allen","Young", "King","Wright", "Lopez","Hill","Scott", "Green","Adams","Baker",
+		 "Nelson","Carter", "Perez","Roberts","Turner", "Parker", "Evans","Collins" };
+	
+	
 
+	string FullName;
 	string Name;
 	string SecondName;
 	string phonenumber;
 	string place;
 	string birthyear;
+
+	//string pupplace[1] = {"School"};
+	//string studplace[1] = {"Univercity"};
 public:
 
-	virtual string getName() const { return Name; }
-	virtual string getPhonenumber() const { return phonenumber; }
-	virtual string getSecond() const { return SecondName; }
-	virtual string getplace() const { return place; }
-	virtual string getBirthyear() const { return birthyear; }
+	virtual string getFullName() = 0;
+	virtual string getPhonenumber() = 0;
+	virtual string getSecond() = 0;
+	virtual string getBirthyear() = 0;
+	virtual string getPlace() = 0;
 	virtual void ShowAll() = 0;
 	virtual void SetAll() = 0;
 };
@@ -47,8 +53,9 @@ private:
 public:
 
 	void SetAll () override {
-		this->Name = dataNames[rand() % 32];
-		this->SecondName = dataSecondNames[rand() % 50];
+		this->Name = dataNames[rand() % 27];
+		this->SecondName = dataSecondNames[rand() % 39];
+		this->FullName += Name + " " + SecondName;
 		this->birthday = to_string(rand() % (31 - 1 + 1) + 1);
 		this->birthmonth = to_string(rand() % (12 - 1 + 1) + 1);
 		this->birthyear = to_string(rand() % (2005 - 1998 + 1) + 1998);
@@ -60,18 +67,21 @@ public:
 		this->place = "Univercity";
 	}
 	
-	/*string GetName() const { return this->Name; } string GetAddress() const { return this->address; } string Getfaculty() const { return this->faculty; }
-	 string GetBirthdate() const { return this->birthdate; }
-	string GetCourse()const { return this->course; } string Getphonenumber() const { return this->phonenumber; }*/
+
+    string getPlace() override { return place; }
+	string getFullName() override { return FullName; }
+	string getPhonenumber() override { return phonenumber; }
+	string getSecond() override { return SecondName; }
+	string getBirthyear() override { return birthyear; }
 
 	void ShowAll() {
 
-		cout << "|" << setw(10) << this->Name << setw(10) << "|" << this->birthdate<< setw(10);
-		cout << "|" << setw(10) << this->faculty << setw(10);
-		cout << "|" << setw(10) << this->course << setw(10);
-		cout << "|" << setw(10) << this->phonenumber << setw(10);
-		cout << "|" << setw(10) << this->address << setw(10);
-		cout << "|" << setw(10) << this->place << setw(10);
+		cout << "|" << setw(15) << this->FullName << setw(1) << "|" << setw(10) << this->birthdate << setw(1);
+		cout << "|" << setw(3) << this->faculty << setw(1);
+		cout << "|" << setw(2) << this->course << setw(1);
+		cout << "|" << setw(11) << this->phonenumber << setw(1);
+		cout << "|" << setw(16) << this->address << setw(1);
+		cout << "|" << setw(10) << this->place << setw(1) << "|";
 		cout << endl;
 
 
@@ -85,6 +95,8 @@ private:
 
 	string classletter;
 	string birthdate;
+	string birthday;
+	string birthmonth;
 	string address;
 	string classnumber;
 
@@ -93,9 +105,13 @@ public:
 
 
 	void SetAll() override {
-		this->Name = dataNames[rand() % 32];
-		this->SecondName = dataSecondNames[rand() % 50];
-		this->birthdate += (to_string(rand() % (31 - 1 + 1) + 1) + "." + to_string(rand() % (12 - 1 + 1) + 1) + "." + to_string(rand() % (2004 - 2016 + 1) + 2016));
+		this->Name = dataNames[rand() % 27];
+		this->SecondName = dataSecondNames[rand() % 39];
+		this->FullName += Name + " " + SecondName;
+		this->birthday = to_string(rand() % (31 - 1 + 1) + 1);
+		this->birthmonth = to_string(rand() % (12 - 1 + 1) + 1);
+		this->birthyear = to_string(rand() % (2016 - 2006 + 1) + 2006);
+		this->birthdate += (birthday + "." + birthmonth + "." + birthyear);
 		this->address = Name + "@gmail.com";
 		this->classnumber = to_string(rand() % (11 - 1 + 1) + 1);
 		this->classletter = dataClassLetter[rand() % 7];
@@ -103,20 +119,23 @@ public:
 		this->place = "School";
 	}
 	
-	/*string GetName() const { return this->Name; } string GetAddress() const { return this->address; } string Getfaculty() const { return this->faculty; }
-	string GetBirthdate() const { return this->birthdate; }
-	string GetCourse()const { return this->course; } string Getphonenumber() const { return this->phonenumber; }*/
+    string getPlace() override { return place; }
+    string getFullName() override { return FullName; }
+	string getPhonenumber() override { return phonenumber; }
+	string getSecond() override { return SecondName; }
+	string getBirthyear() override { return birthyear; }
 
 	void ShowAll() {
 
-		cout << "|" << setw(10) << this->Name << setw(10) << "|" << this->birthdate << setw(10);
-		cout << "|" << setw(10) << this->address << setw(10);
-		cout << "|" << setw(10) << this->classletter << setw(10);
-		cout << "|" << setw(10) << this->classnumber << setw(10);
-		cout << "|" << setw(10) << this->phonenumber << setw(10);
-		cout << "|" << setw(10) << this->place << setw(10);
-		cout << endl;
 
+
+		cout << "|" << setw(15) << this->FullName << setw(1) << "|" << setw(10) << this->birthdate << setw(1);
+		cout << "|" << setw(3) << this->classletter << setw(1);
+		cout << "|" << setw(2) << this->classnumber << setw(1);
+		cout << "|" << setw(11) << this->phonenumber << setw(1);
+		cout << "|" << setw(16) << this->address << setw(1);
+		cout << "|" << setw(10) << this->place << setw(1) << "|";
+		cout << endl;
 
 	}
 };
@@ -125,9 +144,10 @@ class Osn {
 	void del(Uchen** List, int &size);
 	void add(Uchen** List, int &size);
 	void edit(Uchen** List, int& size);
-	void individum(Uchen** List, int size);
+	//void individum(Uchen** List, int size);
 	void printplace(Uchen** List, int size);
 	void print(Uchen** List, int size);
 public:
 	void main();
+	~Osn() {};
 };
