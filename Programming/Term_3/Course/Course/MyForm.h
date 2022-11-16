@@ -111,30 +111,35 @@ namespace Course {
 			this->ìåíşToolStripMenuItem->Name = L"ìåíşToolStripMenuItem";
 			this->ìåíşToolStripMenuItem->Size = System::Drawing::Size(53, 20);
 			this->ìåíşToolStripMenuItem->Text = L"Ìåíş";
+			this->ìåíşToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::ìåíşToolStripMenuItem_Click);
 			// 
 			// íîâàÿÈãğàToolStripMenuItem
 			// 
 			this->íîâàÿÈãğàToolStripMenuItem->Name = L"íîâàÿÈãğàToolStripMenuItem";
 			this->íîâàÿÈãğàToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->íîâàÿÈãğàToolStripMenuItem->Text = L"Íîâàÿ èãğà";
+			this->íîâàÿÈãğàToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::íîâàÿÈãğàToolStripMenuItem_Click);
 			// 
 			// âåğíóòüñÿToolStripMenuItem
 			// 
 			this->âåğíóòüñÿToolStripMenuItem->Name = L"âåğíóòüñÿToolStripMenuItem";
 			this->âåğíóòüñÿToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->âåğíóòüñÿToolStripMenuItem->Text = L"Âåğíóòüñÿ";
+			this->âåğíóòüñÿToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::âåğíóòüñÿToolStripMenuItem_Click);
 			// 
 			// îÏğîãğàììåToolStripMenuItem
 			// 
 			this->îÏğîãğàììåToolStripMenuItem->Name = L"îÏğîãğàììåToolStripMenuItem";
 			this->îÏğîãğàììåToolStripMenuItem->Size = System::Drawing::Size(94, 20);
 			this->îÏğîãğàììåToolStripMenuItem->Text = L"Î ïğîãğàììå";
+			this->îÏğîãğàììåToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::îÏğîãğàììåToolStripMenuItem_Click);
 			// 
 			// âûõîäToolStripMenuItem
 			// 
 			this->âûõîäToolStripMenuItem->Name = L"âûõîäToolStripMenuItem";
 			this->âûõîäToolStripMenuItem->Size = System::Drawing::Size(53, 20);
 			this->âûõîäToolStripMenuItem->Text = L"Âûõîä";
+			this->âûõîäToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::âûõîäToolStripMenuItem_Click);
 			// 
 			// dataGridView
 			// 
@@ -171,5 +176,15 @@ namespace Course {
 #pragma endregion
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
+private: System::Void ìåíşToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void íîâàÿÈãğàToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void âåğíóòüñÿToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void îÏğîãğàììåToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void âûõîäToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }
