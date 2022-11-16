@@ -15,12 +15,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="lb5.cpp">
+    <ClCompile Include="forms.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="Array.txt" />
-    <Text Include="String.txt" />
   </ItemGroup>
 </Project>

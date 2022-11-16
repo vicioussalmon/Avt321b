@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{ec69ae09-676e-40dc-b617-f6c5052c7ede}</ProjectGuid>
-    <RootNamespace>lb5</RootNamespace>
+    <ProjectGuid>{b7490487-aaeb-4b70-acd8-9386798a9dc0}</ProjectGuid>
+    <RootNamespace>forms</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,11 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="lb5.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="Array.txt" />
-    <Text Include="String.txt" />
+    <ClCompile Include="forms.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
