@@ -1,1 +1,7 @@
 
+Student1 2001 5
+Student0 1999 5
+Student4 1999 1
+Student1 2001 3
+Student1 2001 2
+Student8 2004 3

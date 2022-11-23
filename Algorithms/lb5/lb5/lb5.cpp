@@ -71,7 +71,7 @@ void Show(int* arr, int size)
 	}
 }
 
-void FindLinear(int* arr, int size, int* ans, int h, long key)
+void SearchLinie(int* arr, int size, int* ans, int h, long key)
 {
 
 	int counter = 0;
@@ -351,9 +351,9 @@ void KMP(const char* text, const char* pattern, int m, int n)
 		}
 	}
 
-	cout << "\nOperations: " << counter + 1 << endl;
+	cout << "\n\tКоличество проделанных операций: " << counter + 1 << endl;
 }
-int BMSearch(char* string, char* substring) {
+int SearchbyBM(char* string, char* substring) {
 	int  sl = 0;
 	int ssl = 0;
 	int res = -1;
@@ -396,6 +396,7 @@ int BMSearch(char* string, char* substring) {
 				}
 		counterFinding6++;
 	}
+
 	printf("\n");
 	return res;
 }
@@ -411,7 +412,7 @@ int mod(int a, int p, int m)
 	else
 		return sqr;
 }
-int RabinKarpMatch(char* T, char* P, int d, int q)
+int AlgorithmRK(char* T, char* P, int d, int q)
 {
 	int i, j, p, t, n, m, h, found;
 	n = strlen(T);
@@ -557,7 +558,7 @@ int main()
 				{
 					cout << "\nВведите число: ";
 					cin >> key;
-					FindLinear(arr, size, ans, h, key);
+					SearchLinie(arr, size, ans, h, key);
 					ans = new int[size];
 					break;
 				}
@@ -616,7 +617,7 @@ int main()
 				cout << "\t7 - Алгоритм Рабина-Карпа\n";
 				cout << "\t8 - Запись в файл\n";
 				cout << "\t0 - Назад\n";
-
+				cin >> menu;
 
 				string name1 = "String.txt";
 
@@ -695,7 +696,7 @@ int main()
 					cin.getline(arr2, 100);
 
 
-					int pos = BMSearch(arr1, arr2);
+					int pos = SearchbyBM(arr1, arr2);
 
 					if (pos != -1)
 					{
@@ -721,7 +722,7 @@ int main()
 					int sovp;
 
 
-					sovp = RabinKarpMatch(arr1, arr2, d, q);
+					sovp = AlgorithmRK(arr1, arr2, d, q);
 
 
 					if (sovp != -1)
