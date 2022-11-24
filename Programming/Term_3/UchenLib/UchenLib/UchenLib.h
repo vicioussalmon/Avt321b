@@ -20,7 +20,7 @@
 using namespace std;
 
 
-extern "C++" HUMANLIBRARY_API class Uchen{
+extern "C++" HUMANLIBRARY_API class Uchen {
 protected:
 	string dataNames[27] = { "Ethan", "Josh", "Sam", "Tom", "Bruse",  "Diego", "Adrian", "Brian", "Carl", "Caleb", "Daniel", "Derek", "Elliot", "Kuel",
 						   "Sophia", "Amelia", "Ella", "Chloe",  "Emma", "Ava",  "Ginna", "Layla", "Zoey", "Olivia", "Sarah", "Rachel", "Emily" };
@@ -36,8 +36,6 @@ protected:
 	string place;
 	string birthyear;
 
-	//string pupplace[1] = {"School"};
-	//string studplace[1] = {"Univercity"};
 public:
 
 	virtual string getFullName() = 0;

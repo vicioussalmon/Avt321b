@@ -27,12 +27,12 @@ public:
 			"    X: " + to_string(x) + "\n" +
 			"    Y: " + to_string(y) + "\n" +
 			"    Z: " + to_string(z) + "\n" +
-			"    Sum of coordinates: " + to_string(Perimeter()) + "\n" +
+			"   Length: " + to_string(Perimeter()) + "\n" +
 			"}";
 	}
 	
 	double Perimeter() {
-		return x + y + z;
+		return sqrt(x*x + y*y + z*z);
 	}
 
 	bool operator>(Vector b) {

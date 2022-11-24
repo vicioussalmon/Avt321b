@@ -45,22 +45,24 @@ public:
 
 	string getPlace() override { return place; }
 	string getFullName() override { return FullName; }
-	string getPhonenumber() override { return phonenumber; }
-	string getSecond() override { return SecondName; }
-	string getBirthyear() override { return birthyear; }
-
-	void ShowAll() {
-
-		cout << "|" << setw(15) << this->FullName << setw(1) << "|" << setw(10) << this->birthdate << setw(1);
-		cout << "|" << setw(3) << this->faculty << setw(1);
-		cout << "|" << setw(2) << this->course << setw(1);
-		cout << "|" << setw(11) << this->phonenumber << setw(1);
-		cout << "|" << setw(16) << this->address << setw(1);
-		cout << "|" << setw(10) << this->place << setw(1) << "|";
-		cout << endl;
-
-
+	string getPhonenumber() override {
+		return phonenumber;
 	}
+			string getSecond() override { return SecondName; }
+		string getBirthyear() override { return birthyear; }
+
+		void ShowAll() {
+
+			cout << "|" << setw(15) << this->FullName << setw(1) << "|" << setw(10) << this->birthdate << setw(1);
+				cout << "|" << setw(3) << this->faculty << setw(1);
+			cout << "|" << setw(2) << this->course << setw(1);
+				cout << "|" << setw(11) << this->phonenumber << setw(1);
+			cout << "|" << setw(16) << this->address << setw(1);
+			cout << "|" << setw(10) << this->place << setw(1) << "|";
+				cout << endl;
 
 
-};
+		}
+
+
+	};
