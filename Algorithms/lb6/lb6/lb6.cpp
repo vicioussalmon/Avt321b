@@ -575,6 +575,7 @@ int HashTableWithOpenAdressing::DoubleProb(int key)
 int main()
 {
 	srand(time(NULL));
+	setlocale(LC_ALL, "ukr");
 
 	int choose = -1;
 	while (choose != 0) {

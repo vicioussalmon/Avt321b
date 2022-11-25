@@ -10,33 +10,29 @@
 using namespace std;
 
 
-class Department
+class Faculty
 {
-	string DepName;
-	bool fullDay;
-	string dataDepNames[5] = { "Computer Science", "Computer Modeling", "Integrated Tech", "Geom. Modeling", "SGC" };
+	string FacultyName;
+	string dataFacultyNames[5] = { "CS", "CM", "IT", "GM", "SGC" };
 public:
-	Department() { DepName = dataDepNames[rand() % 5]; fullDay = rand() % 2; }
-	string getterDepName() { return DepName; }
-	bool getterfullDay() { return fullDay; }
+	Faculty() { FacultyName = dataFacultyNames[rand() % 5]; }
+	string getterFacultyName() { return FacultyName; }
 };
 
 
 class Student {
-	class GradeSub {
-		short int grade;
-		string subject;
+	class Solarschip {
+		int solar;
 	public:
-		void setterGrade(const short int& grade) noexcept { this->grade = grade; };
-		void setterSubject(const string& subject) { this->subject = subject; };
-		short int getterGrade() noexcept { return grade; };
-		string getterSubject() { return subject; };
+		void setterSolar(const int& solar) { this->solar = solar; };
+		int getterSolar() { return solar; };
 	};
 
 	string FullName;
 	string address;
-	GradeSub grade;
-	Department departament;
+	Solarschip solar;
+	Faculty faculty;
+	short int course;
 
 public:
 
@@ -44,15 +40,15 @@ public:
 	//Student();
 
 	// setter
-	void setterAll(string FullName, string address, short int grade, string subject);
+	void setterAll(string FullName, string address, short int course,int solar);
 
 	//getters
-	string getterFullname(); string getterAddress(); short int getterGrade(); string getterSubject();
+	string getterFullname(); string getterAddress(); short int getterCourse(); int getterSolar();
 
 	void show();
 
 	//~Student(){};
-	friend void Sort(Student** head, short int set);
+	friend void Sort(Student** head);
 
 };
 
@@ -78,7 +74,7 @@ public:
 	// main tasks
 	void unsatisfactory(Student** head);
 	void byGrade(Student** head, short int setted);
-	void hightesGradeandHalf(Student** head);
+	//void hightesGradeandHalf(Student** head);
 
 	// working method
 	void main();

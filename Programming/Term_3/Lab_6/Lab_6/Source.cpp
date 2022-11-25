@@ -4,8 +4,6 @@ string dataNames[32] = { "Ethan", "Josh", "Sam", "Tom", "Bruse", "Michael", "Die
 						   "Sophia", "Amelia", "Ella", "Chloe", "Penelope", "Emma", "Ava", "Isabella", "Elizabath", "Ginna", "Layla", "Zoey", "Olivia", "Sarah", "Rachel", "Emily" };
 string dataSecondNames[50] = { "Smith", "Johnson", "Williams", "Jones", "Brown","Davis","Miller", "Wilson","Moore","Taylor", "Anderson","Thomas","Jackson", "White","Harris","Martin", "Thompson","Garcia","Martinez", "Robinson","Clark","Rodriguez", "Lewis","Lee","Walker", "Hall","Allen","Young", "Hernandez","King","Wright", "Lopez","Hill","Scott", "Green","Adams","Baker",
 	"Gonzalez", "Nelson","Carter","Mitchell", "Perez","Roberts","Turner", "Phillips","Campbell","Parker", "Evans","Edwards","Collins" };
-string dataSubjects[11] = { "Arts", "Bilogy", "History", "Music", "Math", "Chemistry", "Geography", "PE", "Economics", "English", "Polska" };
-
 
 // main class
 
@@ -16,7 +14,7 @@ void Main::main()
 	Student* head = NULL, * tail = NULL;
 
 	while (true) {
-		cout << "Work with data - 1 \nClear data - 2 \nExit - 0 \n-->"; cin >> button;
+		cout << "Work with data - 1 \nClear data - 2 \nExit - 0 \n"; cin >> button;
 		if (cin.fail()) {
 			system("cls");
 			cin.clear();
@@ -30,7 +28,7 @@ void Main::main()
 			while (button != 0) {
 				system("cls");
 				if (head == NULL) {
-					cout << "How long you list could be? \n---> "; cin >> count;
+					cout << "How long you list could be? \n"; cin >> count;
 					if (cin.fail()) {
 						system("cls");
 						cin.clear();
@@ -45,14 +43,12 @@ void Main::main()
 				table_header();
 				PrintList(head);
 
-				cout << "Find students with unsatisfactory grades - 1\n" <<
-					"Find students by grades - 2\n" <<
-					"Find students whith highest grades and almost satisfactory - 3\n" <<
-					"Delete one data - 4\n" <<
-					"Add new data - 5\n" <<
-					"Sort - 6\n" <<
-					"Back - 0\n" <<
-					"-->";
+				cout << "Find students from <bachaleor> courses - 1\n" <<
+					"Find students by courses, that are less than you choose - 2\n" <<
+					"Delete one data - 3\n" <<
+					"Add new data - 4\n" <<
+					"Sort - 5\n" <<
+					"Back - 0\n";
 				cin >> button;
 				if (cin.fail()) {
 					system("cls");
@@ -72,7 +68,7 @@ void Main::main()
 					break;
 				case 2:
 					system("cls");
-					cout << "Input grade limit \n-->"; cin >> checker;
+					cout << "Input course limit \n"; cin >> checker;
 					if (cin.fail()) {
 						system("cls");
 						cin.clear();
@@ -86,12 +82,7 @@ void Main::main()
 					break;
 				case 3:
 					system("cls");
-					hightesGradeandHalf(&head);
-					system("pause");
-					break;
-				case 4:
-					system("cls");
-					cout << "Input number data \n-->"; cin >> checker;
+					cout << "Input number data \n"; cin >> checker;
 					if (cin.fail()) {
 						system("cls");
 						cin.clear();
@@ -102,9 +93,9 @@ void Main::main()
 					}
 					DeleteInList(&head, &tail, checker);
 					break;
-				case 5:
+				case 4:
 					system("cls");
-					cout << "Input number data \n-->"; cin >> checker;
+					cout << "Input number data \n"; cin >> checker;
 					if (cin.fail()) {
 						system("cls");
 						cin.clear();
@@ -115,9 +106,9 @@ void Main::main()
 					}
 					Insert(&head, &tail, checker);
 					break;
-				case 6:
+				case 5:
 					system("cls");
-					cout << "Sort by name - 1 \nSort by grades - 2 \nBack - 0 \n-->"; cin >> button;
+					cout << "Sort by name - 1 \nnBack - 0 \n"; cin >> button;
 					if (cin.fail()) {
 						system("cls");
 						cin.clear();
@@ -129,13 +120,7 @@ void Main::main()
 					switch (button)
 					{
 					case 1:
-						Sort(&head, button);
-						table_header();
-						PrintList(head);
-						system("pause");
-						break;
-					case 2:
-						Sort(&head, button);
+						Sort(&head);
 						table_header();
 						PrintList(head);
 						system("pause");
@@ -175,23 +160,14 @@ void Main::main()
 }
 
 
-//Student::Student()
-//{
-//	this->FullName = "User invalid";
-//	this->address = "None";
-//	this->grade = -1;
-//
-//}
-
-
 
 //set methods
-void Student::setterAll(string FullName, string address, short int grade, string subject)
+void Student::setterAll(string FullName, string address, short int course,int solar)
 {
 	this->FullName = FullName;
 	this->address = address;
-	this->grade.setterGrade(grade);
-	this->grade.setterSubject(subject);
+	this->course = course;
+	this->solar.setterSolar(solar);
 
 }
 
@@ -201,19 +177,19 @@ string Student::getterFullname() { return this->FullName; }
 
 string Student::getterAddress() { return this->address; }
 
-short int Student::getterGrade() { return grade.getterGrade(); }
+short int Student::getterCourse() { return this->course; }
 
-string Student::getterSubject() { return grade.getterSubject(); }
+int Student::getterSolar() { return solar.getterSolar(); };
 
 
 // show method
 void Student::show()
 {
-	if (this->grade.getterGrade() != -1)
-		cout << "|" << setw(22) << this->FullName << setw(4) << "|" << setw(32) << this->address << setw(4) << "|" << setw(4) << this->grade.getterGrade() << setw(4) << "|" << setw(12) << this->grade.getterSubject() << setw(4) << "|" << setw(18) << this->departament.getterDepName() << setw(4) << "|" << setw(6) << boolalpha << this->departament.getterfullDay() << setw(6) << "|";
+	if (this->solar.getterSolar() != -1)
+		cout << "|" << setw(22) << this->FullName << setw(1) << "|" << setw(23) << this->address << setw(1) << "|" << setw(6)<< this->course<< setw(1) << "|" << setw(12) << this->solar.getterSolar() << setw(1) << "|" << setw(10) << this->faculty.getterFacultyName() << setw(1) << "|";
 	else
-		cout << "|" << setw(22) << "USER INVALID" << setw(4) << "|" << setw(32) << "ERROR" << setw(4) << "|" << setw(4) << "404" << setw(4) << "|" << setw(12) << "404" << setw(4) << "|" << setw(18) << "404" << setw(4) << "|" << setw(6) << boolalpha << "ERROR" << setw(6) << "|";
-	cout << "\n -----------------------------------------------------------------------------------------------------------------------\n";
+		cout << "|" << setw(22) << "NO USER " << setw(1) << "|" << setw(23) << "MISTAKE" << setw(1) << "|" << setw(6) << "404" << setw(1) << "|" << setw(12) << "404" << setw(1) << "|" << setw(10) << "404" << setw(1) << "|";
+	cout << "\n ------------------------------------------------------------------------------\n";
 }
 
 ///////////////////////////////////////////////////////////////////////
@@ -230,8 +206,8 @@ void Main::unsatisfactory(Student** head)
 	if (DcheckNULL((*head)) == 0) { return; }
 	else {
 		while (current) {
-			if (current->getterGrade() < 60) {
-				unsatisfactoryGrade[count].setterAll(current->getterFullname(), current->getterAddress(), current->getterGrade(), current->getterSubject());
+			if (current->getterCourse() <= 4 && current->getterSolar() != -1) {
+				unsatisfactoryGrade[count].setterAll(current->getterFullname(), current->getterAddress(), current->getterCourse(), current->getterSolar());
 				count++;
 			}
 			current = current->next;
@@ -239,7 +215,7 @@ void Main::unsatisfactory(Student** head)
 	}
 
 	if (count != 0) {
-		cout << "\t Students with unsatisfactory grades: " << count << endl;
+		cout << "\t Students from <bachelor> courses: " << count << endl;
 		table_header();
 		for (size_t i = 0; i < count; i++) {
 			unsatisfactoryGrade[i].show();
@@ -262,8 +238,8 @@ void Main::byGrade(Student** head, short int setted)
 	if (DcheckNULL((*head)) == 0) { return; }
 	else {
 		while (current) {
-			if (current->getterGrade() > setted) {
-				byGrade[count].setterAll(current->getterFullname(), current->getterAddress(), current->getterGrade(), current->getterSubject());
+			if (current->getterCourse() > setted && current->getterSolar() != -1) {
+				byGrade[count].setterAll(current->getterFullname(), current->getterAddress(), current->getterCourse(), current->getterSolar());
 				count++;
 			}
 			current = current->next;
@@ -271,7 +247,7 @@ void Main::byGrade(Student** head, short int setted)
 	}
 
 	if (count != 0) {
-		cout << "\t Students with grades higher " << setted << ": " << count << endl;
+		cout << "\t Students with courses higher " << setted << ": " << count << endl;
 		table_header();
 		for (size_t i = 0; i < count; i++) {
 			byGrade[i].show();
@@ -285,89 +261,89 @@ void Main::byGrade(Student** head, short int setted)
 }
 
 
-void Main::hightesGradeandHalf(Student** head)
-{
-	int count = 0;
-	Student* current = *head;
-	Student* byGrade = new Student[MAXSIZE];
-
-
-	if (DcheckNULL((*head)) == 0) { return; }
-	else {
-		while (current) {
-			if (current->getterGrade() > 89 or (current->getterGrade() > 34 and current->getterGrade() < 60)) {
-				byGrade[count].setterAll(current->getterFullname(), current->getterAddress(), current->getterGrade(), current->getterSubject());
-				count++;
-			}
-			current = current->next;
-		}
-	}
-
-
-	if (count != 0) {
-
-		cout << "\tStudents " << ": " << count << endl;
-		table_header();
-		for (size_t i = 0; i < count; i++) {
-			byGrade[i].show();
-		}
-
-		if (count != 1) {
-			short int choose = -1;
-			Student* chosen = new Student[count];
-			short int flag = 0;
-			short index = 0;
-			current = *head;
-			while (choose != 0 and flag != count) {
-				cout << "Choose the studenet by number (0-stop) --> "; cin >> choose;
-				if (choose > count) {
-					cout << "\tFalse input, try again!\n";
-					continue;
-				}
-				if (choose != 0) { flag++; };
-				for (size_t i = 0; i < choose; i++) {
-					if (i == choose - 1) {
-						chosen[index] = byGrade[choose - 1];
-						index++;
-					}
-					current = current->next;
-				}
-			}
-
-			if (flag != 0) {
-				table_header();
-				for (size_t i = 0; i < flag; i++) {
-					chosen[i].show();
-				}
-			}
-			else
-				cout << "\tStudents haven`t been chosen!\n";
-
-			delete[] chosen; chosen = NULL;
-		}
-		else {
-			cout << "You shouldn`t to choose the one student!\n";
-		}
-
-
-	}
-	else
-		cout << "\tStudents haven`t been found!\n";
-
-	delete[] byGrade; byGrade = NULL;
-
-}
-
-
+//void Main::hightesGradeandHalf(Student** head)
+//{
+//	int count = 0;
+//	Student* current = *head;
+//	Student* byGrade = new Student[MAXSIZE];
+//
+//
+//	if (DcheckNULL((*head)) == 0) { return; }
+//	else {
+//		while (current) {
+//			if (current->getterCourse() > 89 or (current->getterCourse() > 34 and current->getterCourse() < 60)) {
+//				byGrade[count].setterAll(current->getterFullname(), current->getterAddress(), current->getterCourse(), current->getterSolar());
+//				count++;
+//			}
+//			current = current->next;
+//		}
+//	}
+//
+//
+//	if (count != 0) {
+//
+//		cout << "\tStudents " << ": " << count << endl;
+//		table_header();
+//		for (size_t i = 0; i < count; i++) {
+//			byGrade[i].show();
+//		}
+//
+//		if (count != 1) {
+//			short int choose = -1;
+//			Student* chosen = new Student[count];
+//			short int flag = 0;
+//			short index = 0;
+//			current = *head;
+//			while (choose != 0 and flag != count) {
+//				cout << "Choose the studenet by number (0-stop) --> "; cin >> choose;
+//				if (choose > count) {
+//					cout << "\tFalse input, try again!\n";
+//					continue;
+//				}
+//				if (choose != 0) { flag++; };
+//				for (size_t i = 0; i < choose; i++) {
+//					if (i == choose - 1) {
+//						chosen[index] = byGrade[choose - 1];
+//						index++;
+//					}
+//					current = current->next;
+//				}
+//			}
+//
+//			if (flag != 0) {
+//				table_header();
+//				for (size_t i = 0; i < flag; i++) {
+//					chosen[i].show();
+//				}
+//			}
+//			else
+//				cout << "\tStudents haven`t been chosen!\n";
+//
+//			delete[] chosen; chosen = NULL;
+//		}
+//		else {
+//			cout << "You shouldn`t to choose the one student!\n";
+//		}
+//
+//
+//	}
+//	else
+//		cout << "\tStudents haven`t been found!\n";
+//
+//	delete[] byGrade; byGrade = NULL;
+//
+//}
+//
+//
 
 
 
 
 void Main::table_header()
 {
-	cout << "\n -----------------------------------------------------------------------------------------------------------------------\n";
-	cout << "|" << setw(17) << "Full Name" << setw(9) << "|" << setw(23) << "Email" << setw(13) << "|" << setw(6) << "Grade" << setw(2) << "|" << setw(12) << "Subject" << setw(4) << "|" << setw(18) << "Department" << setw(4) << "|" << setw(6) << "FTS" << setw(6) << "|";
-	cout << "\n -----------------------------------------------------------------------------------------------------------------------\n";
+	cout << "\n ------------------------------------------------------------------------------\n";
+	cout << "|" << setw(22) << "Full Name" << setw(1) << "|" << setw(23) << "Email" << setw(1) << "|" << setw(6) << "Course" << setw(1) << "|" << setw(12) << "Solarschip" << setw(1) << "|" << setw(10) << "Faculty" << setw(1) << "|";
+	cout << "\n ------------------------------------------------------------------------------\n";
 }
 
 
@@ -382,7 +358,7 @@ void Main::table_header()
 
 void Main::CreateList(short int count, Student** head, Student* tail)
 {
-	string FullName, buffer, address, subject; short int grade;
+	string FullName, buffer, address; int solar; short int course;
 
 	if (count > 0) {
 		(*head) = new Student;
@@ -393,11 +369,12 @@ void Main::CreateList(short int count, Student** head, Student* tail)
 		FullName += buffer;
 		address += buffer += "@gmail.com";
 		if (rand() % 2)
-			grade = rand() % 101;
+			solar = rand() % (3500 - 2000 + 1) + 2000;
+			
 		else
-			grade = -1;
-		subject = dataSubjects[rand() % 11];
-		(*head)->setterAll(FullName, address, grade, subject);
+			solar = -1;
+		course = rand() % (6-1+1)+1;
+		(*head)->setterAll(FullName, address, course, solar);
 		(*head)->prev = tail;
 		(*head)->next = NULL;
 		CreateList(count - 1, &((*head)->next), (*head));
@@ -442,7 +419,7 @@ void Main::Insert(Student** head, Student** tail, int pos) {
 			temp->prev = current;
 		}
 	}
-	string FullName, buffer, address, subject; short int grade;
+	string FullName, buffer, address; int solar; short int course;
 	FullName = dataNames[rand() % 32];
 	address += FullName;
 	FullName += " ";
@@ -450,11 +427,12 @@ void Main::Insert(Student** head, Student** tail, int pos) {
 	FullName += buffer;
 	address += buffer += "@gmail.com";
 	if (rand() % 2)
-		grade = rand() % 101;
+		solar = rand() % (3500 - 2000 + 1) + 2000;
+
 	else
-		grade = -1;
-	subject = dataSubjects[rand() % 11];
-	temp->setterAll(FullName, address, grade, subject);
+		solar = -1;
+	course = rand() % (6 - 1 + 1) + 1;
+	temp->setterAll(FullName, address, course, solar);
 
 }
 
@@ -504,14 +482,12 @@ void Main::FreeList(Student** head) { // clean list
 }
 
 
-void Sort(Student** head, short int set) {
+void Sort(Student** head) {
 	Student* left = *head;
 	Student* right = (*head)->next;
 	Student* temp = new Student;
-	// preset switch
-	switch (set) {
 
-	case 1: // sort by name
+	// sort by name
 		while (left->next) {
 
 			while (right) {
@@ -530,29 +506,6 @@ void Sort(Student** head, short int set) {
 			left = left->next;
 			right = left->next;
 		}
-		break;
-	case 2: // sort by grades
-		while (left->next) {
-
-			while (right) {
-
-				if (right->grade.getterGrade() > left->grade.getterGrade()) {
-
-					temp->grade.setterGrade(right->grade.getterGrade());
-					right->grade.setterGrade(left->grade.getterGrade());
-					left->grade = temp->grade;
-
-				}
-				right = right->next;
-
-			}
-
-			left = left->next;
-			right = left->next;
-		}
-		break;
-	default:
-		//system("cls");
-		break;
+		
 	}
-}
+
