@@ -232,7 +232,7 @@ reInput:
 			cin >> size;
 		}
 		else
-			size = rand() % 10;
+			size = rand() % (10-1+1)+1;
 		switch (object) {
 		case 1: {
 			Triangle* array = new Triangle[size];

@@ -1,7 +1,2 @@
-﻿#include "Header.h"
-
-int main() {
-	srand(time(NULL));
-	Osn main;
-	main.main();
-}
+﻿#include "Header.h" 
+int main() { srand(time(NULL)); Main main; main.main(); }
