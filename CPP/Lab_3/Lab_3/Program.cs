@@ -55,7 +55,7 @@ namespace BookStore
 
         public BookmarksSet() : base()
         {
-            Colour = " ";
+            Colour = "Unknown";
             QuantityInSet = 0;
         }
 
