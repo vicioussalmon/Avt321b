@@ -196,7 +196,7 @@ namespace BookStore
             Console.WriteLine("Should the poster be coloured? (Y/N):");
             bool coloured = (Console.ReadLine().ToUpper() == "Y");
 
-            Console.WriteLine("Please enter the size of the corn bucket (S - A4 M - A3 L - A2):");
+            Console.WriteLine("Please enter the size of the corn bucket (S - A4 M - A3 L - A2 XL - A1 XXL - A0):");
             char size = char.Parse(Console.ReadLine());
 
             Posters posters = new Posters(name, price, coloured, size);
