@@ -171,7 +171,7 @@ namespace BookStore
             Console.WriteLine("Please enter the price of the set:");
             decimal price = decimal.Parse(Console.ReadLine());
 
-            Console.WriteLine("Please enter the colour of the set:");
+            Console.WriteLine("Please enter the colour of the set (f.e. Green):");
             string colour = Console.ReadLine();
 
 
