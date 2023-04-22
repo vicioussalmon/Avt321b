@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Net.Sockets;
-using System.Security.Policy;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Collections.Generic;
+using System.Xml.Linq;
 
 namespace BookStore
 {
@@ -67,7 +68,7 @@ namespace BookStore
         public BookSeries(string name, decimal price, string bookName, string authorName) : base(name, price, bookName, authorName) { }
         public override string ToString()
         {
-            return base.ToString() + "\nThis is a serie of books";
+            return base.ToString() + "\nThis book is one of the serie of books";
         }
     }
     //Class Bookmarks set
@@ -155,13 +156,114 @@ namespace BookStore
     //Class Container
     class Container
     {
+        private Product[] products;
+        private int count;
 
+        public Container()
+        {
+            count = 0;
+            products = new Product[count];
+        }
+
+        public Product this[int i]
+        {
+            set { products[i] = value; }
+            get { return products[i]; }
+        }
+
+        public Product this[string name]
+        {
+            get
+            {
+                foreach (Product p in products)
+                    if (string.Equals(p.Name, name, StringComparison.OrdinalIgnoreCase))
+                        return p;
+                return null;
+            }
+        }
+
+        public Product this[decimal price]
+        {
+            get
+            {
+                foreach (Product p in products)
+                    if (p.Price == price)
+                        return p;
+                return null;
+            }
+        }
+
+        public void AddProduct(Product product)
+        {
+            Product[] temp = new Product[count + 1];
+            for (int i = 0; i < count; i++)
+            {
+                temp[i] = products[i];
+            }
+            temp[count] = product;
+            products = temp;
+            count++;
+        }
+
+        public void DeleteProduct(int index)
+        {
+            if (index < 0 || index >= count)
+            {
+                Console.WriteLine("Invalid index.");
+            }
+            else
+            {
+                Product[] temp = new Product[count - 1];
+                for (int i = 0; i < index; i++)
+                {
+                    temp[i] = products[i];
+                }
+                for (int i = index; i < count - 1; i++)
+                {
+                    temp[i] = products[i + 1];
+                }
+                products = temp;
+                count--;
+            }
+        }
+
+        public void SortProductsByName()
+        {
+            for (int i = 0; i < count - 1; i++)
+            {
+                for (int j = i + 1; j < count; j++)
+                {
+                    if (products[i].Name.CompareTo(products[j].Name) > 0)
+                    {
+                        Product temp = products[i];
+                        products[i] = products[j];
+                        products[j] = temp;
+                    }
+                }
+            }
+        }
+
+        public void PrintProducts()
+        {
+            Console.WriteLine("Choosed Products):");
+            Console.WriteLine("-------------------");
+            short i = 0;
+            foreach (Product p in products)
+            {
+                Console.WriteLine(" ----- Item " + i + "---- ");
+                Console.WriteLine(p.ToString());
+                i++;
+            }
+            Console.WriteLine("-------------------");
+        }
+        public int Length() { return count; }
     }
     class Program
     {
-        Container ChoosedProdukts = new Container();
+
         static void Main(string[] args)
         {
+            Container ChoosedProdukts = new Container();
             while (true)
             {
                 Console.WriteLine("Welcome to the Book Store!");
@@ -171,7 +273,8 @@ namespace BookStore
                 Console.WriteLine("3 -- Buy Posters");
                 Console.WriteLine("4 -- View Choosed Products");
                 Console.WriteLine("5 -- Delete a Choosed Product");
-                Console.WriteLine("6 -- Sort by price from lover to higher");
+                Console.WriteLine("6 -- Sort produkts by name");
+                Console.WriteLine("7 -- Search a product");
                 Console.WriteLine("0 -- Exit");
 
                 int select = int.Parse(Console.ReadLine());
@@ -191,7 +294,8 @@ namespace BookStore
                         Console.WriteLine("\n\n");
                         break;
                     case 4:
-                        Console.Write(ChoosedProdukts);
+                        ChoosedProdukts.PrintProducts();
+                        // Console.Write(ChoosedProdukts);
                         Console.WriteLine("\n\n");
                         break;
                     case 5:
@@ -200,7 +304,11 @@ namespace BookStore
                         break;
 
                     case 6:
-                        ChoosedProdukts.Sort();
+                        ChoosedProdukts.SortProductsByName();
+                        break;
+                    case 7:
+                        SearchBy(ChoosedProdukts);
+                        Console.WriteLine("\n\n");
                         break;
                     case 0:
                         Console.WriteLine("Thank you for shopping with us!");
@@ -237,13 +345,13 @@ namespace BookStore
             {
                 SingleBook book = new SingleBook(genre, price, bookName, authorName);
                 Console.WriteLine("\n" + book + "\n");
-                ChoosedProdukts.Add(book);
+                ChoosedProdukts.AddProduct(book);
             }
             else if (select == 2)
             {
                 BookSeries book = new BookSeries(genre, price, bookName, authorName);
                 Console.WriteLine("\n" + book + "\n");
-                ChoosedProdukts.Add(book);
+                ChoosedProdukts.AddProduct(book);
             }
             else Console.WriteLine("Oops.. Fail! Unknown product!(・・ )?");
         }
@@ -263,7 +371,7 @@ namespace BookStore
             Console.WriteLine("Please enter the quantity of the bookmarks in set:");
             float quantity = float.Parse(Console.ReadLine());
 
-            Console.Write("Select type of bookmarks set!");
+            Console.WriteLine("Select type of bookmarks set!");
             Console.WriteLine("1 -- Translucent Bookmarks");
             Console.WriteLine("2 -- Opaque Bookmarks");
             int select = int.Parse(Console.ReadLine());
@@ -271,13 +379,13 @@ namespace BookStore
             {
                 TranslucentBookmarks bookmarks = new TranslucentBookmarks(name, price, colour, quantity);
                 Console.WriteLine("\n" + bookmarks + "\n");
-                ChoosedProdukts.Add(bookmarks);
+                ChoosedProdukts.AddProduct(bookmarks);
             }
             else if (select == 2)
             {
                 OpaqueBookmarks bookmarks = new OpaqueBookmarks(name, price, colour, quantity);
                 Console.WriteLine("\n" + bookmarks + "\n");
-                ChoosedProdukts.Add(bookmarks);
+                ChoosedProdukts.AddProduct(bookmarks);
             }
             else Console.WriteLine("Oops.. Fail! Unknown product!(・・ )?");
         }
@@ -293,50 +401,70 @@ namespace BookStore
             Console.WriteLine("Please enter the size of the corn bucket (S - A4 M - A3 L - A2 XL - A1 XXL - A0):");
             char size = char.Parse(Console.ReadLine());
 
-            Console.Write("Should your poster be cloured? ( Y or N )");
+            Console.WriteLine("Should your poster be cloured? ( Y or N )");
             char choice = char.Parse(Console.ReadLine());
             if (choice == 'Y')
             {
                 Coloured poster = new Coloured(name, price, size);
                 Console.WriteLine("\n" + poster + "\n");
-                ChoosedProdukts.Add(poster);
+                ChoosedProdukts.AddProduct(poster);
             }
             else if (choice == 'N')
             {
                 UnColoured poster = new UnColoured(name, price, size);
                 Console.WriteLine("\n" + poster + "\n");
-                ChoosedProdukts.Add(poster);
+                ChoosedProdukts.AddProduct(poster);
             }
             else Console.WriteLine("Oops.. Fail! Unknown product!(・・ )?");
 
         }
-        //static void ShowChoosedProducts()
-        //{
-        //    Console.WriteLine("Choosed Products):");
-        //    Console.WriteLine("-------------------");
-        //    short i = 1;
-        //    foreach (Product product in ChoosedProdukts)
-        //    {
-        //        Console.WriteLine(" ----- Item " + i + "---- ");
-        //        Console.WriteLine(product.ToString());
-        //        Console.WriteLine();
-        //        i++;
-        //    }
-        //    Console.WriteLine("-------------------");
-        //}
         static void RemoveChoosedProdukts(Container ChoosedProdukts)
         {
             Console.WriteLine("Enter the index of removing produkt:");
-            int index = int.Parse(Console.ReadLine());
-
-            if (index > 0 && index <= ChoosedProdukts.Length())
+            int productToDelete;
+            if (int.TryParse(Console.ReadLine(), out productToDelete))
             {
-                Console.WriteLine("Removing");
-                ChoosedProdukts.PrintByIndex(index - 1);
-                ChoosedProdukts.Delete(index - 1);
+                ChoosedProdukts.DeleteProduct(productToDelete);
             }
             else
                 Console.WriteLine("Oops.. Fail! Unknown index!(・・ )?");
+        }
+        static void SearchBy(Container ChoosedProdukts)
+        {
+            Console.WriteLine("Please, choose type of searching!");
+            Console.WriteLine("1 -- Search by index");
+            Console.WriteLine("2 -- Search by price");
+            Console.WriteLine("3 -- Search by name");
+            Console.WriteLine("0 -- Back");
+            int choice = int.Parse(Console.ReadLine());
+            switch (choice)
+            {
+                case 1:
+                    Console.Write("Input your index -- ");
+                    int index = int.Parse(Console.ReadLine());
+                    Console.WriteLine("\n" + ChoosedProdukts[index - 1] + "\n");
+                    break;
+
+                case 2:
+                    Console.Write("Input your price -- ");
+                    decimal price = decimal.Parse(Console.ReadLine());
+                    Console.WriteLine("\n" + ChoosedProdukts[price] + "\n");
+                    break;
+
+                case 3:
+                    Console.Write("Input your name -- ");
+                    string name = Console.ReadLine();
+                    Console.WriteLine("\n" + ChoosedProdukts[name] + "\n");
+                    break;
+
+                case 0:
+                    break;
+
+                default:
+                    Console.WriteLine("\n\t\tOops.. Fail! Unknown product!(・・ )?\n");
+                    break;
+            }
+
         }
     }
 
