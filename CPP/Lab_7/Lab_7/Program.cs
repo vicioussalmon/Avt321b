@@ -8,12 +8,13 @@ using System.Xml.Linq;
 
 namespace BookStore
 {
+    //Lab_6
     class DataLogicException : Exception
     {
         public DataLogicException(string message) : base(message) { }
         public DataLogicException(string message, Exception innerException) : base(message, innerException) { }
     }
-
+    //Lab_7
     interface IName : IComparable
     {
         string GetName();
