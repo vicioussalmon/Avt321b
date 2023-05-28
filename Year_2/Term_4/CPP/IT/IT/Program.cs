@@ -195,15 +195,15 @@ namespace BookStore
         public int CompareTo(Coloured obj) { return Name.CompareTo(obj); }
     }
     public class UnColoured : Posters, IName<string>, IComparable<UnColoured>
-    {
-        public UnColoured() : base() { }
-        public UnColoured(string name, decimal price, char size) : base(name, price, size) { }
-        public override string ToString()
         {
-            return base.ToString() + "\nColoured: No";
+            public UnColoured() : base() { }
+            public UnColoured(string name, decimal price, char size) : base(name, price, size) { }
+            public override string ToString()
+            {
+                return base.ToString() + "\nColoured: No";
+            }
+            public int CompareTo(UnColoured obj) { return Name.CompareTo(obj); }
         }
-        public int CompareTo(UnColoured obj) { return Name.CompareTo(obj); }
-    }
 
     /////////////CLASS CONTEINER////////////////////
 
