@@ -22,13 +22,10 @@ namespace BookStore
         public DataLogicException(string message, Exception innerException) : base(message, innerException) { }
     }
 
-    public interface IName<T> where T : IComparable
-    {
+    public interface IName
+    { 
         string Name { get; }
         decimal Price { get; }
-        decimal GetPrice();
-        void SetName(T name);
-        void SetPrice(decimal price);
     }
 
     public interface CostChanged
@@ -38,11 +35,11 @@ namespace BookStore
 
     /////////////BASE CLASS FOR ALL PRODUCTS/////////////
 
-    public class Product : IName<string>, IComparable<Product>, CostChanged
+    public class Product : IName, IComparable<Product>, CostChanged
     {
         public event Action<decimal> CostChanged;
         public string Name { get; protected set; }
-        public decimal Price { get; protected set; }
+        public decimal Price { get;  set; }
         public Product()
         {
             Name = "Unknown";
@@ -59,17 +56,16 @@ namespace BookStore
         {
             return "Name:" + Name + "\n" + "Price:" + Price;
         }
-        public void SetName(string name) { Name = name; }
-        public void SetPrice(decimal price) { Price = price; }
+
         public int CompareTo(Product obj) { return Name.CompareTo(obj); }
 
-        decimal IName<string>.GetPrice() { return Price; }
+
 
     }
 
     /////////////CLASS BOOK////////////////////
 
-    public class Book : Product, IName<string>, IComparable<Book>
+    public class Book : Product, IComparable<Book>
     {
         public string BookName { get; private set; }
         public string AuthorName { get; private set; }
@@ -91,7 +87,7 @@ namespace BookStore
         }
         public int CompareTo(Book obj) { return Name.CompareTo(obj); }
     }
-    public class SingleBook : Book, IName<string>, IComparable<SingleBook>
+    public class SingleBook : Book, IComparable<SingleBook>
     {
 
         public SingleBook() : base() { }
@@ -103,7 +99,7 @@ namespace BookStore
         }
         public int CompareTo(SingleBook obj) { return Name.CompareTo(obj); }
     }
-    public class BookSeries : Book, IName<string>, IComparable<BookSeries>
+    public class BookSeries : Book, IComparable<BookSeries>
     {
 
         public BookSeries() : base() { }
@@ -117,7 +113,7 @@ namespace BookStore
 
     /////////////CLASS BOOKMARKS SET////////////////////
 
-    public class BookmarksSet : Product, IName<string>, IComparable<BookmarksSet>
+    public class BookmarksSet : Product, IComparable<BookmarksSet>
     {
         public string Colour { get; private set; }
         public float QuantityInSet { get; private set; }
@@ -140,7 +136,7 @@ namespace BookStore
         }
         public int CompareTo(BookmarksSet obj) { return Name.CompareTo(obj); }
     }
-    public class TranslucentBookmarks : BookmarksSet, IName<string>, IComparable<TranslucentBookmarks>
+    public class TranslucentBookmarks : BookmarksSet, IComparable<TranslucentBookmarks>
     {
         TranslucentBookmarks() : base() { }
         public TranslucentBookmarks(string name, decimal price, string colour, float quantity) : base(name, price, colour, quantity) { }
@@ -150,7 +146,7 @@ namespace BookStore
         }
         public int CompareTo(TranslucentBookmarks obj) { return Name.CompareTo(obj); }
     }
-    public class OpaqueBookmarks : BookmarksSet, IName<string>, IComparable<OpaqueBookmarks>
+    public class OpaqueBookmarks : BookmarksSet, IComparable<OpaqueBookmarks>
     {
         OpaqueBookmarks() : base() { }
         public OpaqueBookmarks(string name, decimal price, string colour, float quantity) : base(name, price, colour, quantity) { }
@@ -163,7 +159,7 @@ namespace BookStore
 
     /////////////CLASS POSTERS////////////////////
 
-    public class Posters : Product, IName<string>, IComparable<Posters>
+    public class Posters : Product, IComparable<Posters>
     {
         public char Size { get; private set; }
 
@@ -184,7 +180,7 @@ namespace BookStore
         }
         public int CompareTo(Posters obj) { return Name.CompareTo(obj); }
     }
-    public class Coloured : Posters, IName<string>, IComparable<Coloured>
+    public class Coloured : Posters, IComparable<Coloured>
     {
         public Coloured() : base() { }
         public Coloured(string name, decimal price, char size) : base(name, price, size) { }
@@ -194,7 +190,7 @@ namespace BookStore
         }
         public int CompareTo(Coloured obj) { return Name.CompareTo(obj); }
     }
-    public class UnColoured : Posters, IName<string>, IComparable<UnColoured>
+    public class UnColoured : Posters, IComparable<UnColoured>
         {
             public UnColoured() : base() { }
             public UnColoured(string name, decimal price, char size) : base(name, price, size) { }
@@ -207,7 +203,7 @@ namespace BookStore
 
     /////////////CLASS CONTEINER////////////////////
 
-    public class ArrayIterator<T> : IEnumerator<T> where T : IName<string>
+    public class ArrayIterator<T> : IEnumerator<T> where T : IName
     {
         private Container<T> container;
         private int currentIndex = -1;
@@ -250,7 +246,7 @@ namespace BookStore
         }
     }
 
-    public class Container<T> : IEnumerable<T> where T : IName<string>
+    public class Container<T> : IEnumerable<T> where T : IName
     {
         private T[] products;
         public int count;
@@ -261,6 +257,7 @@ namespace BookStore
             count = 0;
             products = new T[count];
             totalValue = 0;
+            TotalValueChanged += OnTotalValueChanged;
         }
 
         public event EventHandler<decimal> TotalValueChanged;
@@ -424,23 +421,27 @@ namespace BookStore
         }
 
         /////////////TOTAL COST////////////////////
-        public event Action<decimal> TotalCostChanged;
-        public decimal GetTotalCost()
+        //public event Action<decimal> TotalCostChanged;
+        //public decimal GetTotalCost()
+        //{
+        //    decimal totalCost = 0;
+        //    foreach (T item in this)
+        //    {
+        //        PropertyInfo valueProperty = item.GetType().GetProperty("Price");
+        //        decimal itemCost = (decimal)valueProperty.GetValue(item);
+        //        totalCost += itemCost;
+        //    }
+        //    return totalCost;
+        //}
+        //private void OnCostChange(decimal cost)
+        //{
+        //    TotalCostChanged?.Invoke(GetTotalCost());
+        //}
+        public void OnTotalValueChanged(object sender, decimal e)
         {
-            decimal totalCost = 0;
-            foreach (T item in this)
-            {
-                PropertyInfo valueProperty = item.GetType().GetProperty("Price");
-                decimal itemCost = (decimal)valueProperty.GetValue(item);
-                totalCost += itemCost;
-            }
-            return totalCost;
+            Console.WriteLine();
+            Console.WriteLine($"Total value changed: ${e.ToString("0.00", CultureInfo.GetCultureInfo("en-US"))}");
         }
-        private void OnCostChange(decimal cost)
-        {
-            TotalCostChanged?.Invoke(GetTotalCost());
-        }
-
         public bool IsEmpty()
         {
             return count == 0;
@@ -496,7 +497,7 @@ namespace BookStore
 
                     writer.Write(product.GetType().Name);
                     writer.Write(type.Name);
-                    writer.Write(product.GetPrice());
+                    writer.Write(product.Price);
                     if (product is SingleBook singlebook)
                     {
                         writer.Write(singlebook.BookName.Length);
@@ -641,103 +642,108 @@ class Program
     static void Main(string[] args)
     {
         Container<Product> ChoosedProdukts = new Container<Product>();
-        while (true)
-        {
-            Console.WriteLine("\t\tWelcome to the Book Store!");
-            Console.WriteLine("\t\tPlease, choose an operation!");
-            Console.WriteLine("\t\t1 -- Buy Books");
-            Console.WriteLine("\t\t2 -- Buy Set of Bookmarks");
-            Console.WriteLine("\t\t3 -- Buy Posters");
-            Console.WriteLine("\t\t4 -- View Choosed Products");
-            Console.WriteLine("\t\t5 -- Delete a Choosed Product");
-            Console.WriteLine("\t\t6 -- Sort produkts by name");
-            Console.WriteLine("\t\t7 -- Search a product");
-            Console.WriteLine("\t\t8 -- Save information");
-            Console.WriteLine("\t\t9 -- Load new information");
-            Console.WriteLine("\t\t10 -- Total cost");
-            Console.WriteLine("\t\t11 -- The cheapest and most expensive products");
-            Console.WriteLine("\t\t12 -- Average cost by category");
-            Console.WriteLine("\t\t0 -- Exit");
+        Product p = new Product();
+        p.Price = 100;
+        ChoosedProdukts.AddProduct(p);
+        Console.WriteLine(ChoosedProdukts.OnTotalValueChanged);
 
-        MCH: int select = -1;
-            try
-            {
-                select = int.Parse(Console.ReadLine());
-            }
-            catch (FormatException ex)
-            {
-                Console.WriteLine("Uncorrect choice. Please try one more time. (・・ )?");
-                goto MCH;
-            }
+        //while (true)
+        //{
+        //    Console.WriteLine("\t\tWelcome to the Book Store!");
+        //    Console.WriteLine("\t\tPlease, choose an operation!");
+        //    Console.WriteLine("\t\t1 -- Buy Books");
+        //    Console.WriteLine("\t\t2 -- Buy Set of Bookmarks");
+        //    Console.WriteLine("\t\t3 -- Buy Posters");
+        //    Console.WriteLine("\t\t4 -- View Choosed Products");
+        //    Console.WriteLine("\t\t5 -- Delete a Choosed Product");
+        //    Console.WriteLine("\t\t6 -- Sort produkts by name");
+        //    Console.WriteLine("\t\t7 -- Search a product");
+        //    Console.WriteLine("\t\t8 -- Save information");
+        //    Console.WriteLine("\t\t9 -- Load new information");
+        //    Console.WriteLine("\t\t10 -- Total cost");
+        //    Console.WriteLine("\t\t11 -- The cheapest and most expensive products");
+        //    Console.WriteLine("\t\t12 -- Average cost by category");
+        //    Console.WriteLine("\t\t0 -- Exit");
 
-            switch (select)
-            {
-                case 1:
-                    BuyBook(ChoosedProdukts);
-                    Console.WriteLine("\n\n");
-                    break;
-                case 2:
-                    BuyBookmarksSet(ChoosedProdukts);
-                    Console.WriteLine("\n\n");
-                    break;
-                case 3:
-                    BuyPosters(ChoosedProdukts);
-                    Console.WriteLine("\n\n");
-                    break;
-                case 4:
-                    PrintBy(ChoosedProdukts);
-                    Console.WriteLine("\n\n");
-                    break;
-                case 5:
-                    RemoveChoosedProdukts(ChoosedProdukts);
-                    Console.WriteLine("\n\n");
-                    break;
+        //MCH: int select = -1;
+        //    try
+        //    {
+        //        select = int.Parse(Console.ReadLine());
+        //    }
+        //    catch (FormatException ex)
+        //    {
+        //        Console.WriteLine("Uncorrect choice. Please try one more time. (・・ )?");
+        //        goto MCH;
+        //    }
 
-                case 6:
-                    ChoosedProdukts.SortProducts((x, y) => x.Name.CompareTo(y.Name));
-                    break;
-                case 7:
-                    SearchBy(ChoosedProdukts);
-                    Console.WriteLine("\n\n");
-                    break;
-                case 8:
-                    ChoosedProdukts.WriteToBinaryFile("inf.txt");
-                    Console.WriteLine("Success! File have been saved!");
-                    Console.WriteLine("\n\n");
-                    break;
-                case 9:
-                    ChoosedProdukts.ReadFromBinaryFile("inf.txt");
-                    Console.WriteLine("Success! File have been loaded!");
-                    Console.WriteLine("\n\n");
-                    Console.Write(ChoosedProdukts);
-                    Console.WriteLine("\n\n");
-                    break;
-                case 10:
-                    decimal totalcost = ChoosedProdukts.GetTotalCost();
-                    Console.WriteLine("\n\nTotal cost: " + totalcost + "\n\n");
-                    break;
-                case 11:
-                    var (cheapest, mostExpensive) = ChoosedProdukts.FindCheapestAndMostExpensive();
-                    Console.WriteLine($"\n\nCheapest product: \n{cheapest}\n\n");
-                    Console.WriteLine($"\n\nMost expensive product: \n{mostExpensive}\n\n");
-                    break;
+        //    switch (select)
+        //    {
+        //        case 1:
+        //            BuyBook(ChoosedProdukts);
+        //            Console.WriteLine("\n\n");
+        //            break;
+        //        case 2:
+        //            BuyBookmarksSet(ChoosedProdukts);
+        //            Console.WriteLine("\n\n");
+        //            break;
+        //        case 3:
+        //            BuyPosters(ChoosedProdukts);
+        //            Console.WriteLine("\n\n");
+        //            break;
+        //        case 4:
+        //            PrintBy(ChoosedProdukts);
+        //            Console.WriteLine("\n\n");
+        //            break;
+        //        case 5:
+        //            RemoveChoosedProdukts(ChoosedProdukts);
+        //            Console.WriteLine("\n\n");
+        //            break;
 
-                case 12:
-                    var averagePricesByCategory = ChoosedProdukts.GetAveragePriceByCategory();
-                    foreach (var item in averagePricesByCategory)
-                    {
-                        Console.WriteLine("\n\nCategory: " + item.Category + ", Average price: " + item.AveragePrice + "\n\n");
-                    }
-                    break;
-                case 0:
-                    Console.WriteLine("Thank you for shopping with us!");
-                    return;
-                default:
-                    Console.WriteLine("Uncorrect choice. Please try one more time. (・・ )?");
-                    break;
-            }
-        }
-        Console.WriteLine("Thank you for shopping with us!");
+        //        case 6:
+        //            ChoosedProdukts.SortProducts((x, y) => x.Name.CompareTo(y.Name));
+        //            break;
+        //        case 7:
+        //            SearchBy(ChoosedProdukts);
+        //            Console.WriteLine("\n\n");
+        //            break;
+        //        case 8:
+        //            ChoosedProdukts.WriteToBinaryFile("inf.txt");
+        //            Console.WriteLine("Success! File have been saved!");
+        //            Console.WriteLine("\n\n");
+        //            break;
+        //        case 9:
+        //            ChoosedProdukts.ReadFromBinaryFile("inf.txt");
+        //            Console.WriteLine("Success! File have been loaded!");
+        //            Console.WriteLine("\n\n");
+        //            Console.Write(ChoosedProdukts);
+        //            Console.WriteLine("\n\n");
+        //            break;
+        //        case 10:
+        //           // decimal totalcost = ChoosedProdukts.GetTotalCost();
+        //            //Console.WriteLine("\n\nTotal cost: " + totalcost + "\n\n");
+        //            break;
+        //        case 11:
+        //            var (cheapest, mostExpensive) = ChoosedProdukts.FindCheapestAndMostExpensive();
+        //            Console.WriteLine($"\n\nCheapest product: \n{cheapest}\n\n");
+        //            Console.WriteLine($"\n\nMost expensive product: \n{mostExpensive}\n\n");
+        //            break;
+
+        //        case 12:
+        //            var averagePricesByCategory = ChoosedProdukts.GetAveragePriceByCategory();
+        //            foreach (var item in averagePricesByCategory)
+        //            {
+        //                Console.WriteLine("\n\nCategory: " + item.Category + ", Average price: " + item.AveragePrice + "\n\n");
+        //            }
+        //            break;
+        //        case 0:
+        //            Console.WriteLine("Thank you for shopping with us!");
+        //            return;
+        //        default:
+        //            Console.WriteLine("Uncorrect choice. Please try one more time. (・・ )?");
+        //            break;
+        //    }
+        //}
+       // Console.WriteLine("Thank you for shopping with us!");
         Console.ReadLine();
 
     }

@@ -1,0 +1,32 @@
+Target function:
+
+f(x) = 1x1 + 2x2 + 3x3 => max
+
+System of restrictions:
+
+1x1 + 2x2 + 3x3 = 1
+4x1 + 5x2 + 6x3 >= 4
+6x1 + 5x2 + 4x3 <= 6
+
+The problem on  Maximization is solved by the simplex method using the simplex table.
+Baseline:
+
+x4;1;1;2;3;1;0;0;0,333333
+
+x5;4;4;5;6;0;1;0;0,666667
+
+x6;6;6;5;4;0;0;1;1,5
+
+f(x);0;-1;-2;-3;0;0;0;
+
+First baseline is not optimal because there are -L in the line Positive elements.
+
+x3;0,333333;0,333333;0,666667;1;0,333333;0;0;
+
+x5;2;2;1;0;-2;1;0;
+
+x6;4,66667;4,66667;2,33333;0;-1,33333;0;1;
+
+f(x);1;0;0;0;1;0;0;
+
+		The given plan is optimal.
