@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
@@ -75,7 +74,7 @@ namespace MM_LB_3
 
 
             n = table.GetLength(1);
-            Console.WriteLine("Reduction to canonical form");
+            Console.WriteLine("\t\tReduction to canonical form");
             ExportLineToExcel("Reduction to canonical form", Program.sheet1, true, table.GetLength(1));
             Program.printTable(table);
             ExportToExcel(table, Program.sheet1);
@@ -175,7 +174,7 @@ namespace MM_LB_3
             {
                 int tableRows = table.GetLength(0);
                 int tableCols = table.GetLength(1);
-                Console.WriteLine("\nThe problem cannot be solved due to invalid variables");
+                Console.WriteLine("\n\t\tThe problem cannot be solved due to invalid variables");
                 ExportLineToExcel("The problem cannot be solved due to invalid variables", Program.sheet2, true, table.GetLength(1));
                 double[,] tempTable = new double[tableRows + 1, tableCols + 1];
 
@@ -235,7 +234,7 @@ namespace MM_LB_3
 
 
 
-                Console.WriteLine("\nThe new table is based on the Gomori method");
+                Console.WriteLine("\n\t\tThe new table is based on the Gomori method");
                 Program.printTable(table);
                 ExportLineToExcel("The new table is based on the Gomori method", Program.sheet2, true, table.GetLength(1));
                 ExportToExcel(table, Program.sheet2);
@@ -254,7 +253,7 @@ namespace MM_LB_3
                     }
                 }
 
-                Console.WriteLine("A string of estimates");
+                Console.WriteLine("\tA string of estimates");
                 Console.Write("\t");
                 for (int i = 0; i < tableCols - 2; i++)
                 {
@@ -288,7 +287,7 @@ namespace MM_LB_3
                         table[i, j] = table[tableRows - 2, j] * columnElenemt + table[i, j];
 
                 }
-                Console.WriteLine("\nThe resulting table is based on the Gomori method");
+                Console.WriteLine("\n\t\tThe resulting table is based on the Gomori method");
                 ExportLineToExcel("The resulting table is based on the Gomori method", Program.sheet2, true, table.GetLength(1));
                 double endFunc = 0;
                 int c = 0;
@@ -306,7 +305,7 @@ namespace MM_LB_3
                 ExportToExcel(table, Program.sheet2);
 
 
-                Console.WriteLine("\nSolution:");
+                Console.WriteLine("\n\tSolution:");
                 ExportLineToExcel("\nSolution:", Program.sheet2, true, 1);
                 for (int i = 0; i < countVars; i++)
                     for (int j = 0; j < nameX.Length; j++)
@@ -324,7 +323,7 @@ namespace MM_LB_3
             }
             else
             {
-                Console.WriteLine("The task has all the necessary variables, and therefore it is completed");
+                Console.WriteLine("\tThe task has all the necessary variables, and therefore it is completed");
                 ExportLineToExcel("The task has all the necessary variables, and therefore it is completed", Program.sheet2, true, table.GetLength(1));
             }
         }
@@ -442,7 +441,7 @@ namespace MM_LB_3
 
             ClearExcel(sheet2);
             ClearExcel(sheet1);
-            Console.WriteLine("Optimization (max/min) --> ");
+            Console.WriteLine("\t\tOptimization (max/min):");
             string target_func = Console.ReadLine();
             Console.Write("Number of variables -->  ");
             int countVars = int.Parse(Console.ReadLine());
@@ -459,18 +458,18 @@ namespace MM_LB_3
                     Console.WriteLine($"\t{i + 1} limit");
                     for (int j = 1; j < countVars + 1; j++)
                     {
-                        Console.Write($"Coefficient at x{j} -->  ");
+                        Console.Write($"Coefficient at x{j}: ");
                         table[i, j] = double.Parse(Console.ReadLine());
                     }
-                    Console.Write($"Restriction sign (>=, <=)-->  ");
+                    Console.Write($"Restriction sign (>=, <=):  ");
                     signs[i] = Console.ReadLine();
-                    Console.Write($"A free member -->  ");
+                    Console.Write($"A free member:  ");
                     table[i, 0] = double.Parse(Console.ReadLine());
                 }
                 else
                 {
                     table[i, 0] = 0;
-                    Console.WriteLine("\tTarget function");
+                    Console.WriteLine("\t\tTarget function");
                     for (int j = 1; j < countVars + 1; j++)
                     {
                         Console.Write($"Coefficient at x{j} -->  ");
@@ -487,7 +486,7 @@ namespace MM_LB_3
 
             Console.Clear();
             Simplex.ExportLineToExcel("Target function", sheet1, true, 5);
-            Console.WriteLine("Entered Task");
+            Console.WriteLine("\t\tEntered Task");
 
             string func = "";
             for (int j = 1; j < countVars + 1; j++)
@@ -496,7 +495,7 @@ namespace MM_LB_3
             func = func.Replace("+ -", "- ").Substring(0, func.Length - 3);
             Console.WriteLine($"f(x) = {func} -> {target_func}");
             Simplex.ExportLineToExcel($"f(x) = {func} -> {target_func}", sheet1, true, 5);
-            Console.WriteLine("\nLimitations in the system");
+            Console.WriteLine("\n\tLimitations in the system");
             Simplex.ExportLineToExcel("Limitations in the system", sheet1, true, 5);
             for (int i = 0; i < countLimits; i++)
             {
@@ -524,11 +523,11 @@ namespace MM_LB_3
 
             Simplex.table = table_result;
 
-            Console.WriteLine("\nSolved simplex table:");
+            Console.WriteLine("\n\tSolved simplex table:");
             printTable(table_result);
 
             Console.WriteLine();
-            Console.WriteLine("Solution:");
+            Console.WriteLine("\t\tSolution:");
             Simplex.ExportLineToExcel("Solution", sheet1, true, 1);
             for (int i = 0; i < countVars; i++)
             {
